@@ -1,7 +1,9 @@
 NAME=executable
 
 FILES:=
-TEST_FILES:= asserts.cpp main.cpp unit/example.cpp
+TEST_LINKED_LIST:=IntSLLNode.cpp
+TEST_LINKED_LIST:=$(addprefix unit/linked-list/, $(TEST_LINKED_LIST))
+TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))
 INCLUDES=-I includes/
 COMPILER=c++

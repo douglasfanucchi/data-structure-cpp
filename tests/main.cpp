@@ -3,6 +3,6 @@
 
 int main()
 {
-    RUN_EXAMPLE_SUITE();
+    RUN_INT_SLL_NODE_SUITE();
     std::cout << std::endl;
 }
