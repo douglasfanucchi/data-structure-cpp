@@ -16,7 +16,7 @@ $(NAME): $(FILES) src/main.cpp
 
 unit: $(TEST_FILES)
 	@$(COMPILER) $(INCLUDES) -I tests/ $(FILES) $(TEST_FILES) -o unit
-	@./unit
+	@valgrind --leak-check=full -q ./unit
 	@rm -rf unit
 
 e2e: $(NAME)
