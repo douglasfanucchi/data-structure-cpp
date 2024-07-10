@@ -1,6 +1,7 @@
 NAME=executable
 
-FILES:=
+FILES:=linked-lists/IntSLLNode.cpp
+FILES:=$(addprefix src/, $(FILES))
 TEST_LINKED_LIST:=IntSLLNode.cpp
 TEST_LINKED_LIST:=$(addprefix unit/linked-list/, $(TEST_LINKED_LIST))
 TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST)
