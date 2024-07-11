@@ -10,6 +10,7 @@ class IntSLList {
     public:
         IntSLList(void);
         bool isEmpty(void);
+        void addToHead(int);
 };
 
 #endif
