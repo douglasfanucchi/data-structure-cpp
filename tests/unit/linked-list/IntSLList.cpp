@@ -87,6 +87,16 @@ void test_should_delete_node_from_empty_linked_list()
     }
 }
 
+void test_should_delete_node_from_one_node_linked_list()
+{
+    IntSLList list;
+    list.addToHead(3);
+
+    list.deleteNode(3);
+
+    ASSERT_TRUE(list.isEmpty());
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -97,4 +107,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_delete_node_from_the_end_of_linked_list_with_multiple_elements();
     test_should_delete_node_from_the_middle_of_linked_lists();
     test_should_delete_node_from_empty_linked_list();
+    test_should_delete_node_from_one_node_linked_list();
 }
