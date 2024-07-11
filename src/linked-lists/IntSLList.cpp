@@ -42,3 +42,23 @@ int IntSLList::deleteFromHead(void) {
     delete node;
     return value;
 }
+
+int IntSLList::deleteFromTail(void) {
+    int value = this->tail->value;
+
+    if (this->head == this->tail) {
+        delete this->tail;
+        this->tail = this->head = 0;
+
+        return value;
+    }
+
+    IntSLLNode *tmp = this->head;
+    for (;tmp->next != this->tail; tmp = tmp->next);
+
+    delete this->tail;
+    tmp->next = 0;
+    this->tail = tmp;
+
+    return value;
+}
