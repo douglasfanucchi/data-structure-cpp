@@ -97,6 +97,17 @@ void test_should_delete_node_from_one_node_linked_list()
     ASSERT_TRUE(list.isEmpty());
 }
 
+void test_should_delete_node_from_start_of_a_non_one_node_linked_list()
+{
+    IntSLList list;
+    list.addToTail(10);
+    list.addToTail(20);
+
+    list.deleteNode(10);
+
+    ASSERT_EQ(20, list.deleteFromHead());
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -108,4 +119,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_delete_node_from_the_middle_of_linked_lists();
     test_should_delete_node_from_empty_linked_list();
     test_should_delete_node_from_one_node_linked_list();
+    test_should_delete_node_from_start_of_a_non_one_node_linked_list();
 }
