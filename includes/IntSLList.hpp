@@ -13,6 +13,7 @@ class IntSLList {
         bool isEmpty(void);
         void addToHead(int);
         void addToTail(int);
+        int deleteFromHead(void);
 };
 
 #endif

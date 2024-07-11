@@ -33,3 +33,12 @@ void IntSLList::addToTail(int value) {
     this->tail->next = node;
     this->tail = node;
 }
+
+int IntSLList::deleteFromHead(void) {
+    IntSLLNode *node = this->head;
+    this->head = this->head->next;
+    int value = node->value;
+
+    delete node;
+    return value;
+}
