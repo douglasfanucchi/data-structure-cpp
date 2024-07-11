@@ -66,7 +66,6 @@ int IntSLList::deleteFromTail(void) {
 void IntSLList::deleteNode(int value) {
     if (this->isEmpty()) {
         throw ("empty list");
-        return;
     }
 
     if (this->head == this->tail && this->head->value == value) {
