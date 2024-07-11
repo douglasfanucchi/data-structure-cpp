@@ -61,6 +61,21 @@ void test_should_delete_node_from_the_end_of_linked_list_with_multiple_elements(
     ASSERT_EQ(3, result);
 }
 
+void test_should_delete_node_from_the_middle_of_linked_lists()
+{
+    IntSLList list;
+    list.addToTail(1);
+    list.addToTail(2);
+    list.addToTail(3);
+    list.addToTail(4);
+
+    list.deleteNode(3);
+    list.deleteFromTail();
+    int result = list.deleteFromTail();
+
+    ASSERT_EQ(2, result);
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -69,4 +84,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_delete_node_from_the_start_of_linked_list();
     test_should_delete_node_from_the_end_of_linked_list_when_list_has_one_element();
     test_should_delete_node_from_the_end_of_linked_list_with_multiple_elements();
+    test_should_delete_node_from_the_middle_of_linked_lists();
 }
