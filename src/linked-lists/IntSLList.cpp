@@ -2,6 +2,14 @@
 
 IntSLList::IntSLList(void) : head(0), tail(0) {}
 
+IntSLList::~IntSLList(void) {
+    while (this->head) {
+        IntSLLNode *node = this->head;
+        this->head = this->head->next;
+        delete node;
+    }
+}
+
 bool IntSLList::isEmpty(void) {
     return this->head == 0;
 }

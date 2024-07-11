@@ -9,6 +9,7 @@ class IntSLList {
 
     public:
         IntSLList(void);
+        ~IntSLList(void);
         bool isEmpty(void);
         void addToHead(int);
 };
