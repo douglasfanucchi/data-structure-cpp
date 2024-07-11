@@ -12,6 +12,7 @@ class IntSLList {
         ~IntSLList(void);
         bool isEmpty(void);
         void addToHead(int);
+        void addToTail(int);
 };
 
 #endif

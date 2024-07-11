@@ -22,3 +22,14 @@ void IntSLList::addToHead(int value) {
     }
     this->head = node;
 }
+
+void IntSLList::addToTail(int value) {
+    IntSLLNode *node = new IntSLLNode(value);
+
+    if (this->isEmpty()) {
+        this->tail = this->head = node;
+        return;
+    }
+    this->tail->next = node;
+    this->tail = node;
+}
