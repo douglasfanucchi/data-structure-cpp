@@ -15,6 +15,7 @@ class IntSLList {
         void addToTail(int);
         int deleteFromHead(void);
         int deleteFromTail(void);
+        void deleteNode(int);
 };
 
 #endif

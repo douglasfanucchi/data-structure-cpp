@@ -62,3 +62,35 @@ int IntSLList::deleteFromTail(void) {
 
     return value;
 }
+
+void IntSLList::deleteNode(int value) {
+    if (this->isEmpty()) {
+        throw ("empty list");
+        return;
+    }
+
+    if (this->head == this->tail && this->head->value == value) {
+        delete this->head;
+        this->head = this->tail = 0;
+        return;
+    }
+
+    if (this->head->value == value) {
+        this->deleteFromHead();
+        return;
+    }
+
+    if (this->tail->value == value) {
+        this->deleteFromTail();
+        return;
+    }
+
+    IntSLLNode *prev = this->head, *tmp = this->head->next;
+    for(;tmp && tmp->value != value; prev = prev->next, tmp = tmp->next);
+    if (!tmp) {
+        return;
+    }
+    prev->next = tmp->next;
+
+    delete tmp;
+}
