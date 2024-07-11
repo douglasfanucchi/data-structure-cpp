@@ -76,6 +76,17 @@ void test_should_delete_node_from_the_middle_of_linked_lists()
     ASSERT_EQ(2, result);
 }
 
+void test_should_delete_node_from_empty_linked_list()
+{
+    IntSLList list;
+
+    try {
+        list.deleteNode(3);
+    } catch(char const *str) {
+        ASSERT_STREQ("empty list", str);
+    }
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -85,4 +96,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_delete_node_from_the_end_of_linked_list_when_list_has_one_element();
     test_should_delete_node_from_the_end_of_linked_list_with_multiple_elements();
     test_should_delete_node_from_the_middle_of_linked_lists();
+    test_should_delete_node_from_empty_linked_list();
 }
