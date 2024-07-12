@@ -1,11 +1,14 @@
 #include <asserts.hpp>
+#include <DLList.hpp>
 
-void test_assert_true()
+void test_should_create_double_linked_list()
 {
-    ASSERT_TRUE(true);
+    DLList<std::string> list;
+
+    ASSERT_TRUE(list.isEmpty());
 }
 
 void RUN_DOUBLE_LINKED_LIST_SUITE()
 {
-    test_assert_true();
+    test_should_create_double_linked_list();
 }
