@@ -25,7 +25,21 @@ void test_should_create_dll_node()
     ASSERT_TRUE(fabs(1.0 - floatNode.value) < 0.001);
 }
 
+void test_should_create_dll_node_and_link_them()
+{
+    DLLNode<std::string> *second = new DLLNode<std::string>("fanucchi");
+    DLLNode<std::string> *first = new DLLNode<std::string>("douglas", NULL, second);
+    second->prev = first;
+
+    ASSERT_STREQ("fanucchi", first->next->value);
+    ASSERT_STREQ("douglas", second->prev->value);
+
+    delete first;
+    delete second;
+}
+
 void RUN_DLL_NODE_SUITE()
 {
     test_should_create_dll_node();
+    test_should_create_dll_node_and_link_them();
 }
