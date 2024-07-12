@@ -142,6 +142,17 @@ void test_should_search_for_an_existing_element_in_the_linked_list()
     ASSERT_TRUE(result);
 }
 
+void test_should_search_for_a_non_existing_element_in_the_linked_list()
+{
+    IntSLList list;
+    list.addToTail(1);
+    list.addToTail(2);
+
+    bool result = list.isInList(3);
+
+    ASSERT_FALSE(result);
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -157,4 +168,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_delete_node_from_end_of_a_non_one_node_linked_list();
     test_should_delete_node_that_doesnt_belong_to_linked_list();
     test_should_search_for_an_existing_element_in_the_linked_list();
+    test_should_search_for_a_non_existing_element_in_the_linked_list();
 }
