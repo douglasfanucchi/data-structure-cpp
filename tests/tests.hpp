@@ -3,5 +3,6 @@
 
 void RUN_INT_SLL_NODE_SUITE();
 void RUN_INT_SLLIST_SUITE();
+void RUN_DLL_NODE_SUITE();
 
 #endif
