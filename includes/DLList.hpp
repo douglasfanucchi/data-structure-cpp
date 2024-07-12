@@ -38,24 +38,22 @@ bool DLList<T>::isEmpty(void) {
 
 template<typename T>
 void DLList<T>::addToHead(const T& value) {
-    DLLNode<T> *node = new DLLNode<T>(value);
+    DLLNode<T> *node = new DLLNode<T>(value, NULL, this->head);
     if (this->isEmpty()) {
         this->head = this->tail = node;
         return;
     }
     this->head->prev = node;
-    node->next = this->head;
     this->head = node;
 }
 
 template<typename T>
 void DLList<T>::addToTail(const T& value) {
-    DLLNode<T> *node = new DLLNode<T>(value);
+    DLLNode<T> *node = new DLLNode<T>(value, this->tail);
     if (this->isEmpty()) {
         this->tail = this->head = node;
         return;
     }
     this->tail->next = node;
-    node->prev = this->tail;
     this->tail = node;
 }
