@@ -12,6 +12,7 @@ class DLList {
         ~DLList(void);
         bool isEmpty(void);
         void addToHead(const T&);
+        void addToTail(const T&);
 };
 
 #endif
@@ -45,4 +46,16 @@ void DLList<T>::addToHead(const T& value) {
     this->head->prev = node;
     node->next = this->head;
     this->head = node;
+}
+
+template<typename T>
+void DLList<T>::addToTail(const T& value) {
+    DLLNode<T> *node = new DLLNode<T>(value);
+    if (this->isEmpty()) {
+        this->tail = this->head = node;
+        return;
+    }
+    this->tail->next = node;
+    node->prev = this->tail;
+    this->tail = node;
 }
