@@ -16,6 +16,7 @@ class IntSLList {
         int deleteFromHead(void);
         int deleteFromTail(void);
         void deleteNode(int);
+        bool isInList(int);
 };
 
 #endif

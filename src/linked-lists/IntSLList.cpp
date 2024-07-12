@@ -93,3 +93,11 @@ void IntSLList::deleteNode(int value) {
 
     delete tmp;
 }
+
+bool IntSLList::isInList(int value) {
+    IntSLLNode *tmp;
+
+    for(tmp = this->head; tmp && tmp->value != value; tmp = tmp->next);
+
+    return tmp != 0;
+}
