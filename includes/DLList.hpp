@@ -10,6 +10,7 @@ class DLList {
     public:
         DLList(void);
         bool isEmpty(void);
+        void addToHead(const T&);
 };
 
 #endif
@@ -20,4 +21,16 @@ DLList<T>::DLList(void) : head(0), tail(0) {}
 template<typename T>
 bool DLList<T>::isEmpty(void) {
     return this->head == 0;
+}
+
+template<typename T>
+void DLList<T>::addToHead(const T& value) {
+    DLLNode<T> *node = new DLLNode<T>(value);
+    if (this->isEmpty()) {
+        this->head = this->tail = node;
+        return;
+    }
+    this->head->prev = node;
+    node->next = this->head;
+    this->head = node;
 }
