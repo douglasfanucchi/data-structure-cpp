@@ -3,7 +3,8 @@ NAME=executable
 FILES:=linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
 FILES:=$(addprefix src/, $(FILES))
 TEST_LINKED_LIST:=single-linked-list/IntSLLNode.cpp single-linked-list/IntSLList.cpp \
-				  doubly-linked-list/DLLNode.cpp doubly-linked-list/DLList.cpp
+				  doubly-linked-list/DLLNode.cpp doubly-linked-list/DLList.cpp \
+				  doubly-linked-list/CDLList.cpp
 TEST_LINKED_LIST:=$(addprefix unit/linked-list/, $(TEST_LINKED_LIST))
 TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))

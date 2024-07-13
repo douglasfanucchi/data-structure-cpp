@@ -7,5 +7,6 @@ int main()
     RUN_INT_SLLIST_SUITE();
     RUN_DLL_NODE_SUITE();
     RUN_DOUBLY_LINKED_LIST_SUITE();
+    RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE();
     std::cout << std::endl;
 }
