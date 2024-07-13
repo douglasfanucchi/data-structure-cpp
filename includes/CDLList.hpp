@@ -12,10 +12,27 @@ class CDLList {
         CDLList(void);
         bool isEmpty(void);
         void addToTail(const T&);
+        ~CDLList(void);
 };
 
 template<typename T>
 CDLList<T>::CDLList(void) : tail(0) {}
+
+template<typename T>
+CDLList<T>::~CDLList(void) {
+    if (this->isEmpty()) {
+        return;
+    }
+    DLLNode<T> *tmp, *node = this->tail->next;
+    while (node) {
+        tmp = node;
+        node = node->next;
+        if (tmp == this->tail) {
+            node = 0;
+        }
+        delete tmp;
+    }
+}
 
 template<typename T>
 bool CDLList<T>::isEmpty(void) {
