@@ -121,6 +121,19 @@ void test_should_search_for_an_element_in_an_empty_circular_doubly_linked_list()
     ASSERT_FALSE(result);
 }
 
+void test_should_search_forn_an_unexistence_element_in_a_non_empty_circular_doubly_linked_list()
+{
+    CDLList<int> list;
+    list.addToTail(1);
+    list.addToTail(2);
+    list.addToTail(3);
+    list.addToTail(4);
+
+    bool result = list.isInList(5);
+
+    ASSERT_FALSE(result);
+}
+
 void RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_circular_doubly_linked_list();
@@ -134,4 +147,5 @@ void RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE()
     test_should_delete_node_from_start_of_an_empty_circular_doubly_linked_list();
     test_should_search_for_an_element_in_the_circular_doubly_linked_list();
     test_should_search_for_an_element_in_an_empty_circular_doubly_linked_list();
+    test_should_search_forn_an_unexistence_element_in_a_non_empty_circular_doubly_linked_list();
 }
