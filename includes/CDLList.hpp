@@ -67,16 +67,14 @@ T CDLList<T>::deleteFromTail(void) {
         throw ("empty list");
     }
     T value = this->tail->value;
-    if (this->tail->next == this->tail) {
-        delete this->tail;
-        this->tail = 0;
-        return value;
-    }
     DLLNode<T> *tmp = this->tail;
     this->tail->prev->next = this->tail->next;
     this->tail->next->prev = this->tail->prev;
     this->tail = this->tail->prev;
     delete tmp;
+    if (tmp == this->tail) {
+        this->tail = 0;
+    }
     return value;
 }
 
