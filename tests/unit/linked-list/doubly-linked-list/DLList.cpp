@@ -166,6 +166,18 @@ void test_should_delete_a_node_from_the_end_of_a_multiple_node_doubly_linked_lis
     ASSERT_STREQ("hello", list.deleteFromTail());
 }
 
+void test_should_search_for_a_node_in_the_doubly_linked_list()
+{
+    DLList<std::string> list;
+    list.addToTail("hello");
+    list.addToTail("world");
+    list.addToTail("!");
+
+    bool result = list.isInList("world");
+
+    ASSERT_TRUE(result);
+}
+
 void RUN_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_doubly_linked_list();
@@ -182,4 +194,5 @@ void RUN_DOUBLY_LINKED_LIST_SUITE()
     test_should_delete_a_node_from_the_start_of_a_multiple_node_doubly_linked_list_using_deleteNode();
     test_should_delete_a_node_from_the_start_of_a_one_node_doubly_linked_list_using_deleteNode();
     test_should_delete_a_node_from_the_end_of_a_multiple_node_doubly_linked_list_using_deleteNode();
+    test_should_search_for_a_node_in_the_doubly_linked_list();
 }
