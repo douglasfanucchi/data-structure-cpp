@@ -38,10 +38,23 @@ void test_should_try_to_delete_a_node_from_an_empty_double_linked_list()
     }
 }
 
+void test_should_delete_a_node_from_a_one_node_doubly_linked_list()
+{
+    DLList<std::string> list;
+    const char *expected = "hello";
+    list.addToHead("hello");
+
+    std::string result = list.deleteFromTail();
+
+    ASSERT_STREQ(expected, result);
+    ASSERT_TRUE(list.isEmpty());
+}
+
 void RUN_DOUBLE_LINKED_LIST_SUITE()
 {
     test_should_create_double_linked_list();
     test_should_insert_node_into_the_start_of_one_node_double_linked_list();
     test_should_insert_node_into_the_end_of_an_empty_double_linked_list();
     test_should_try_to_delete_a_node_from_an_empty_double_linked_list();
+    test_should_delete_a_node_from_a_one_node_doubly_linked_list();
 }
