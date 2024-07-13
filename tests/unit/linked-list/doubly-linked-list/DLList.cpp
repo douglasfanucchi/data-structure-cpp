@@ -64,6 +64,18 @@ void test_should_delete_a_node_from_the_end_of_a_multiple_node_doubly_linked_lis
     ASSERT_TRUE(list.isEmpty());
 }
 
+void test_should_delete_a_node_from_the_start_of_an_empty_doubly_linked_list()
+{
+    DLList<std::string> list;
+    const char *expected = "empty list";
+
+    try {
+        list.deleteFromHead();
+    } catch (const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_doubly_linked_list();
@@ -72,4 +84,5 @@ void RUN_DOUBLY_LINKED_LIST_SUITE()
     test_should_try_to_delete_a_node_from_an_empty_doubly_linked_list();
     test_should_delete_a_node_from_a_one_node_doubly_linked_list();
     test_should_delete_a_node_from_the_end_of_a_multiple_node_doubly_linked_list();
+    test_should_delete_a_node_from_the_start_of_an_empty_doubly_linked_list();
 }
