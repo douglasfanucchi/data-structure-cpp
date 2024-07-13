@@ -15,6 +15,7 @@ class CDLList {
         void addToHead(const T&);
         T deleteFromTail(void);
         T deleteFromHead(void);
+        bool isInList(const T&);
         ~CDLList(void);
 };
 
@@ -92,6 +93,18 @@ T CDLList<T>::deleteFromHead(void) {
         this->tail = 0;
     }
     return value;
+}
+
+template<typename T>
+bool CDLList<T>::isInList(const T &value) {
+    if (this->isEmpty()) {
+        return false;
+    }
+    DLLNode<T> *node;
+    for (node = this->tail->next;
+         node != this->tail && node->value != value;
+         node = node->next);
+    return (node != this->tail || this->tail->value == value);
 }
 
 #endif
