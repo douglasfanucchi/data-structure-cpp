@@ -16,6 +16,7 @@ class DLList {
         T deleteFromTail(void);
         T deleteFromHead(void);
         void deleteNode(const T&);
+        bool isInList(const T&);
 };
 
 template<typename T>
@@ -119,6 +120,13 @@ void DLList<T>::deleteNode(const T& value) {
     tmp->prev->next = tmp->next;
     tmp->next->prev = tmp->prev;
     delete tmp;
+}
+
+template<typename T>
+bool DLList<T>::isInList(const T& value) {
+    DLLNode<T> *tmp;
+    for(tmp = this->head; tmp && tmp->value != value; tmp = tmp->next);
+    return tmp != 0;
 }
 
 #endif
