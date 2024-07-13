@@ -13,6 +13,7 @@ class DLList {
         bool isEmpty(void);
         void addToHead(const T&);
         void addToTail(const T&);
+        T deleteFromTail(void);
 };
 
 #endif
@@ -56,4 +57,21 @@ void DLList<T>::addToTail(const T& value) {
     }
     this->tail->next = node;
     this->tail = node;
+}
+
+template <typename T>
+T DLList<T>::deleteFromTail(void) {
+    if (this->isEmpty()) {
+        throw ("empty list");
+    }
+    T value = this->tail->value;
+    if (this->head == this->tail) {
+        delete this->tail;
+        this->tail = this->head = 0;
+        return value;
+    }
+    this->tail = this->tail->prev;
+    delete this->tail->next;
+    this->tail->next = 0;
+    return value;
 }
