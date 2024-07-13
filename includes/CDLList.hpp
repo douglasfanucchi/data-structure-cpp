@@ -12,6 +12,7 @@ class CDLList {
         CDLList(void);
         bool isEmpty(void);
         void addToTail(const T&);
+        void addToHead(const T&);
         ~CDLList(void);
 };
 
@@ -48,6 +49,14 @@ void CDLList<T>::addToTail(const T& value) {
         return;
     }
     this->tail = new DLLNode<T>(value, this->tail, this->tail->next);
+}
+
+template<typename T>
+void CDLList<T>::addToHead(const T &value) {
+    if (this->isEmpty()) {
+        return this->addToTail(value);
+    }
+    this->tail->next = new DLLNode<T>(value, this->tail, this->tail->next);
 }
 
 #endif
