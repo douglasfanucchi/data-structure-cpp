@@ -14,6 +14,7 @@ class DLList {
         void addToHead(const T&);
         void addToTail(const T&);
         T deleteFromTail(void);
+        T deleteFromHead(void);
 };
 
 template<typename T>
@@ -71,6 +72,23 @@ T DLList<T>::deleteFromTail(void) {
     this->tail = this->tail->prev;
     delete this->tail->next;
     this->tail->next = 0;
+    return value;
+}
+
+template<typename T>
+T DLList<T>::deleteFromHead(void) {
+    if (this->isEmpty()) {
+        throw ("empty list");
+    }
+    T value = this->head->value;
+    if (this->head == this->tail) {
+        delete this->head;
+        this->head = this->tail = 0;
+        return value;
+    }
+    this->head = this->head->next;
+    delete this->head->prev;
+    this->head->prev = 0;
     return value;
 }
 
