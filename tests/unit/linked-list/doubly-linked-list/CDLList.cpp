@@ -26,9 +26,23 @@ void test_should_insert_node_into_the_start_of_a_circular_doubly_linked_list()
     ASSERT_FALSE(list.isEmpty());
 }
 
+void test_should_delete_from_the_end_of_the_circular_doubly_linked_list()
+{
+    CDLList<int> list;
+    int expected = 25;
+    list.addToTail(15);
+    list.addToTail(20);
+    list.addToTail(25);
+
+    int result = list.deleteFromTail();
+
+    ASSERT_EQ(expected, result);
+}
+
 void RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_circular_doubly_linked_list();
     test_should_insert_node_into_the_end_of_a_circular_doubly_linked_list();
     test_should_insert_node_into_the_start_of_a_circular_doubly_linked_list();
+    test_should_delete_from_the_end_of_the_circular_doubly_linked_list();
 }
