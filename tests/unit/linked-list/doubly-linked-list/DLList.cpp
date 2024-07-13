@@ -76,6 +76,17 @@ void test_should_delete_a_node_from_the_start_of_an_empty_doubly_linked_list()
     }
 }
 
+void test_should_delete_a_node_from_the_start_of_a_one_node_doubly_linked_list()
+{
+    DLList<std::string> list;
+    const char *expected = "hello";
+    list.addToHead("hello");
+
+    std::string result = list.deleteFromHead();
+
+    ASSERT_STREQ(expected, result);
+}
+
 void RUN_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_doubly_linked_list();
@@ -85,4 +96,5 @@ void RUN_DOUBLY_LINKED_LIST_SUITE()
     test_should_delete_a_node_from_a_one_node_doubly_linked_list();
     test_should_delete_a_node_from_the_end_of_a_multiple_node_doubly_linked_list();
     test_should_delete_a_node_from_the_start_of_an_empty_doubly_linked_list();
+    test_should_delete_a_node_from_the_start_of_a_one_node_doubly_linked_list();
 }
