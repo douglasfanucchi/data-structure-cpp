@@ -16,8 +16,6 @@ class DLList {
         T deleteFromTail(void);
 };
 
-#endif
-
 template<typename T>
 DLList<T>::DLList(void) : head(0), tail(0) {}
 
@@ -75,3 +73,5 @@ T DLList<T>::deleteFromTail(void) {
     this->tail->next = 0;
     return value;
 }
+
+#endif
