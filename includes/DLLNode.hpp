@@ -12,11 +12,11 @@ class DLLNode {
         DLLNode *prev;
 };
 
-#endif
-
 template<typename T>
 DLLNode<T>::DLLNode(const T &value, DLLNode *prev, DLLNode *next) {
     this->value = value;
     this->next = next;
     this->prev = prev;
 }
+
+#endif
