@@ -48,7 +48,7 @@ void CDLList<T>::addToTail(const T& value) {
         this->tail->prev = this->tail;
         return;
     }
-    this->tail = new DLLNode<T>(value, this->tail, this->tail->next);
+    this->tail = this->tail->next = new DLLNode<T>(value, this->tail, this->tail->next);
 }
 
 template<typename T>
