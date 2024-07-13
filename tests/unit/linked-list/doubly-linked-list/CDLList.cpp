@@ -63,6 +63,19 @@ void test_should_delete_node_from_an_empty_circular_doubly_linked_list()
     }
 }
 
+void test_should_delete_node_from_the_start_of_a_circular_doubly_linked_list()
+{
+    CDLList<int> list;
+    int expected = 1;
+    list.addToTail(1);
+    list.addToTail(2);
+    list.addToTail(3);
+
+    int result = list.deleteFromHead();
+
+    ASSERT_EQ(expected, result);
+}
+
 void RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE()
 {
     test_should_create_circular_doubly_linked_list();
@@ -71,4 +84,5 @@ void RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE()
     test_should_delete_from_the_end_of_the_circular_doubly_linked_list();
     test_should_delete_node_from_the_end_of_a_one_node_circular_doubly_linked_list();
     test_should_delete_node_from_an_empty_circular_doubly_linked_list();
+    test_should_delete_node_from_the_start_of_a_circular_doubly_linked_list();
 }
