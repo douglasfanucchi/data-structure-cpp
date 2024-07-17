@@ -4,12 +4,13 @@
 #include <DLList.hpp>
 
 template<typename T>
-class Stack : public DLList<T> {
+class Stack : protected DLList<T> {
     public:
         void push(const T&);
         T pop(void);
         const T &topEl(void) const;
         void clear(void);
+        bool isEmpty(void) const;
 };
 
 template<typename T>
