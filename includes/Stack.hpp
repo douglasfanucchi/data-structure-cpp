@@ -9,4 +9,9 @@ class Stack : public DLList<T> {
         void push(const T&);
 };
 
+template<typename T>
+void Stack<T>::push(const T &value) {
+    this->addToHead(value);
+}
+
 #endif
