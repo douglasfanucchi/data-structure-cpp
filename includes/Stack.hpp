@@ -33,4 +33,14 @@ const T& Stack<T>::topEl(void) const {
     return this->head->value;
 }
 
+template<typename T>
+void Stack<T>::clear(void) {
+    DLLNode<T> *tmp;
+    while (!this->isEmpty()) {
+        tmp = this->head;
+        this->head = this->head->next;
+        delete tmp;
+    }
+}
+
 #endif
