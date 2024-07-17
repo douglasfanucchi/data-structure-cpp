@@ -59,6 +59,18 @@ void test_should_check_for_top_element()
     ASSERT_EQ(3, result);
 }
 
+void test_should_check_for_top_element_of_an_empty_stack()
+{
+    Stack<int> stack;
+    const char *expected = "empty stack";
+
+    try {
+        int result = stack.topEl();
+    } catch(const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_STACK_TEST_SUITE()
 {
     test_should_create_empty_stack();
@@ -66,4 +78,5 @@ void RUN_STACK_TEST_SUITE()
     test_should_pop_values_from_stack();
     test_should_pop_value_from_empty_stack();
     test_should_check_for_top_element();
+    test_should_check_for_top_element_of_an_empty_stack();
 }
