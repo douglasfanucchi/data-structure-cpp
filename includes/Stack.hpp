@@ -8,6 +8,7 @@ class Stack : public DLList<T> {
     public:
         void push(const T&);
         T pop(void);
+        const T &topEl(void) const;
 };
 
 template<typename T>
