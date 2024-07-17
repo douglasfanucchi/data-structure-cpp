@@ -35,9 +35,22 @@ void test_should_pop_values_from_stack()
     ASSERT_TRUE(stack.isEmpty());
 }
 
+void test_should_pop_value_from_empty_stack()
+{
+    Stack<int> stack;
+    const char *expected = "empty stack";
+
+    try {
+        stack.pop();
+    } catch (const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_STACK_TEST_SUITE()
 {
     test_should_create_empty_stack();
     test_should_push_values_to_stack();
     test_should_pop_values_from_stack();
+    test_should_pop_value_from_empty_stack();
 }
