@@ -24,4 +24,12 @@ T Stack<T>::pop(void) {
     return this->deleteFromHead();
 }
 
+template<typename T>
+const T& Stack<T>::topEl(void) const {
+    if (this->isEmpty()) {
+        throw ("empty stack");
+    }
+    return this->head->value;
+}
+
 #endif
