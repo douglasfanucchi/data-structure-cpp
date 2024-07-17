@@ -5,7 +5,7 @@
 
 template <typename T>
 class DLList {
-    private:
+    protected:
         DLLNode<T> *head, *tail;
     public:
         DLList(void);
