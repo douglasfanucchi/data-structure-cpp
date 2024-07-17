@@ -44,4 +44,9 @@ void Stack<T>::clear(void) {
     }
 }
 
+template<typename T>
+bool Stack<T>::isEmpty(void) const {
+    return this->head == 0;
+}
+
 #endif
