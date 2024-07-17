@@ -6,7 +6,9 @@ TEST_LINKED_LIST:=single-linked-list/IntSLLNode.cpp single-linked-list/IntSLList
 				  doubly-linked-list/DLLNode.cpp doubly-linked-list/DLList.cpp \
 				  doubly-linked-list/CDLList.cpp
 TEST_LINKED_LIST:=$(addprefix unit/linked-list/, $(TEST_LINKED_LIST))
-TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST)
+TEST_STACK:= Stack.cpp
+TEST_STACK:=$(addprefix unit/stack/, $(TEST_STACK))
+TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST) $(TEST_STACK)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))
 INCLUDES=-I includes/
 COMPILER=c++
