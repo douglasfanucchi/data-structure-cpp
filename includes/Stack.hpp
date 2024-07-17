@@ -7,6 +7,7 @@ template<typename T>
 class Stack : public DLList<T> {
     public:
         void push(const T&);
+        T pop(void);
 };
 
 template<typename T>

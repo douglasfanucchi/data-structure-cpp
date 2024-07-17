@@ -17,8 +17,27 @@ void test_should_push_values_to_stack()
     ASSERT_FALSE(stack.isEmpty());
 }
 
+void test_should_pop_values_from_stack()
+{
+    Stack<int> stack;
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    int result = stack.pop();
+    ASSERT_EQ(3, result);
+
+    result = stack.pop();
+    ASSERT_EQ(2, result);
+
+    result = stack.pop();
+    ASSERT_EQ(1, result);
+    ASSERT_TRUE(stack.isEmpty());
+}
+
 void RUN_STACK_TEST_SUITE()
 {
     test_should_create_empty_stack();
     test_should_push_values_to_stack();
+    test_should_pop_values_from_stack();
 }
