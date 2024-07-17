@@ -4,6 +4,9 @@
 #include <DLList.hpp>
 
 template<typename T>
-class Stack : public DLList<T> {};
+class Stack : public DLList<T> {
+    public:
+        void push(const T&);
+};
 
 #endif
