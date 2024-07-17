@@ -71,6 +71,19 @@ void test_should_check_for_top_element_of_an_empty_stack()
     }
 }
 
+void test_should_clear_the_stack()
+{
+    Stack<int> stack;
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+
+    stack.clear();
+
+    ASSERT_TRUE(stack.isEmpty());
+}
+
 void RUN_STACK_TEST_SUITE()
 {
     test_should_create_empty_stack();
@@ -79,4 +92,5 @@ void RUN_STACK_TEST_SUITE()
     test_should_pop_value_from_empty_stack();
     test_should_check_for_top_element();
     test_should_check_for_top_element_of_an_empty_stack();
+    test_should_clear_the_stack();
 }
