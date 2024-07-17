@@ -10,7 +10,7 @@ class DLList {
     public:
         DLList(void);
         ~DLList(void);
-        bool isEmpty(void);
+        bool isEmpty(void) const;
         void addToHead(const T&);
         void addToTail(const T&);
         T deleteFromTail(void);
@@ -34,7 +34,7 @@ DLList<T>::~DLList(void) {
 }
 
 template<typename T>
-bool DLList<T>::isEmpty(void) {
+bool DLList<T>::isEmpty(void) const {
     return this->head == 0;
 }
 
