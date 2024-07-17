@@ -15,4 +15,12 @@ void Stack<T>::push(const T &value) {
     this->addToHead(value);
 }
 
+template<typename T>
+T Stack<T>::pop(void) {
+    if (this->isEmpty()) {
+        throw ("empty stack");
+    }
+    return this->deleteFromHead();
+}
+
 #endif
