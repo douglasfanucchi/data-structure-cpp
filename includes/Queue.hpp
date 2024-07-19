@@ -30,4 +30,12 @@ T Queue<T>::dequeue(void) {
     return this->deleteFromHead();
 }
 
+template<typename T>
+T Queue<T>::firstEl(void) const {
+    if (this->isEmpty()) {
+        throw ("empty queue");
+    }
+    return this->head->value;
+}
+
 #endif
