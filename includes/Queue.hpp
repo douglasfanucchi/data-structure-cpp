@@ -23,6 +23,9 @@ void Queue<T>::enqueue(const T &el) {
 
 template<typename T>
 T Queue<T>::dequeue(void) {
+    if (this->isEmpty()) {
+        throw ("empty queue");
+    }
     return this->deleteFromHead();
 }
 
