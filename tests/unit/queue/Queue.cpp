@@ -68,6 +68,19 @@ void test_should_check_first_element_of_an_empty_queue()
     }
 }
 
+void test_should_clear_a_queue()
+{
+    Queue<int> queue;
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+
+    queue.clear();
+
+    ASSERT_TRUE(queue.isEmpty());
+}
+
 void RUN_QUEUE_TEST_SUITE()
 {
     test_should_create_queue();
@@ -76,4 +89,5 @@ void RUN_QUEUE_TEST_SUITE()
     test_should_dequeue_element_from_an_empty_queue();
     test_should_check_first_element_of_the_queue();
     test_should_check_first_element_of_an_empty_queue();
+    test_should_clear_a_queue();
 }
