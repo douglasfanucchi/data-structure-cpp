@@ -1,11 +1,14 @@
 #include <asserts.hpp>
+#include <Queue.hpp>
 
-void test_should_assert_true()
+void test_should_create_queue()
 {
-    ASSERT_TRUE(true);
+    Queue<int> queue;
+
+    ASSERT_TRUE(queue.isEmpty());
 }
 
 void RUN_QUEUE_TEST_SUITE()
 {
-    test_should_assert_true();
+    test_should_create_queue();
 }
