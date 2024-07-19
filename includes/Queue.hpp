@@ -9,4 +9,9 @@ class Queue : protected DLList<T> {
         bool isEmpty(void) const;
 };
 
+template<typename T>
+bool Queue<T>::isEmpty(void) const {
+    return this->head == 0;
+}
+
 #endif
