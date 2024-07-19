@@ -21,4 +21,9 @@ void Queue<T>::enqueue(const T &el) {
     this->addToTail(el);
 }
 
+template<typename T>
+T Queue<T>::dequeue(void) {
+    return this->deleteFromHead();
+}
+
 #endif
