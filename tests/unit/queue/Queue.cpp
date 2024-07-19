@@ -55,6 +55,19 @@ void test_should_check_first_element_of_the_queue()
     ASSERT_EQ(1, result);
 }
 
+void test_should_check_first_element_of_an_empty_queue()
+{
+    Queue<int> queue;
+    const char *expected = "empty queue";
+
+    try {
+        queue.firstEl();
+        ASSERT_TRUE(false);
+    } catch(const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_QUEUE_TEST_SUITE()
 {
     test_should_create_queue();
@@ -62,4 +75,5 @@ void RUN_QUEUE_TEST_SUITE()
     test_should_dequeue_element_from_list();
     test_should_dequeue_element_from_an_empty_queue();
     test_should_check_first_element_of_the_queue();
+    test_should_check_first_element_of_an_empty_queue();
 }
