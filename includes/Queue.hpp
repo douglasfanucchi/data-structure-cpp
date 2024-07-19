@@ -9,6 +9,7 @@ class Queue : protected DLList<T> {
         bool isEmpty(void) const;
         void enqueue(const T&);
         T dequeue(void);
+        T firstEl(void) const;
 };
 
 template<typename T>
