@@ -9,5 +9,6 @@ int main()
     RUN_DOUBLY_LINKED_LIST_SUITE();
     RUN_CIRCULAR_DOUBLY_LINKED_LIST_SUITE();
     RUN_STACK_TEST_SUITE();
+    RUN_QUEUE_TEST_SUITE();
     std::cout << std::endl;
 }
