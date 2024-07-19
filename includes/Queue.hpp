@@ -2,6 +2,7 @@
 # define QUEUE_H
 
 #include <DLList.hpp>
+#include <DLLNode.hpp>
 
 template<typename T>
 class Queue : protected DLList<T> {
@@ -37,6 +38,16 @@ T Queue<T>::firstEl(void) const {
         throw ("empty queue");
     }
     return this->head->value;
+}
+
+template<typename T>
+void Queue<T>::clear(void) {
+    DLLNode<T> *tmp;
+    while (this->head) {
+        tmp = this->head;
+        this->head = this->head->next;
+        delete tmp;
+    }
 }
 
 #endif
