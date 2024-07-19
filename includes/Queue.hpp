@@ -8,6 +8,7 @@ class Queue : protected DLList<T> {
     public:
         bool isEmpty(void) const;
         void enqueue(const T&);
+        T dequeue(void);
 };
 
 template<typename T>
