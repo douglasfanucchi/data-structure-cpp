@@ -30,9 +30,23 @@ void test_should_dequeue_element_from_list()
     ASSERT_EQ(1, result);
 }
 
+void test_should_dequeue_element_from_an_empty_queue()
+{
+    Queue<int> queue;
+    const char *expected = "empty queue";
+
+    try {
+        queue.dequeue();
+        ASSERT_TRUE(false);
+    } catch(const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_QUEUE_TEST_SUITE()
 {
     test_should_create_queue();
     test_should_add_element_to_queue();
     test_should_dequeue_element_from_list();
+    test_should_dequeue_element_from_an_empty_queue();
 }
