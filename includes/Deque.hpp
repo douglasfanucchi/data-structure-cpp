@@ -1,16 +1,14 @@
 #ifndef DEQUE_H
 # define DEQUE_H
 
-#include <DLLNode.hpp>
-
 template<typename T>
 class Deque {
     protected:
-        DLLNode<T> *head;
-        DLLNode<T> *tail;
-        DLLNode<T> **blocks;
-        DLLNode<T> **blockHead;
-        DLLNode<T> **blockTail;
+        T *head;
+        T *tail;
+        T **blocks;
+        T **blockHead;
+        T **blockTail;
         int blockSize = 4;
     public:
         Deque(void);
@@ -21,7 +19,7 @@ class Deque {
 
 template<typename T>
 Deque<T>::Deque(void) : head(0), tail(0) {
-    this->blocks = new DLLNode<T>*[this->blockSize];
+    this->blocks = new T*[this->blockSize];
     for(int i = 0; i < this->blockSize; i++)
         this->blocks[i] = NULL;
     this->blockHead = this->blockTail = this->blocks + 2;
