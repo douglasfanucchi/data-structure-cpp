@@ -28,7 +28,7 @@ Deque<T>::Deque(void) : head(0), tail(0) {
 template<typename T>
 Deque<T>::~Deque(void) {
     for(int i = 0; i < this->blockSize; i++) {
-        delete this->blocks[i];
+        delete[] this->blocks[i];
     }
     delete[] this->blocks;
 }
@@ -36,6 +36,40 @@ Deque<T>::~Deque(void) {
 template<typename T>
 bool Deque<T>::isEmpty(void) const {
     return this->head == NULL;
+}
+
+template<typename T>
+void Deque<T>::pushFront(const T &el) {
+    if (*this->blockHead == NULL) {
+        *this->blockHead = new T[3];
+        (*this->blockHead)[1] = el;
+        this->head = this->tail = (*this->blockHead) + 1;
+        return;
+    }
+    int cellsBeforeHead = this->head - *this->blockHead;
+    int positionBeforeHead = cellsBeforeHead - 1;
+    if (cellsBeforeHead > 0) {
+        (*this->blockHead)[positionBeforeHead] = el;
+        this->head = (*this->blockHead) + positionBeforeHead;
+        return;
+    }
+    this->blockHead -= 1;
+    int availableBlocks = this->blockHead - this->blocks;
+    if (availableBlocks == 0) {
+        int size = this->blockSize * 2;
+        T **blocks = new T*[size];
+        for (int i = 0; i < this->blockSize; i++) {
+            blocks[i] = 0;
+            blocks[this->blockSize + i] = this->blocks[i];
+        }
+        delete[] this->blocks;
+        this->blocks = blocks;
+        this->blockHead = blocks + this->blockSize - 1;
+        this->blockSize = size;
+    }
+    *this->blockHead = new T[3];
+    (*this->blockHead)[2] = el;
+    this->head = (*this->blockHead) + 2;
 }
 
 #endif
