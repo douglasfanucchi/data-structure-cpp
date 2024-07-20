@@ -33,3 +33,6 @@ unit: $(TEST_FILES_OBJS) $(FILES_OBJS)
 
 e2e: $(NAME)
 	@./tests/e2e/Program.sh $(realpath $(NAME))
+
+clean:
+	@rm -rf $(FILES_OBJS) $(TEST_FILES_OBJS)
