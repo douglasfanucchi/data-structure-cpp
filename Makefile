@@ -2,6 +2,7 @@ NAME=executable
 
 FILES:=linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
 FILES:=$(addprefix src/, $(FILES))
+FILES_OBJS=$(FILES:.cpp=.o)
 TEST_LINKED_LIST:=single-linked-list/IntSLLNode.cpp single-linked-list/IntSLList.cpp \
 				  doubly-linked-list/DLLNode.cpp doubly-linked-list/DLList.cpp \
 				  doubly-linked-list/CDLList.cpp
@@ -12,16 +13,20 @@ TEST_QUEUE:= Queue.cpp
 TEST_QUEUE:=$(addprefix unit/queue/, $(TEST_QUEUE))
 TEST_FILES:= asserts.cpp main.cpp $(TEST_LINKED_LIST) $(TEST_STACK) $(TEST_QUEUE)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))
-INCLUDES=-I includes/
+TEST_FILES_OBJS=$(TEST_FILES:.cpp=.o)
+INCLUDES=-I includes/ -I tests/
 COMPILER=c++
 
 all: $(NAME)
 
-$(NAME): $(FILES) src/main.cpp
-	@$(COMPILER) --std=c++98 $(INCLUDES) $(FILES) src/main.cpp -o $(NAME)
+$(NAME): $(FILES_OBJS) src/main.cpp
+	@$(COMPILER) --std=c++98 $(INCLUDES) $(FILES_OBJS) src/main.cpp -o $(NAME)
 
-unit: $(TEST_FILES)
-	@$(COMPILER) $(INCLUDES) -I tests/ $(FILES) $(TEST_FILES) -o unit
+%.o: %.cpp
+	$(COMPILER) $(INCLUDES) -c $< -o $@
+
+unit: $(TEST_FILES_OBJS) $(FILES_OBJS)
+	@$(COMPILER) $(INCLUDES) $(FILES_OBJS) $(TEST_FILES_OBJS) -o unit
 	@valgrind --leak-check=full -q ./unit
 	@rm -rf unit
 
