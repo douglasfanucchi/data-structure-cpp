@@ -73,4 +73,28 @@ void Deque<T>::pushFront(const T &el) {
     this->head = (*this->blockHead) + 2;
 }
 
+template<typename T>
+T Deque<T>::popFront(void) {
+    if (this->isEmpty()) {
+        throw ("empty deque");
+    }
+    T value = *this->head;
+    int cellsAvailable = this->head - *this->blockHead;
+    if (cellsAvailable == 2 || this->head == this->tail) {
+        delete[] *this->blockHead;
+        *this->blockHead = NULL;
+    }
+    if (this->head == this->tail) {
+        this->head = this->tail = NULL;
+        return value;
+    }
+    if (cellsAvailable == 2) {
+        this->blockHead++;
+        this->head = *this->blockHead;
+        return value;
+    }
+    this->head++;
+    return value;
+}
+
 #endif
