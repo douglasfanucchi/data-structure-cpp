@@ -108,7 +108,7 @@ void test_should_access_deque_element_in_a_big_O_of_one()
     deque.pushFront("lima");
     deque.pushFront("fanucchi");
 
-    std::string result = deque[2];
+    std::string result = deque[1];
     ASSERT_STREQ(expected, result);
 }
 
