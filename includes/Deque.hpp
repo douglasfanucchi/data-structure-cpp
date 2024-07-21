@@ -16,6 +16,7 @@ class Deque {
         bool isEmpty(void) const;
         void pushFront(const T&);
         T popFront(void);
+        T operator[](int) const;
 };
 
 template<typename T>

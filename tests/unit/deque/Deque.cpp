@@ -99,6 +99,19 @@ void test_should_pop_front_an_element_from_empty_deque()
     }
 }
 
+void test_should_access_deque_element_in_a_big_O_of_one()
+{
+    Deque<std::string> deque;
+    std::string expected("lima");
+    deque.pushFront("douglas");
+    deque.pushFront("de");
+    deque.pushFront("lima");
+    deque.pushFront("fanucchi");
+
+    std::string result = deque[2];
+    ASSERT_STREQ(expected, result);
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -109,4 +122,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_pop_a_element_from_deque_front();
     test_should_pop_three_elements_from_deque_front();
     test_should_pop_front_an_element_from_empty_deque();
+    test_should_access_deque_element_in_a_big_O_of_one();
 }
