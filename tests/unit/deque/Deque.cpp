@@ -128,6 +128,15 @@ void test_should_access_unexistence_deque_element()
     }
 }
 
+void test_should_insert_element_in_the_deques_end()
+{
+    Deque<int> deque;
+
+    deque.pushBack(1);
+
+    ASSERT_FALSE(deque.isEmpty());
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -140,4 +149,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_pop_front_an_element_from_empty_deque();
     test_should_access_deque_element_in_a_big_O_of_one();
     test_should_access_unexistence_deque_element();
+    test_should_insert_element_in_the_deques_end();
 }

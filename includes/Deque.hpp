@@ -15,6 +15,7 @@ class Deque {
         ~Deque(void);
         bool isEmpty(void) const;
         void pushFront(const T&);
+        void pushBack(const T&);
         T popFront(void);
         T operator[](int) const;
 };
