@@ -98,4 +98,19 @@ T Deque<T>::popFront(void) {
     return value;
 }
 
+template<typename T>
+T Deque<T>::operator[](int n) const {
+    int headFilledCells = 3 - (this->head - *this->blockHead);
+    if (n < headFilledCells) {
+        return *(this->head + n);
+    }
+    n -= headFilledCells;
+    int q = n / 3 + 1;
+    int r = n % 3;
+    if (this->blockHead + q > this->blockTail || this->head + r > this->tail){
+        throw ("invalid index");
+    }
+    return *(*(this->blockHead + q) + r);
+}
+
 #endif
