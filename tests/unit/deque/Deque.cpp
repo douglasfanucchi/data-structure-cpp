@@ -72,6 +72,21 @@ void test_should_pop_a_element_from_deque_front()
     ASSERT_TRUE(deque.isEmpty());
 }
 
+void test_should_pop_three_elements_from_deque_front()
+{
+    Deque<int> deque;
+    deque.pushFront(1);
+    deque.pushFront(2);
+    deque.pushFront(3);
+
+    int result = deque.popFront();
+    deque.popFront();
+    deque.popFront();
+
+    ASSERT_EQ(3, result);
+    ASSERT_TRUE(deque.isEmpty());
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -80,4 +95,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_insert_eight_elements_into_deque();
     test_should_insert_multiple_elements_into_deque();
     test_should_pop_a_element_from_deque_front();
+    test_should_pop_three_elements_from_deque_front();
 }
