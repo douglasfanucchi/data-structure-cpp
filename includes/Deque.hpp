@@ -114,4 +114,42 @@ T Deque<T>::operator[](int n) const {
     return *(*(this->blockHead + q) + r);
 }
 
+template<typename T>
+void Deque<T>::pushBack(const T &value) {
+    if (this->isEmpty()) {
+        return this->pushFront(value);
+    }
+    int availableCells = *this->blockTail - this->tail + 2;
+    if (availableCells > 0) {
+        this->tail++;
+        *this->tail = value;
+        return;
+    }
+    int tailAvailableBlocks = this->blocks + (this->blockSize - 1) - this->blockTail;
+    if (tailAvailableBlocks == 0) {
+        int headAvailableBlocks = this->blockHead - this->blocks;
+        T **notNullElements = this->blocks + headAvailableBlocks;
+        int size = this->blockSize * 2;
+        int usedSpace = this->blockSize - headAvailableBlocks;
+        int emptySpace = size - (usedSpace);
+        T **blocks = new T*[size];
+        for(int i = 0; i < emptySpace / 2; i++) {
+            blocks[i] = 0;
+            blocks[size - 1 - i] = 0;
+        }
+        for (int i = 0; i < usedSpace; i++) {
+            blocks[emptySpace / 2 + i] = notNullElements[i];
+        }
+        this->blockHead = blocks + emptySpace / 2;
+        this->blockTail = this->blockHead + this->blockSize - 1;
+        delete[] this->blocks;
+        this->blocks = blocks;
+        this->blockSize = size;
+    }
+    this->blockTail++;
+    *this->blockTail = this->tail = new T[3];
+    *this->tail = value;
+    return;
+}
+
 #endif
