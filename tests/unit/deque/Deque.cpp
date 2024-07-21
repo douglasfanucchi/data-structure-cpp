@@ -112,6 +112,22 @@ void test_should_access_deque_element_in_a_big_O_of_one()
     ASSERT_STREQ(expected, result);
 }
 
+void test_should_access_unexistence_deque_element()
+{
+    Deque<int> deque;
+    deque.pushFront(1);
+    deque.pushFront(2);
+    deque.pushFront(3);
+    const char *expected = "invalid index";
+
+    try {
+        int result = deque[3];
+        ASSERT_TRUE(false);
+    } catch(const char *result) {
+        ASSERT_STREQ(expected, result);
+    }
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -123,4 +139,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_pop_three_elements_from_deque_front();
     test_should_pop_front_an_element_from_empty_deque();
     test_should_access_deque_element_in_a_big_O_of_one();
+    test_should_access_unexistence_deque_element();
 }
