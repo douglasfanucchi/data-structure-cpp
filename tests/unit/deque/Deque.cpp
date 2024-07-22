@@ -258,10 +258,10 @@ void test_should_insert_multiple_elements_into_deques_end_and_front_interchangea
     ASSERT_EQ(4, deque.popFront());
     ASSERT_EQ(6, deque.popFront());
     ASSERT_EQ(8, deque.popFront());
+    ASSERT_EQ(10, deque.popFront());
     ASSERT_EQ(12, deque.popFront());
     ASSERT_EQ(14, deque.popFront());
     ASSERT_EQ(16, deque.popFront());
-    ASSERT_EQ(10, deque.popFront());
     ASSERT_EQ(18, deque.popFront());
     ASSERT_EQ(20, deque.popFront());
 }
