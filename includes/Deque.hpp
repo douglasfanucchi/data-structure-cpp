@@ -18,6 +18,7 @@ class Deque {
         void pushFront(const T&);
         void pushBack(const T&);
         T popFront(void);
+        T popBack(void);
         T operator[](int) const;
 };
 
