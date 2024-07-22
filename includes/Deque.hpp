@@ -59,25 +59,8 @@ void Deque<T>::pushFront(const T &el) {
     int headAvailableBlocks = this->blockHead - this->blocks;
     if (headAvailableBlocks == 0) {
         int tailAvailableBlocks = this->blocks + (this->blockSize - 1) - this->blockTail;
-        int size = this->blockSize * 2;
-        int usedSpace = this->blockSize - tailAvailableBlocks;
-        int emptySpace = size - (usedSpace);
-        T **blocks = new T*[size];
-        for(int i = 0; i < emptySpace / 2; i++) {
-            blocks[i] = 0;
-            blocks[size - 1 - i] = 0;
-        }
-        if (emptySpace % 2 != 0) {
-            blocks[size - 1 - emptySpace / 2] = 0;
-        }
-        for (int i = 0; i < usedSpace; i++) {
-            blocks[emptySpace / 2 + i] = this->blocks[i];
-        }
-        this->blockHead = blocks + emptySpace / 2;
-        this->blockTail = this->blockHead + usedSpace - 1;
-        delete[] this->blocks;
-        this->blocks = blocks;
-        this->blockSize = size;
+        int elementsSize = this->blockSize - tailAvailableBlocks;
+        this->increseBlocksSize(this->blocks, elementsSize);
     }
     this->blockHead--;
     *this->blockHead = new T[3];
