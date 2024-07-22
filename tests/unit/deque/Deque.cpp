@@ -172,6 +172,22 @@ void test_should_insert_multiple_elements_into_deques_end()
     ASSERT_FALSE(deque.isEmpty());
 }
 
+void test_should_insert_multiple_elements_into_deques_end_and_two_into_its_front()
+{
+    Deque<int> deque;
+
+    deque.pushBack(1);
+    deque.pushBack(2);
+    deque.pushBack(3);
+    deque.pushBack(4);
+    deque.pushBack(5);
+    deque.pushFront(6);
+    deque.pushFront(7);
+    deque.pushBack(8);
+
+    ASSERT_FALSE(deque.isEmpty());
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -188,4 +204,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_insert_two_elements_into_deques_end();
     test_should_insert_three_elements_into_deques_end();
     test_should_insert_multiple_elements_into_deques_end();
+    test_should_insert_multiple_elements_into_deques_end_and_two_into_its_front();
 }
