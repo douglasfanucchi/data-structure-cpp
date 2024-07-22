@@ -133,6 +133,23 @@ void Deque<T>::pushBack(const T &value) {
 }
 
 template<typename T>
+T Deque<T>::popBack(void) {
+    if (this->tail == this->head) {
+        return this->popFront();
+    }
+    T value = *this->tail;
+    if (*this->blockTail == this->tail) {
+        delete[] *this->blockTail;
+        *this->blockTail = NULL;
+        this->blockTail--;
+        this->tail = *this->blockTail + 2;
+        return value;
+    }
+    this->tail--;
+    return value;
+}
+
+template<typename T>
 void Deque<T>::increseBlocksSize(T **elements, int elementsSize) {
     int size = this->blockSize * 2;
     int emptySpace = size - elementsSize;
