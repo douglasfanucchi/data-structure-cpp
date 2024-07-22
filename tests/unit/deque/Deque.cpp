@@ -277,6 +277,23 @@ void test_should_remove_an_element_from_deques_end()
     ASSERT_TRUE(deque.isEmpty());
 }
 
+void test_should_remove_two_elements_from_the_end_of_a_deque_containing_two_elements()
+{
+    Deque<int> deque;
+    deque.pushBack(1);
+    deque.pushBack(2);
+
+    int result = deque.popBack();
+
+    ASSERT_EQ(2, result);
+    ASSERT_FALSE(deque.isEmpty());
+
+    result = deque.popBack();
+
+    ASSERT_EQ(1, result);
+    ASSERT_TRUE(deque.isEmpty());
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -297,4 +314,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_insert_multiple_elements_into_deques_end_and_pop_them_all();
     test_should_insert_multiple_elements_into_deques_end_and_front_interchangeably_and_pop_them_all();
     test_should_remove_an_element_from_deques_end();
+    test_should_remove_two_elements_from_the_end_of_a_deque_containing_two_elements();
 }
