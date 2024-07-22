@@ -137,6 +137,9 @@ void Deque<T>::pushBack(const T &value) {
             blocks[i] = 0;
             blocks[size - 1 - i] = 0;
         }
+        if (emptySpace % 2 != 0) {
+            blocks[size - 1 - emptySpace / 2] = 0;
+        }
         for (int i = 0; i < usedSpace; i++) {
             blocks[emptySpace / 2 + i] = notNullElements[i];
         }
