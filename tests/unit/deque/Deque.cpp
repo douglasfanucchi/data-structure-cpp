@@ -188,6 +188,35 @@ void test_should_insert_multiple_elements_into_deques_end_and_two_into_its_front
     ASSERT_FALSE(deque.isEmpty());
 }
 
+void test_should_insert_multiple_elements_into_deques_end_and_pop_them_all()
+{
+    Deque<int> deque;
+
+    deque.pushBack(1);
+    deque.pushBack(2);
+    deque.pushBack(3);
+    deque.pushBack(4);
+    deque.pushBack(5);
+    deque.pushBack(6);
+    deque.pushBack(7);
+    deque.pushBack(8);
+    deque.pushBack(9);
+    deque.pushBack(10);
+    deque.pushBack(11);
+
+    ASSERT_EQ(1, deque.popFront());
+    ASSERT_EQ(2, deque.popFront());
+    ASSERT_EQ(3, deque.popFront());
+    ASSERT_EQ(4, deque.popFront());
+    ASSERT_EQ(5, deque.popFront());
+    ASSERT_EQ(6, deque.popFront());
+    ASSERT_EQ(7, deque.popFront());
+    ASSERT_EQ(8, deque.popFront());
+    ASSERT_EQ(9, deque.popFront());
+    ASSERT_EQ(10, deque.popFront());
+    ASSERT_EQ(11, deque.popFront());
+}
+
 void RUN_DEQUE_TEST_SUITE()
 {
     test_should_create_a_deque();
@@ -205,4 +234,5 @@ void RUN_DEQUE_TEST_SUITE()
     test_should_insert_three_elements_into_deques_end();
     test_should_insert_multiple_elements_into_deques_end();
     test_should_insert_multiple_elements_into_deques_end_and_two_into_its_front();
+    test_should_insert_multiple_elements_into_deques_end_and_pop_them_all();
 }
