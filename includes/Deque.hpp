@@ -144,7 +144,7 @@ void Deque<T>::pushBack(const T &value) {
             blocks[emptySpace / 2 + i] = notNullElements[i];
         }
         this->blockHead = blocks + emptySpace / 2;
-        this->blockTail = this->blockHead + this->blockSize - 1;
+        this->blockTail = this->blockHead + usedSpace - 1;
         delete[] this->blocks;
         this->blocks = blocks;
         this->blockSize = size;
