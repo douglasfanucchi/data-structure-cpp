@@ -44,35 +44,44 @@ bool Deque<T>::isEmpty(void) const {
 template<typename T>
 void Deque<T>::pushFront(const T &el) {
     if (*this->blockHead == NULL) {
-        *this->blockHead = new T[3];
+        *this->blockHead = *this->blockTail = new T[3];
         (*this->blockHead)[1] = el;
         this->head = this->tail = (*this->blockHead) + 1;
         return;
     }
     int cellsBeforeHead = this->head - *this->blockHead;
-    int positionBeforeHead = cellsBeforeHead - 1;
     if (cellsBeforeHead > 0) {
-        (*this->blockHead)[positionBeforeHead] = el;
-        this->head = (*this->blockHead) + positionBeforeHead;
+        this->head--;
+        *this->head = el;
         return;
     }
-    this->blockHead -= 1;
-    int availableBlocks = this->blockHead - this->blocks;
-    if (availableBlocks == 0) {
+    int headAvailableBlocks = this->blockHead - this->blocks;
+    if (headAvailableBlocks == 0) {
+        int tailAvailableBlocks = this->blocks + (this->blockSize - 1) - this->blockTail;
         int size = this->blockSize * 2;
+        int usedSpace = this->blockSize - tailAvailableBlocks;
+        int emptySpace = size - (usedSpace);
         T **blocks = new T*[size];
-        for (int i = 0; i < this->blockSize; i++) {
+        for(int i = 0; i < emptySpace / 2; i++) {
             blocks[i] = 0;
-            blocks[this->blockSize + i] = this->blocks[i];
+            blocks[size - 1 - i] = 0;
         }
+        if (emptySpace % 2 != 0) {
+            blocks[size - 1 - emptySpace / 2] = 0;
+        }
+        for (int i = 0; i < usedSpace; i++) {
+            blocks[emptySpace / 2 + i] = this->blocks[i];
+        }
+        this->blockHead = blocks + emptySpace / 2;
+        this->blockTail = this->blockHead + usedSpace - 1;
         delete[] this->blocks;
         this->blocks = blocks;
-        this->blockHead = blocks + this->blockSize - 1;
         this->blockSize = size;
     }
+    this->blockHead--;
     *this->blockHead = new T[3];
-    (*this->blockHead)[2] = el;
-    this->head = (*this->blockHead) + 2;
+    this->head = *this->blockHead + 2;
+    *this->head = el;
 }
 
 template<typename T>
