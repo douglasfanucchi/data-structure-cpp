@@ -10,6 +10,7 @@ class Deque {
         T **blockHead;
         T **blockTail;
         int blockSize = 4;
+        void increseBlocksSize(T**, int);
     public:
         Deque(void);
         ~Deque(void);
@@ -137,31 +138,37 @@ void Deque<T>::pushBack(const T &value) {
     int tailAvailableBlocks = this->blocks + (this->blockSize - 1) - this->blockTail;
     if (tailAvailableBlocks == 0) {
         int headAvailableBlocks = this->blockHead - this->blocks;
-        T **notNullElements = this->blocks + headAvailableBlocks;
-        int size = this->blockSize * 2;
-        int usedSpace = this->blockSize - headAvailableBlocks;
-        int emptySpace = size - (usedSpace);
-        T **blocks = new T*[size];
-        for(int i = 0; i < emptySpace / 2; i++) {
-            blocks[i] = 0;
-            blocks[size - 1 - i] = 0;
-        }
-        if (emptySpace % 2 != 0) {
-            blocks[size - 1 - emptySpace / 2] = 0;
-        }
-        for (int i = 0; i < usedSpace; i++) {
-            blocks[emptySpace / 2 + i] = notNullElements[i];
-        }
-        this->blockHead = blocks + emptySpace / 2;
-        this->blockTail = this->blockHead + usedSpace - 1;
-        delete[] this->blocks;
-        this->blocks = blocks;
-        this->blockSize = size;
+        T **elements = this->blocks + headAvailableBlocks;
+        int elementsSize = this->blockSize - headAvailableBlocks;
+        this->increseBlocksSize(elements, elementsSize);
     }
     this->blockTail++;
     *this->blockTail = this->tail = new T[3];
     *this->tail = value;
     return;
+}
+
+template<typename T>
+void Deque<T>::increseBlocksSize(T **elements, int elementsSize) {
+    int size = this->blockSize * 2;
+    int emptySpace = size - elementsSize;
+    T **blocks = new T*[size];
+    int halfEmptySpace = emptySpace / 2;
+    for(int i = 0; i < halfEmptySpace; i++) {
+        blocks[i] = 0;
+        blocks[size - 1 - i] = 0;
+    }
+    if (emptySpace % 2 != 0) {
+        blocks[size - 1 - halfEmptySpace] = 0;
+    }
+    for (int i = 0; i < elementsSize; i++) {
+        blocks[halfEmptySpace + i] = elements[i];
+    }
+    delete[] this->blocks;
+    this->blocks = blocks;
+    this->blockHead = this->blocks + halfEmptySpace;
+    this->blockTail = this->blockHead + elementsSize - 1;
+    this->blockSize = size;
 }
 
 #endif
