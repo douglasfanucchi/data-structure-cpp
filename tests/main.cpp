@@ -11,5 +11,6 @@ int main()
     RUN_STACK_TEST_SUITE();
     RUN_QUEUE_TEST_SUITE();
     RUN_DEQUE_TEST_SUITE();
+    RUN_RECURSION_TEST_SUITE();
     std::cout << std::endl;
 }
