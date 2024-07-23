@@ -4,5 +4,6 @@
 #include <string>
 
 std::string recursiveReverseWord(const std::string &);
+std::string noRecursiveReverseWord(const std::string &);
 
 #endif
