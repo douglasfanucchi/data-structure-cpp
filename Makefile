@@ -1,6 +1,6 @@
 NAME=executable
 
-FILES:=linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
+FILES:=recursion.cpp linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
 FILES:=$(addprefix src/, $(FILES))
 FILES_OBJS=$(FILES:.cpp=.o)
 TEST_LINKED_LIST:=single-linked-list/IntSLLNode.cpp single-linked-list/IntSLList.cpp \
