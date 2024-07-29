@@ -12,6 +12,7 @@ class BST {
 
     public:
         BST(void) : root(0) {}
+        ~BST(void) { this->clear(); }
         bool isEmpty(void);
         void insert(const T&);
         T *search(const T&);
