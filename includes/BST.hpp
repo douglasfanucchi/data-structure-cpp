@@ -78,6 +78,9 @@ void BST<T>::clear(void) {
 
 template<typename T>
 void BST<T>::recursiveClear(BTNode<T> *root) {
+    if (!root) {
+        return;
+    }
     BTNode<T> *leftSubtree = root->left;
     BTNode<T> *rightSubtree = root->right;
 
