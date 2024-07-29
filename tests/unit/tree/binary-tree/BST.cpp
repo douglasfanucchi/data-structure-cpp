@@ -38,10 +38,24 @@ void test_should_insert_node_into_right_subtree(void)
     ASSERT_FALSE(tree.isEmpty());
 }
 
+void test_should_insert_two_nodes_with_same_value(void)
+{
+    BST<int> tree;
+    tree.insert(13);
+
+    try {
+        tree.insert(13);
+        ASSERT_TRUE(false);
+    } catch(const char *result) {
+        ASSERT_STREQ("value already exists", result);
+    }
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
     test_should_insert_node_into_bst();
     test_should_insert_node_into_left_subtree();
     test_should_insert_node_into_right_subtree();
+    test_should_insert_two_nodes_with_same_value();
 }
