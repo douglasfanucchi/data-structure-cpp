@@ -13,6 +13,7 @@ class BST {
         BST(void) : root(0) {}
         bool isEmpty(void);
         void insert(const T&);
+        T *search(const T&);
 };
 
 template<typename T>
@@ -47,6 +48,23 @@ void BST<T>::insertRecursive(const T &value, BTNode<T> *node) {
         return;
     }
     this->insertRecursive(value, root->right);
+}
+
+template<typename T>
+T *BST<T>::search(const T &value) {
+    BTNode<T> *node = this->root;
+    T *result = NULL;
+    while (!result && node) {
+        if (value == node->value) {
+            result = &node->value;
+        }
+        if (value < node->value) {
+            node = node->left;
+            continue;
+        }
+        node = node->right;
+    }
+    return result;
 }
 
 #endif
