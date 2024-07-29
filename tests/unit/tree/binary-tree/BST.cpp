@@ -67,6 +67,16 @@ void test_should_search_for_a_value_in_the_binary_tree()
     ASSERT_EQ(expected.id, result->id);
 }
 
+void test_should_clear_the_binary_search_tree()
+{
+    BST<int> tree;
+    tree.insert(1);
+
+    tree.clear();
+
+    ASSERT_TRUE(tree.isEmpty());
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
@@ -75,4 +85,5 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
     test_should_insert_node_into_right_subtree();
     test_should_insert_two_nodes_with_same_value();
     test_should_search_for_a_value_in_the_binary_tree();
+    test_should_clear_the_binary_search_tree();
 }
