@@ -18,6 +18,24 @@ void test_should_insert_node_into_bst(void)
     ASSERT_FALSE(tree.isEmpty());
 }
 
+void test_should_insert_nodes_into_bst_forming_a_linked_list()
+{
+    BST<int> tree;
+    tree.insert(1);
+    tree.insert(2);
+    tree.insert(3);
+
+    ASSERT_FALSE(tree.isEmpty());
+
+    BST<int> secondTree;
+    secondTree.insert(1);
+    secondTree.insert(2);
+    secondTree.insert(3);
+    secondTree.insert(4);
+
+    ASSERT_FALSE(tree.isEmpty());
+}
+
 void test_should_insert_node_into_left_subtree(void)
 {
     BST<int> tree;
@@ -97,6 +115,7 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
     test_should_insert_node_into_bst();
+    test_should_insert_nodes_into_bst_forming_a_linked_list();
     test_should_insert_node_into_left_subtree();
     test_should_insert_node_into_right_subtree();
     test_should_insert_two_nodes_with_same_value();
