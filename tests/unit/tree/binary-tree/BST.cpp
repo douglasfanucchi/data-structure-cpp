@@ -27,9 +27,21 @@ void test_should_insert_node_into_left_subtree(void)
     ASSERT_FALSE(tree.isEmpty());
 }
 
+void test_should_insert_node_into_right_subtree(void)
+{
+    BST<int> tree;
+    tree.insert(13);
+    tree.insert(10);
+
+    tree.insert(31);
+
+    ASSERT_FALSE(tree.isEmpty());
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
     test_should_insert_node_into_bst();
     test_should_insert_node_into_left_subtree();
+    test_should_insert_node_into_right_subtree();
 }
