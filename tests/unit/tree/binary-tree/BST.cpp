@@ -1,11 +1,14 @@
 #include <asserts.hpp>
+#include <BST.hpp>
 
-void test_should_assert_to_true(void)
+void test_should_create_a_bst(void)
 {
-    ASSERT_TRUE(true);
+    BST<int> tree;
+
+    ASSERT_TRUE(tree.isEmpty());
 }
 
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
-    test_should_assert_to_true();
+    test_should_create_a_bst();
 }
