@@ -12,7 +12,10 @@ TEST_STACK:=$(addprefix unit/stack/, $(TEST_STACK))
 TEST_QUEUE:= Queue.cpp
 TEST_QUEUE:=$(addprefix unit/queue/, $(TEST_QUEUE))
 TEST_DEQUE:= unit/deque/Deque.cpp
-TEST_FILES:= asserts.cpp unit/recursion.cpp main.cpp $(TEST_LINKED_LIST) $(TEST_STACK) $(TEST_QUEUE) $(TEST_DEQUE)
+TEST_TREES:= binary-tree/BST.cpp
+TEST_TREES:= $(addprefix unit/tree/, $(TEST_TREES))
+TEST_FILES:= asserts.cpp unit/recursion.cpp main.cpp $(TEST_LINKED_LIST) $(TEST_STACK) $(TEST_QUEUE) $(TEST_DEQUE) \
+			 $(TEST_TREES)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))
 TEST_FILES_OBJS=$(TEST_FILES:.cpp=.o)
 INCLUDES=-I includes/ -I tests/
