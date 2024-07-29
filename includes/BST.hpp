@@ -50,7 +50,7 @@ void BST<T>::insertRecursive(const T &value, BTNode<T> *node) {
         node->right = new BTNode<T>(value);
         return;
     }
-    this->insertRecursive(value, root->right);
+    this->insertRecursive(value, node->right);
 }
 
 template<typename T>
