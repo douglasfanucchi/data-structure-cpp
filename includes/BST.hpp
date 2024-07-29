@@ -8,12 +8,14 @@ class BST {
     protected:
         BTNode<T> *root;
         void insertRecursive(const T&, BTNode<T>*);
+        void recursiveClear(BTNode<T>*);
 
     public:
         BST(void) : root(0) {}
         bool isEmpty(void);
         void insert(const T&);
         T *search(const T&);
+        void clear(void);
 };
 
 template<typename T>
@@ -65,6 +67,26 @@ T *BST<T>::search(const T &value) {
         node = node->right;
     }
     return result;
+}
+
+template<typename T>
+void BST<T>::clear(void) {
+    this->recursiveClear(this->root);
+    this->root = 0;
+}
+
+template<typename T>
+void BST<T>::recursiveClear(BTNode<T> *root) {
+    BTNode<T> *leftSubtree = root->left;
+    BTNode<T> *rightSubtree = root->right;
+
+    if (leftSubtree) {
+        this->recursiveClear(leftSubtree);
+    }
+    if (rightSubtree) {
+        this->recursiveClear(rightSubtree);
+    }
+    delete root;
 }
 
 #endif
