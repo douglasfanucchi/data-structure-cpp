@@ -77,6 +77,22 @@ void test_should_clear_the_binary_search_tree()
     ASSERT_TRUE(tree.isEmpty());
 }
 
+void test_should_clear_the_binary_search_tree_and_its_subtrees()
+{
+    BST<int> tree;
+    tree.insert(3);
+    tree.insert(1);
+    tree.insert(2);
+    tree.insert(0);
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+
+    tree.clear();
+
+    ASSERT_TRUE(tree.isEmpty());
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
@@ -86,4 +102,5 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
     test_should_insert_two_nodes_with_same_value();
     test_should_search_for_a_value_in_the_binary_tree();
     test_should_clear_the_binary_search_tree();
+    test_should_clear_the_binary_search_tree_and_its_subtrees();
 }
