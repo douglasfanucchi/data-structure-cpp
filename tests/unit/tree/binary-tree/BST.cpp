@@ -1,4 +1,5 @@
 #include <asserts.hpp>
+#include <DummyUser.hpp>
 #include <BST.hpp>
 
 void test_should_create_a_bst(void)
@@ -51,6 +52,21 @@ void test_should_insert_two_nodes_with_same_value(void)
     }
 }
 
+void test_should_search_for_a_value_in_the_binary_tree()
+{
+    BST<user> tree;
+    tree.insert(user(2, "admin"));
+    tree.insert(user(1, "user1"));
+    tree.insert(user(3, "user2"));
+    user expected = user(1, "user1");
+
+    user *result = tree.search(expected);
+
+    ASSERT_FALSE(result == NULL);
+    ASSERT_STREQ(expected.name, result->name);
+    ASSERT_EQ(expected.id, result->id);
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
@@ -58,4 +74,5 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
     test_should_insert_node_into_left_subtree();
     test_should_insert_node_into_right_subtree();
     test_should_insert_two_nodes_with_same_value();
+    test_should_search_for_a_value_in_the_binary_tree();
 }
