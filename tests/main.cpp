@@ -13,5 +13,6 @@ int main()
     RUN_DEQUE_TEST_SUITE();
     RUN_RECURSION_TEST_SUITE();
     RUN_BINARY_SEARCH_TREE_TEST_SUITE();
+    RUN_BINARY_TREE_NODE_TEST_SUITE();
     std::cout << std::endl;
 }
