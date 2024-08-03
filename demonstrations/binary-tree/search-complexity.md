@@ -61,3 +61,95 @@ $$
 which is $\mathbb{O}(n)$ as we wanted to prove.
 
 (If you want to see a more mathematical approach of how big $\mathbb{O}$ notation works and you speak portuguese, checkout [this video](https://www.youtube.com/watch?v=miLF-hDeNzU) made by some guy that turns out to have the same as me)
+
+The best case of a BST is a complete tree. This means that every node, except for the leaves, has two children. Here is a representation of a generic complete BST:
+
+<p align="center">
+    <img
+        src="media/images/binary-tree-shapes/BestBinaryTreeShape_ManimCE_v0.18.1.png"
+        height="200"
+    />
+</p>
+
+To compute the amount of nodes at a certain level in a complete BST, we need to have in mind that for each level the amount of nodes is the same as the previous level multiplied by two. So the first level has $1$ node, the second has $1\cdot2$, the third level $1\cdot2\cdot2=1\cdot2^2$, the fourth $1\cdot2^2\cdot2 = 2^3$ and so on. This can be generalized as $f(i) = 2^{i-1}$ being $i$ the current level. Therefore the average cost of searching in a complete BST is calculate as follows:
+
+$$
+IPL = \sum_{i=1}^{h}(2^{i-1})(i - 1)
+$$
+
+We can distribute the multiplication:
+
+$$
+IPL = \sum_{i=1}^{h}(2^{i-1}\cdot i - 2^{i-1})
+$$
+
+and separate the summatory.
+
+$$
+IPL = \sum_{i = 1}^{h}2^{i-1}\cdot i - \sum_{i = 1}^{h}2^{i-1}
+$$
+
+Since $\sum_{i = 1}^{h}2^{i-1}$ is a geometric progression, we have:
+
+$$
+IPL = \sum_{i = 1}^{h}(2^{i-1}\cdot i) - (2^h-1) = 
+$$
+
+$$
+IPL = \sum_{i=1}^{n}(2^{i-1}\cdot i) - 2^h + 1
+$$
+
+Multiplying both sides by two would result in
+
+$$
+2\cdot IPL = 2\cdot\sum_{i=1}^{h}(2^{i-1}\cdot i) - 2^{h+1} + 2
+$$
+
+$$
+2\cdot IPL = \sum_{i=1}^{h}(2^i\cdot i)-2^{h+1}+2
+$$
+
+we rearrange the indexes of the summatory in one unit forward
+
+$$
+2\cdot IPL = \sum_{i=2}^{h+1}(2^{i-1}\cdot [i-1]) - 2^{h+1} + 2
+$$
+
+then, we can take out the last term of the summatory, $2^{h}\cdot h$
+which leaves us with
+
+$$
+2\cdot IPL = \sum_{i=2}^h(2^{i-1}\cdot [i-1]) + 2^h\cdot h -2^{h+1}+2
+$$
+
+factoring the $2^h$ terms
+
+$$
+2\cdot IPL=\sum_{i=2}^{h}(2^{i-1}\cdot [i-1]) + 2^h(h - 2) + 2
+$$
+
+notice that 
+
+$$
+\sum_{i=2}^{h}(2^{i-1}\cdot [i-1]) = \sum_{i=1}^{h}(2^{i-1}\cdot [i-1])
+$$
+
+which is exactly the same as $IPL$. Therefore we can substitute:
+
+$$
+2\cdot IPL = IPL + 2^h(h-2) + 2
+$$
+
+subtracting $IPL$ from both sides:
+
+$$
+IPL = 2^h(h-2) +2
+$$
+
+Therefore the average cost is given by:
+
+$$
+APL= \frac{2^h(h-2) + 2}{n}
+$$
+
+where $n$ is the number of nodes.
