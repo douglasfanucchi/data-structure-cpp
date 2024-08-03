@@ -1,6 +1,6 @@
 To compute search time complexity of a binary search tree (BST) we need to define a few things first.
 
-Every node on the tree has a path, which is the number of previous nodes visited before getting into that node. The path length is defined as the amount of nodes previous visited. For example, the root node has a path length of zero since no node is previous visited. The nodes immediately after the root have a path length of 1 and so on.
+Every node on the tree has a path, which are the nodes we have visited before we got into that certain node. The path length is defined as the amount of nodes previous visited. For example, the root node has a path length of zero since no node is previous visited. The nodes immediately after the root have a path length of 1 and so on.
 
 Besides the path, we can define a level and height for every node on the tree.
 
