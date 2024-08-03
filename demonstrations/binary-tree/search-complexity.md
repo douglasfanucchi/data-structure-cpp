@@ -153,3 +153,49 @@ APL= \frac{2^h(h-2) + 2}{n}
 $$
 
 where $n$ is the number of nodes.
+
+The amount of nodes in a complete BST can be calculate by going to each level and adding up the amount of nodes at each of them.
+
+$$
+n = \sum_{i = 1}^{h}2^{i-1}
+$$
+
+$$
+n = 2^h - 1
+$$
+
+adding $1$ to both sides of the equation we get
+
+$$
+n + 1 = 2^h
+$$
+
+using the definition of a logarithm we can conclude that
+
+$$
+h = log_2(n+1)
+$$
+
+substituting that in the $APL$ , we have
+
+$$
+APL = \frac{2^{log_2(n+1)}(log_2(n+1) - 2) + 2}{n}
+$$
+
+$$
+APL = \frac{(n+1)(log_2(n+1) - 2) + 2}{n}
+$$
+
+$$
+APL = \frac{n\cdot log_2(n+1)+log_2(n+1)-2n-2 + 2}{n}
+$$
+
+$$
+APL = \frac{n\cdot log_2(n+1) + log_2(n+1)-2n}{n}
+$$
+
+$$
+APL = log_2(n+1)-2 +\frac{log_2(n+1)}{n}
+$$
+
+with this we can conclude that the average cost in the complete BST is $\mathbb{O}(log(n))$.
