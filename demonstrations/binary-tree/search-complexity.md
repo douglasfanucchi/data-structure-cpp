@@ -71,7 +71,7 @@ The best case of a BST is a complete tree. This means that every node, except fo
     />
 </p>
 
-To compute the amount of nodes at a certain level in a complete BST, we need to have in mind that for each level the amount of nodes is the same as the previous level multiplied by two. So the first level has $1$ node, the second has $1\cdot2$, the third level $1\cdot2\cdot2=1\cdot2^2$, the fourth $1\cdot2^2\cdot2 = 2^3$ and so on. This can be generalized as $f(i) = 2^{i-1}$ being $i$ the current level. Therefore the average cost of searching in a complete BST is calculate as follows:
+To compute the amount of nodes at a certain level in a complete BST, we need to have in mind that for each level the amount of nodes is the same as the amount of the previous level multiplied by two. So the first level has $1$ node, the second has $1\cdot2$, the third level $1\cdot2\cdot2=1\cdot2^2$, the fourth $1\cdot2^2\cdot2 = 2^3$ and so on. This can be generalized as $f(i) = 2^{i-1}$ being $i$ the current level. Therefore the average cost of searching in a complete BST is calculate as follows:
 
 $$
 IPL = \sum_{i=1}^{h}(2^{i-1})(i - 1)
