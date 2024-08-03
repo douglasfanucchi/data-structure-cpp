@@ -83,13 +83,13 @@ $$
 IPL = \sum_{i=1}^{h}(2^{i-1}\cdot i - 2^{i-1})
 $$
 
-and separate the summatory.
+and separate the summation.
 
 $$
 IPL = \sum_{i = 1}^{h}2^{i-1}\cdot i - \sum_{i = 1}^{h}2^{i-1}
 $$
 
-Since $\sum_{i = 1}^{h}2^{i-1}$ is a geometric progression, we have:
+Since $\sum_{i = 1}^{h}2^{i-1}$ is a geometric series, we have:
 
 $$
 IPL = \sum_{i = 1}^{h}(2^{i-1}\cdot i) - (2^h-1) = 
@@ -109,13 +109,13 @@ $$
 2\cdot IPL = \sum_{i=1}^{h}(2^i\cdot i)-2^{h+1}+2
 $$
 
-we rearrange the indexes of the summatory in one unit forward
+we rearrange the indexes of the summation in one unit forward
 
 $$
 2\cdot IPL = \sum_{i=2}^{h+1}(2^{i-1}\cdot [i-1]) - 2^{h+1} + 2
 $$
 
-then, we can take out the last term of the summatory, $2^{h}\cdot h$
+then, we can take out the last term of the summation, $2^{h}\cdot h$
 which leaves us with
 
 $$
