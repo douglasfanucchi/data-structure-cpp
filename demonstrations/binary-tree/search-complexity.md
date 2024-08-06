@@ -19,7 +19,7 @@ $$
 
 where $i$ represents the level that will iterate from the root to the height ($h$). The function $f(i)$ is what will calculate the number of nodes in that level and $(i-1)$ is the path length of current level. IPL is the sum of length of all nodes (IPL stands for internal path length) and APL is the average (APL stands for average path length).
 
-When we are talking about an incomplete binary tree (when the number of leaves in the tree is not a power of 2), the worst shape it can have is exactly the same as a linked list. On this scenario, the time complexity to find a certain node is $\mathbb{O}(n)$.
+When we are talking about an incomplete binary tree (when the number of leaves in the tree is not a power of 2), the worst shape it can have is exactly the same as a linked list. On this scenario, the time complexity to find a certain node is $O(n)$.
 
 To demonstrate this, let's see how this kind of tree looks like.
 
@@ -58,9 +58,9 @@ $$
 APL = \frac{n-1}{2}
 $$
 
-which is $\mathbb{O}(n)$ as we wanted to prove.
+which is $O(n)$ as we wanted to prove.
 
-(If you want to see a more mathematical approach of how big $\mathbb{O}$ notation works and you speak portuguese, checkout [this video](https://www.youtube.com/watch?v=miLF-hDeNzU) made by some guy that turns out to have the same as me)
+(If you want to see a more mathematical approach of how big $O$ notation works and you speak portuguese, checkout [this video](https://www.youtube.com/watch?v=miLF-hDeNzU) made by some guy that turns out to have the same as me)
 
 The best case of a BST is a complete tree. This means that every node, except for the leaves, has two children. Here is a representation of a generic complete BST:
 
@@ -198,4 +198,4 @@ $$
 APL = log_2(n+1)-2 +\frac{log_2(n+1)}{n}
 $$
 
-with this we can conclude that the average cost in the complete BST is $\mathbb{O}(log(n))$.
+with this we can conclude that the average cost in the complete BST is $O(log(n))$.
