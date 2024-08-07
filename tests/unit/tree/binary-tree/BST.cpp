@@ -147,6 +147,32 @@ void test_should_traverse_empty_bst_in_a_breadthFirst_way()
     ASSERT_TRUE(result.empty());
 }
 
+void test_should_traverse_bst_in_a_deepthFirst_way_inorder()
+{
+    BST<int> tree;
+    std::queue<int> expected;
+    tree.insert(13);
+    tree.insert(10);
+    tree.insert(2);
+    tree.insert(12);
+    tree.insert(25);
+    tree.insert(20);
+    tree.insert(31);
+    tree.insert(29);
+    expected.push(2);
+    expected.push(10);
+    expected.push(12);
+    expected.push(13);
+    expected.push(20);
+    expected.push(25);
+    expected.push(29);
+    expected.push(31);
+
+    std::queue<int> result = tree.inorder();
+
+    ASSERT_TRUE(expected == result);
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
@@ -160,4 +186,5 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
     test_should_clear_the_binary_search_tree_and_its_subtrees();
     test_should_traverse_bst_in_a_breadthFirst_way();
     test_should_traverse_empty_bst_in_a_breadthFirst_way();
+    test_should_traverse_bst_in_a_deepthFirst_way_inorder();
 }
