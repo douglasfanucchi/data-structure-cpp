@@ -10,6 +10,7 @@ class BST {
         BTNode<T> *root;
         void insertRecursive(const T&, BTNode<T>*);
         void recursiveClear(BTNode<T>*);
+        void recursiveInorder(BTNode<T>*, std::queue<T>&) const;
 
     public:
         BST(void) : root(0) {}
@@ -18,6 +19,7 @@ class BST {
         void insert(const T&);
         T *search(const T&);
         std::queue<T> breadthFirst(void) const;
+        std::queue<T> inorder(void) const;
         void clear(void);
 };
 
@@ -91,6 +93,23 @@ std::queue<T> BST<T>::breadthFirst(void) const {
         node = queueNodes.front();
         queueNodes.pop();
     }
+    return result;
+}
+
+template<typename T>
+void BST<T>::recursiveInorder(BTNode<T> *node, std::queue<T> &result) const {
+    if (!node) {
+        return;
+    }
+    this->recursiveInorder(node->left, result);
+    result.push(node->value);
+    this->recursiveInorder(node->right, result);
+}
+
+template<typename T>
+std::queue<T> BST<T>::inorder(void) const {
+    std::queue<T> result;
+    this->recursiveInorder(this->root, result);
     return result;
 }
 
