@@ -2,6 +2,7 @@
 # define BST_H
 
 #include <BTNode.hpp>
+#include <queue>
 
 template<typename T>
 class BST {
@@ -16,6 +17,7 @@ class BST {
         bool isEmpty(void);
         void insert(const T&);
         T *search(const T&);
+        std::queue<T> breadthFirst(void) const;
         void clear(void);
 };
 
@@ -66,6 +68,28 @@ T *BST<T>::search(const T &value) {
             continue;
         }
         node = node->right;
+    }
+    return result;
+}
+
+template<typename T>
+std::queue<T> BST<T>::breadthFirst(void) const {
+    std::queue<T> result;
+    std::queue<BTNode<T> *> queueNodes;
+    BTNode<T> *node = this->root;
+    while (node) {
+        result.push(node->value);
+        if (node->left) {
+            queueNodes.push(node->left);
+        }
+        if (node->right) {
+            queueNodes.push(node->right);
+        }
+        if (queueNodes.empty()) {
+            break;
+        }
+        node = queueNodes.front();
+        queueNodes.pop();
     }
     return result;
 }
