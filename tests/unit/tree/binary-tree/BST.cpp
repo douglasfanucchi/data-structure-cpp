@@ -247,6 +247,15 @@ void test_should_traverse_a_bst_in_a_deepthFirst_postorder_way()
     ASSERT_TRUE(expected == result);
 }
 
+void test_should_traverse_an_empty_bst_in_a_deepthFirst_postorder_way()
+{
+    BST<int> tree;
+
+    std::queue<int> result = tree.postorder();
+
+    ASSERT_TRUE(result.empty());
+}
+
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
 {
     test_should_create_a_bst();
@@ -265,4 +274,5 @@ void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
     test_should_traverse_bst_in_a_deepthFirst_preorder_way();
     test_should_traverse_an_empty_bst_in_a_deepthFirst_preorder_way();
     test_should_traverse_a_bst_in_a_deepthFirst_postorder_way();
+    test_should_traverse_an_empty_bst_in_a_deepthFirst_postorder_way();
 }
