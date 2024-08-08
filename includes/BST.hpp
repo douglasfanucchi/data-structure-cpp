@@ -13,6 +13,7 @@ class BST {
         void recursiveClear(BTNode<T>*);
         void recursiveInorder(BTNode<T>*, std::queue<T>&) const;
         void recursivePreorder(BTNode<T>*, std::queue<T>&) const;
+        void recursivePostorder(BTNode<T>*, std::queue<T>&) const;
 
     public:
         BST(void) : root(0) {}
@@ -23,6 +24,7 @@ class BST {
         std::queue<T> breadthFirst(void) const;
         std::queue<T> inorder(void) const;
         std::queue<T> preorder(void) const;
+        std::queue<T> postorder(void) const;
         std::queue<T> noRecursivePreorder(void) const;
         void clear(void);
 };
@@ -132,6 +134,23 @@ void BST<T>::recursivePreorder(BTNode<T> *node, std::queue<T> &result) const {
     result.push(node->value);
     this->recursivePreorder(node->left, result);
     this->recursivePreorder(node->right, result);
+}
+
+template<typename T>
+std::queue<T> BST<T>::postorder(void) const {
+    std::queue<T> result;
+    this->recursivePostorder(this->root, result);
+    return result;
+}
+
+template<typename T>
+void BST<T>::recursivePostorder(BTNode<T> *node, std::queue<T> &result) const {
+    if (!node) {
+        return;
+    }
+    this->recursivePostorder(node->left, result);
+    this->recursivePostorder(node->right, result);
+    result.push(node->value);
 }
 
 template<typename T>
