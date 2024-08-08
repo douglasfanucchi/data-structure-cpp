@@ -243,8 +243,10 @@ void test_should_traverse_a_bst_in_a_deepthFirst_postorder_way()
     expected.push(13);
 
     std::queue<int> result = tree.postorder();
+    std::queue<int> nonRecursiveResult = tree.noRecursivePostorder();
 
     ASSERT_TRUE(expected == result);
+    ASSERT_TRUE(expected == nonRecursiveResult);
 }
 
 void test_should_traverse_an_empty_bst_in_a_deepthFirst_postorder_way()
