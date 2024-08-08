@@ -26,6 +26,7 @@ class BST {
         std::queue<T> preorder(void) const;
         std::queue<T> postorder(void) const;
         std::queue<T> noRecursivePreorder(void) const;
+        std::queue<T> noRecursivePostorder(void) const;
         void clear(void);
 };
 
@@ -171,6 +172,32 @@ std::queue<T> BST<T>::noRecursivePreorder(void) const {
             continue;
         }
         node = stack.pop();
+    }
+    return queue;
+}
+
+template<typename T>
+std::queue<T> BST<T>::noRecursivePostorder(void) const {
+    std::queue<T> queue;
+    Stack<T> reversedResult;
+    Stack<BTNode<T>*> stack;
+    BTNode<T> *node = this->root;
+    while (node) {
+        reversedResult.push(node->value);
+        if (node->left) {
+            stack.push(node->left);
+        }
+        if (node->right) {
+            stack.push(node->right);
+        }
+        if (stack.isEmpty()) {
+            node = NULL;
+            continue;
+        }
+        node = stack.pop();
+    }
+    while (!reversedResult.isEmpty()) {
+        queue.push(reversedResult.pop());
     }
     return queue;
 }
