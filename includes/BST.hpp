@@ -3,6 +3,7 @@
 
 #include <BTNode.hpp>
 #include <queue>
+#include <Stack.hpp>
 
 template<typename T>
 class BST {
@@ -22,6 +23,7 @@ class BST {
         std::queue<T> breadthFirst(void) const;
         std::queue<T> inorder(void) const;
         std::queue<T> preorder(void) const;
+        std::queue<T> noRecursivePreorder(void) const;
         void clear(void);
 };
 
@@ -130,6 +132,28 @@ void BST<T>::recursivePreorder(BTNode<T> *node, std::queue<T> &result) const {
     result.push(node->value);
     this->recursivePreorder(node->left, result);
     this->recursivePreorder(node->right, result);
+}
+
+template<typename T>
+std::queue<T> BST<T>::noRecursivePreorder(void) const {
+    std::queue<T> queue;
+    Stack<BTNode<T> *> stack;
+    BTNode<T> *node = this->root;
+    while (node) {
+        queue.push(node->value);
+        if (node->right) {
+            stack.push(node->right);
+        }
+        if (node->left) {
+            stack.push(node->left);
+        }
+        if (stack.isEmpty()) {
+            node = NULL;
+            continue;
+        }
+        node = stack.pop();
+    }
+    return queue;
 }
 
 template<typename T>
