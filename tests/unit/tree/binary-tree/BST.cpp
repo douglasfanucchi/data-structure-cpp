@@ -254,8 +254,10 @@ void test_should_traverse_an_empty_bst_in_a_deepthFirst_postorder_way()
     BST<int> tree;
 
     std::queue<int> result = tree.postorder();
+    std::queue<int> nonRecursiveResult = tree.noRecursivePostorder();
 
     ASSERT_TRUE(result.empty());
+    ASSERT_TRUE(nonRecursiveResult.empty());
 }
 
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
