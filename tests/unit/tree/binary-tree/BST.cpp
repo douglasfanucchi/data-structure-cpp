@@ -204,8 +204,10 @@ void test_should_traverse_bst_in_a_deepthFirst_preorder_way()
     expected.push(29);
 
     std::queue<int> result = tree.preorder();
+    std::queue<int> nonRecursiveResult = tree.noRecursivePreorder();
 
     ASSERT_TRUE(expected == result);
+    ASSERT_TRUE(expected == nonRecursiveResult);
 }
 
 void test_should_traverse_an_empty_bst_in_a_deepthFirst_preorder_way()
@@ -213,8 +215,10 @@ void test_should_traverse_an_empty_bst_in_a_deepthFirst_preorder_way()
     BST<int> tree;
 
     std::queue<int> result = tree.preorder();
+    std::queue<int> nonRecursiveResult = tree.noRecursivePreorder();
 
     ASSERT_TRUE(result.empty());
+    ASSERT_TRUE(nonRecursiveResult.empty());
 }
 
 void RUN_BINARY_SEARCH_TREE_TEST_SUITE()
