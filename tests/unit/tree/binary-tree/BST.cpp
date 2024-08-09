@@ -204,7 +204,7 @@ void test_should_traverse_bst_in_a_deepthFirst_preorder_way()
     expected.push(29);
 
     std::queue<int> result = tree.preorder();
-    std::queue<int> nonRecursiveResult = tree.noRecursivePreorder();
+    std::queue<int> nonRecursiveResult = tree.iterativePreorder();
 
     ASSERT_TRUE(expected == result);
     ASSERT_TRUE(expected == nonRecursiveResult);
@@ -215,7 +215,7 @@ void test_should_traverse_an_empty_bst_in_a_deepthFirst_preorder_way()
     BST<int> tree;
 
     std::queue<int> result = tree.preorder();
-    std::queue<int> nonRecursiveResult = tree.noRecursivePreorder();
+    std::queue<int> nonRecursiveResult = tree.iterativePreorder();
 
     ASSERT_TRUE(result.empty());
     ASSERT_TRUE(nonRecursiveResult.empty());
@@ -243,7 +243,7 @@ void test_should_traverse_a_bst_in_a_deepthFirst_postorder_way()
     expected.push(13);
 
     std::queue<int> result = tree.postorder();
-    std::queue<int> nonRecursiveResult = tree.noRecursivePostorder();
+    std::queue<int> nonRecursiveResult = tree.iterativePostorder();
 
     ASSERT_TRUE(expected == result);
     ASSERT_TRUE(expected == nonRecursiveResult);
@@ -254,7 +254,7 @@ void test_should_traverse_an_empty_bst_in_a_deepthFirst_postorder_way()
     BST<int> tree;
 
     std::queue<int> result = tree.postorder();
-    std::queue<int> nonRecursiveResult = tree.noRecursivePostorder();
+    std::queue<int> nonRecursiveResult = tree.iterativePostorder();
 
     ASSERT_TRUE(result.empty());
     ASSERT_TRUE(nonRecursiveResult.empty());
