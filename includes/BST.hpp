@@ -178,26 +178,22 @@ std::queue<T> BST<T>::iterativePreorder(void) const {
 
 template<typename T>
 std::queue<T> BST<T>::iterativePostorder(void) const {
-    std::queue<T> queue;
-    Stack<T> reversedResult;
+    std::queue<T> queue; 
     Stack<BTNode<T>*> stack;
-    BTNode<T> *node = this->root;
-    while (node) {
-        reversedResult.push(node->value);
-        if (node->left) {
-            stack.push(node->left);
+    BTNode<T> *p = this->root, *q = this->root;
+    while (p) {
+        for(;p->left; p = p->left)
+            stack.push(p);
+        while (p->right == 0 || p->right == q) {
+            queue.push(p->value);
+            q = p;
+            if (stack.isEmpty()) {
+                return queue;
+            }
+            p = stack.pop();
         }
-        if (node->right) {
-            stack.push(node->right);
-        }
-        if (stack.isEmpty()) {
-            node = NULL;
-            continue;
-        }
-        node = stack.pop();
-    }
-    while (!reversedResult.isEmpty()) {
-        queue.push(reversedResult.pop());
+        stack.push(p);
+        p = p->right;
     }
     return queue;
 }
