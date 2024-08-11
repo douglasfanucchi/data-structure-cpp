@@ -169,8 +169,10 @@ void test_should_traverse_bst_in_a_deepthFirst_way_inorder()
     expected.push(31);
 
     std::queue<int> result = tree.inorder();
+    std::queue<int> iterativeResult = tree.iterativeInorder();
 
     ASSERT_TRUE(expected == result);
+    ASSERT_TRUE(expected == iterativeResult);
 }
 
 void test_should_traverse_an_empty_bst_in_a_deepthFirst_inorder_way()
@@ -178,8 +180,10 @@ void test_should_traverse_an_empty_bst_in_a_deepthFirst_inorder_way()
     BST<int> tree;
 
     std::queue<int> result = tree.inorder();
+    std::queue<int> iterativeResult = tree.iterativeInorder();
 
     ASSERT_TRUE(result.empty());
+    ASSERT_TRUE(iterativeResult.empty());
 }
 
 void test_should_traverse_bst_in_a_deepthFirst_preorder_way()
