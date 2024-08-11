@@ -27,6 +27,7 @@ class BST {
         std::queue<T> postorder(void) const;
         std::queue<T> iterativePreorder(void) const;
         std::queue<T> iterativePostorder(void) const;
+        std::queue<T> iterativeInorder(void) const;
         void clear(void);
 };
 
@@ -193,6 +194,27 @@ std::queue<T> BST<T>::iterativePostorder(void) const {
             p = stack.pop();
         }
         stack.push(p);
+        p = p->right;
+    }
+    return queue;
+}
+
+template<typename T>
+std::queue<T> BST<T>::iterativeInorder(void) const {
+    std::queue<T> queue;
+    Stack<BTNode<T>*> stack;
+    BTNode<T> *p = this->root;
+    while (p) {
+        for(;p->left; p = p->left)
+            stack.push(p);
+        while (p->right == NULL) {
+            queue.push(p->value);
+            if (stack.isEmpty()) {
+                return queue;
+            }
+            p = stack.pop();
+        }
+        queue.push(p->value);
         p = p->right;
     }
     return queue;
