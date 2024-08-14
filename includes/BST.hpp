@@ -9,7 +9,6 @@ template<typename T>
 class BST {
     protected:
         BTNode<T> *root;
-        void insertRecursive(const T&, BTNode<T>*);
         void recursiveClear(BTNode<T>*);
         void recursiveInorder(BTNode<T>*, std::queue<T>&) const;
         void recursivePreorder(BTNode<T>*, std::queue<T>&) const;
@@ -38,31 +37,29 @@ bool BST<T>::isEmpty(void) {
 
 template<typename T>
 void BST<T>::insert(const T &value) {
-    if (this->isEmpty()) {
-        this->root = new BTNode(value);
+    BTNode<T> *node = this->root;
+    if (!node) {
+        this->root = new BTNode<T>(value);
         return;
     }
-    this->insertRecursive(value, this->root);
-}
-
-template<typename T>
-void BST<T>::insertRecursive(const T &value, BTNode<T> *node) {
-    if (value == node->value) {
-        throw ("value already exists");
-    }
-    if (value < node->value) {
-        if (node->left == NULL) {
-            node->left = new BTNode<T>(value);
-            return;
+    while (node) {
+        if (value == node->value) {
+            throw ("value already exists");
         }
-        this->insertRecursive(value, node->left);
-        return;
+        if (value < node->value) {
+            if (!node->left) {
+                node->left = new BTNode<T>(value);
+                break;
+            }
+            node = node->left;
+            continue;
+        }
+        if (!node->right) {
+            node->right = new BTNode<T>(value);
+            break;
+        }
+        node = node->right;
     }
-    if (node->right == NULL) {
-        node->right = new BTNode<T>(value);
-        return;
-    }
-    this->insertRecursive(value, node->right);
 }
 
 template<typename T>
