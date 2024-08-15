@@ -67,6 +67,23 @@ void test_should_traverse_tbst_preorder(void)
 
         ASSERT_TRUE(expected == result);
     }
+
+    {
+        TBST<int> tree;
+        tree.insert(4);
+        tree.insert(2);
+        tree.insert(3);
+        tree.insert(1);
+        std::queue<int> expected;
+        expected.push(4);
+        expected.push(2);
+        expected.push(1);
+        expected.push(3);
+
+        std::queue<int> result = tree.preorder();
+
+        ASSERT_TRUE(expected == result);
+    }
 }
 
 void RUN_THREADED_BINARY_SEARCH_TREE_TEST_SUITE()
