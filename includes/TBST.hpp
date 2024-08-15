@@ -1,6 +1,7 @@
 #ifndef TBST_H
 # define TBST_H
 
+#include <iostream>
 #include <queue>
 
 template<typename T>
@@ -24,6 +25,7 @@ class TBST
         TBST(void) : root(0) {}
         void insert(const T&);
         std::queue<T> inorder(void) const;
+        std::queue<T> preorder(void) const;
         ~TBST(void) {
             TBSTNode<T> *next;
             if (!this->root)
@@ -88,6 +90,27 @@ std::queue<T> TBST<T>::inorder(void) const {
         }
         node = node->right;
         for(;node->left; node = node->left);
+    }
+    return queue;
+}
+
+template<typename T>
+std::queue<T> TBST<T>::preorder(void) const {
+    std::queue<T> queue;
+    TBSTNode<T> *node = this->root;
+
+    while(node) {
+        while (node->left) {
+            queue.push(node->value);
+            node = node->left;
+        }
+        queue.push(node->value);
+        while (node && node->successor) {
+            node = node->right;
+        }
+        if(node){
+            node = node->right;
+        }
     }
     return queue;
 }
