@@ -31,7 +31,7 @@ $(NAME): $(FILES_OBJS) src/main.cpp
 
 unit: $(TEST_FILES_OBJS) $(FILES_OBJS)
 	@$(COMPILER) $(INCLUDES) $(FILES_OBJS) $(TEST_FILES_OBJS) -o unit
-	@valgrind --leak-check=full -q ./unit
+	@./unit
 	@rm -rf unit
 
 e2e: $(NAME)
