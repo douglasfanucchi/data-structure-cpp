@@ -1,5 +1,7 @@
 NAME=executable
 
+GRAPHS_FILES:=GraphMatrix.cpp
+GRAPHS_FILES:=$(addprefix graphs/, $(GRAPHS_FILES))
 FILES:=recursion.cpp linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
 FILES:=$(addprefix src/, $(FILES))
 FILES_OBJS=$(FILES:.cpp=.o)
@@ -14,8 +16,10 @@ TEST_QUEUE:=$(addprefix unit/queue/, $(TEST_QUEUE))
 TEST_DEQUE:= unit/deque/Deque.cpp
 TEST_TREES:= binary-tree/BST.cpp binary-tree/BTNode.cpp binary-tree/TBST.cpp
 TEST_TREES:= $(addprefix unit/tree/, $(TEST_TREES))
+TEST_GRAPHS:= $(addprefix unit/, $(GRAPHS_FILES))
 TEST_FILES:= asserts.cpp unit/recursion.cpp main.cpp $(TEST_LINKED_LIST) $(TEST_STACK) $(TEST_QUEUE) $(TEST_DEQUE) \
-			 $(TEST_TREES)
+			 $(TEST_TREES) \
+			 $(TEST_GRAPHS)
 TEST_FILES:=$(addprefix tests/, $(TEST_FILES))
 TEST_FILES_OBJS=$(TEST_FILES:.cpp=.o)
 INCLUDES=-I includes/ -I tests/
