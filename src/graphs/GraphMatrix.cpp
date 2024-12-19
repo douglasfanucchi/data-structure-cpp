@@ -9,3 +9,7 @@ bool GraphMatrix::hasEdges(void) const {
 int GraphMatrix::countVertices(void) const {
     return this->_n;
 }
+
+int GraphMatrix::countEdges(void) const {
+    return this->_edges;
+}

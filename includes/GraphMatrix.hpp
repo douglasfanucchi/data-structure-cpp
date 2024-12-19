@@ -10,6 +10,7 @@ class GraphMatrix {
         GraphMatrix(int);
         bool hasEdges(void) const;
         int countVertices(void) const;
+        int countEdges(void) const;
 };
 
 #endif
