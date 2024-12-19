@@ -1,8 +1,6 @@
 #include <GraphMatrix.hpp>
 
-GraphMatrix::GraphMatrix(int n) : _n(n) {
-    this->_edges = 0;
-}
+GraphMatrix::GraphMatrix(int n) : _edges(0), _n(n) {}
 
 bool GraphMatrix::hasEdges(void) const {
     return this->_edges > 0;
