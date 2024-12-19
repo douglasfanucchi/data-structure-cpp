@@ -3,7 +3,7 @@
 
 void test_should_create_an_graph_matrix_with_no_edges()
 {
-    GraphMatrix graph;
+    GraphMatrix graph(5);
 
     ASSERT_FALSE(graph.hasEdges());
 }

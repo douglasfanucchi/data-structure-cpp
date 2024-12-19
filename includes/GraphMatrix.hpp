@@ -6,7 +6,7 @@ class GraphMatrix {
         int _edges;
 
     public:
-        GraphMatrix();
+        GraphMatrix(int);
         bool hasEdges(void) const;
 };
 

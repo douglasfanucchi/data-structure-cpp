@@ -1,6 +1,6 @@
 #include <GraphMatrix.hpp>
 
-GraphMatrix::GraphMatrix(void) {
+GraphMatrix::GraphMatrix(int n) {
     this->_edges = 0;
 }
 
