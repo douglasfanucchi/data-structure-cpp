@@ -2,7 +2,8 @@ NAME=executable
 
 GRAPHS_FILES:=GraphMatrix.cpp
 GRAPHS_FILES:=$(addprefix graphs/, $(GRAPHS_FILES))
-FILES:=recursion.cpp linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp
+FILES:=recursion.cpp linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp\
+		$(GRAPHS_FILES)
 FILES:=$(addprefix src/, $(FILES))
 FILES_OBJS=$(FILES:.cpp=.o)
 TEST_LINKED_LIST:=single-linked-list/IntSLLNode.cpp single-linked-list/IntSLList.cpp \
