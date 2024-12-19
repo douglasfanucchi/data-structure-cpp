@@ -11,6 +11,7 @@ class GraphMatrix {
         bool hasEdges(void) const;
         int countVertices(void) const;
         int countEdges(void) const;
+        void insertEdge(int, int);
 };
 
 #endif
