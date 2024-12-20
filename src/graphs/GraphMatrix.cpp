@@ -68,6 +68,19 @@ bool GraphMatrix::hasAdjacent(int v) const {
     return false;
 }
 
+int GraphMatrix::degree(int v) const {
+    if (!this->isValidVertex(v)) {
+        throw "invalid vertex";
+    }
+    int count = 0;
+    for (int i = 0; i < this->_n; i++) {
+        if (this->_matrix[v][i]) {
+            count++;
+        }
+    }
+    return count;
+}
+
 GraphMatrix::~GraphMatrix(void) {
     for (int i = 0; i < this->_edges; i++) {
         delete this->_matrix[i];

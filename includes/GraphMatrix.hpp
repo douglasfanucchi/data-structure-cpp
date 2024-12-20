@@ -17,6 +17,7 @@ class GraphMatrix {
         void deleteEdge(int, int);
         bool edgeExists(int, int) const;
         bool hasAdjacent(int) const;
+        int degree(int) const;
         ~GraphMatrix(void);
 };
 

@@ -116,6 +116,18 @@ void test_should_check_if_vertex_has_adjacents_vertices()
     ASSERT_TRUE(graph.hasAdjacent(1));
 }
 
+void test_should_check_by_vertex_degree()
+{
+    GraphMatrix graph(5);
+    ASSERT_EQ(0, graph.degree(0));
+
+    graph.insertEdge(0, 1);
+    graph.insertEdge(0, 2);
+    ASSERT_EQ(2, graph.degree(0));
+    ASSERT_EQ(1, graph.degree(1));
+    ASSERT_EQ(1, graph.degree(2));
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -127,4 +139,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_delete_an_invalid_edge();
     test_should_check_if_edge_exists();
     test_should_check_if_vertex_has_adjacents_vertices();
+    test_should_check_by_vertex_degree();
 }
