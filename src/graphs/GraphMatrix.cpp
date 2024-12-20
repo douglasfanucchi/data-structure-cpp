@@ -49,6 +49,13 @@ bool GraphMatrix::isValidVertex(int v) const {
     return (v >= 0 && v < this->_n);
 }
 
+bool GraphMatrix::edgeExists(int v0, int v1) const {
+    if (!this->isValidVertex(v0) || !this->isValidVertex(v1)) {
+        throw "invalid vertex";
+    }
+    return this->_matrix[v0][v1];
+}
+
 GraphMatrix::~GraphMatrix(void) {
     for (int i = 0; i < this->_edges; i++) {
         delete this->_matrix[i];

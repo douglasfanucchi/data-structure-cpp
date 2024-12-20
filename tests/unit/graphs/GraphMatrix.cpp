@@ -97,6 +97,15 @@ void test_should_delete_an_invalid_edge()
     }
 }
 
+void test_should_check_if_edge_exists()
+{
+    GraphMatrix graph(5);
+    ASSERT_FALSE(graph.edgeExists(0, 1));
+
+    graph.insertEdge(0, 1);
+    ASSERT_TRUE(graph.edgeExists(0, 1));
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -106,4 +115,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_duplicate_edge_and_assert_total_edges_is_keept();
     test_should_remove_edge_from_graph_matrix();
     test_should_delete_an_invalid_edge();
+    test_should_check_if_edge_exists();
 }

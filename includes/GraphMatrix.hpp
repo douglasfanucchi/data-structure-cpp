@@ -15,6 +15,7 @@ class GraphMatrix {
         int countEdges(void) const;
         void insertEdge(int, int);
         void deleteEdge(int, int);
+        bool edgeExists(int, int) const;
         ~GraphMatrix(void);
 };
 
