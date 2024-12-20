@@ -77,6 +77,26 @@ void test_should_remove_edge_from_graph_matrix()
     ASSERT_EQ(expected, result);
 }
 
+void test_should_delete_an_invalid_edge()
+{
+    GraphMatrix graph(5);
+    const char *expected = "invalid vertex";
+
+    try {
+        graph.deleteEdge(0, 5);
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph.deleteEdge(-1, 0);
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -85,4 +105,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_insert_self_loop_edge_into_graph_matrix();
     test_should_duplicate_edge_and_assert_total_edges_is_keept();
     test_should_remove_edge_from_graph_matrix();
+    test_should_delete_an_invalid_edge();
 }
