@@ -53,10 +53,23 @@ void test_should_insert_self_loop_edge_into_graph_matrix()
     }
 }
 
+void test_should_duplicate_edge_and_assert_total_edges_is_keept()
+{
+    GraphMatrix graph(5);
+    int expected = 1;
+
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 0);
+    int result = graph.countEdges();
+
+    ASSERT_EQ(expected, result);
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
     test_should_insert_an_edge_into_graph_matrix();
     test_should_sert_an_invalid_edge_into_graph_matrix();
     test_should_insert_self_loop_edge_into_graph_matrix();
+    test_should_duplicate_edge_and_assert_total_edges_is_keept();
 }
