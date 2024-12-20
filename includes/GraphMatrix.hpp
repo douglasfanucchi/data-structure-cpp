@@ -6,6 +6,7 @@ class GraphMatrix {
         int _edges;
         int _n;
         bool **_matrix;
+        bool isValidVertex(int) const;
 
     public:
         GraphMatrix(int);

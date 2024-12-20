@@ -23,7 +23,7 @@ int GraphMatrix::countEdges(void) const {
 }
 
 void GraphMatrix::insertEdge(int v0, int v1) {
-    if (v0 < 0 || v1 < 0 || v0 > (this->_n - 1) || v1 > (this->_n - 1)) {
+    if (!this->isValidVertex(v0) || !this->isValidVertex(v1)) {
         throw "invalid vertex";
     }
     if (v0 == v1) {
@@ -37,12 +37,16 @@ void GraphMatrix::insertEdge(int v0, int v1) {
 }
 
 void GraphMatrix::deleteEdge(int v0, int v1) {
-    if ( v0 < 0 || v1 < 0 || v0 > (this->_n - 1) || v1 > (this->_n - 1)) {
+    if (!this->isValidVertex(v0) || !this->isValidVertex(v1)) {
         throw "invalid vertex";
     }
     this->_matrix[v0][v1] = false;
     this->_matrix[v1][v0] = false;
     this->_edges--;
+}
+
+bool GraphMatrix::isValidVertex(int v) const {
+    return (v >= 0 && v < this->_n);
 }
 
 GraphMatrix::~GraphMatrix(void) {
