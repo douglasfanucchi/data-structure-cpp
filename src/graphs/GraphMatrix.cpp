@@ -36,6 +36,15 @@ void GraphMatrix::insertEdge(int v0, int v1) {
     this->_matrix[v1][v0] = true;
 }
 
+void GraphMatrix::deleteEdge(int v0, int v1) {
+    if ( v0 < 0 || v1 < 0 || v0 > (this->_n - 1) || v1 > (this->_n - 1)) {
+        throw "invalid vertex";
+    }
+    this->_matrix[v0][v1] = false;
+    this->_matrix[v1][v0] = false;
+    this->_edges--;
+}
+
 GraphMatrix::~GraphMatrix(void) {
     for (int i = 0; i < this->_edges; i++) {
         delete this->_matrix[i];

@@ -13,6 +13,7 @@ class GraphMatrix {
         int countVertices(void) const;
         int countEdges(void) const;
         void insertEdge(int, int);
+        void deleteEdge(int, int);
         ~GraphMatrix(void);
 };
 
