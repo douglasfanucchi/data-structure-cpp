@@ -5,6 +5,7 @@ class GraphMatrix {
     protected:
         int _edges;
         int _n;
+        bool **_matrix;
 
     public:
         GraphMatrix(int);
@@ -12,6 +13,7 @@ class GraphMatrix {
         int countVertices(void) const;
         int countEdges(void) const;
         void insertEdge(int, int);
+        ~GraphMatrix(void);
 };
 
 #endif
