@@ -19,8 +19,29 @@ void test_should_insert_an_edge_into_graph_matrix()
     ASSERT_EQ(1, graph.countEdges());
 }
 
+void test_should_sert_an_invalid_edge_into_graph_matrix()
+{
+    GraphMatrix graph(5);
+    const char *expected = "invalid vertex";
+
+    try {
+        graph.insertEdge(-1, 0);
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph.insertEdge(5, 0);
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
     test_should_insert_an_edge_into_graph_matrix();
+    test_should_sert_an_invalid_edge_into_graph_matrix();
 }
