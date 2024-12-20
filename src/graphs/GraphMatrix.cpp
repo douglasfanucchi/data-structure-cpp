@@ -56,6 +56,18 @@ bool GraphMatrix::edgeExists(int v0, int v1) const {
     return this->_matrix[v0][v1];
 }
 
+bool GraphMatrix::hasAdjacent(int v) const {
+    if (!this->isValidVertex(v)) {
+        throw "invalid vertex";
+    }
+    for (int i = 0; i < this->_n; i++) {
+        if(this->_matrix[v][i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 GraphMatrix::~GraphMatrix(void) {
     for (int i = 0; i < this->_edges; i++) {
         delete this->_matrix[i];

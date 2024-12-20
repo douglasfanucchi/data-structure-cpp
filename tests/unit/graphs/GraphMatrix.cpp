@@ -106,6 +106,16 @@ void test_should_check_if_edge_exists()
     ASSERT_TRUE(graph.edgeExists(0, 1));
 }
 
+void test_should_check_if_vertex_has_adjacents_vertices()
+{
+    GraphMatrix graph(5);
+    ASSERT_FALSE(graph.hasAdjacent(0));
+
+    graph.insertEdge(0, 1);
+    ASSERT_TRUE(graph.hasAdjacent(0));
+    ASSERT_TRUE(graph.hasAdjacent(1));
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -116,4 +126,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_remove_edge_from_graph_matrix();
     test_should_delete_an_invalid_edge();
     test_should_check_if_edge_exists();
+    test_should_check_if_vertex_has_adjacents_vertices();
 }
