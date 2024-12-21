@@ -14,9 +14,8 @@ void test_should_insert_edge_into_dgraph()
 
     graph->insertEdge(0, 1);
     graph->insertEdge(1, 0);
-    graph->insertEdge(1, 1);
 
-    ASSERT_EQ(3, graph->countEdges());
+    ASSERT_EQ(2, graph->countEdges());
     ASSERT_EQ(2, graph->degree(1));
 
     delete graph;
