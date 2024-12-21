@@ -1,5 +1,4 @@
 #include <DGraphMatrix.hpp>
-#include <iostream>
 
 DGraphMatrix::DGraphMatrix(int n) : GraphMatrix(n) {}
 
