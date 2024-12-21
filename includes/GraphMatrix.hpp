@@ -14,7 +14,7 @@ class GraphMatrix {
         int countVertices(void) const;
         int countEdges(void) const;
         virtual void insertEdge(int, int);
-        void deleteEdge(int, int);
+        virtual void deleteEdge(int, int);
         bool edgeExists(int, int) const;
         bool hasAdjacent(int) const;
         int degree(int) const;
