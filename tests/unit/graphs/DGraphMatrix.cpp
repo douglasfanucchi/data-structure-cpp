@@ -44,9 +44,24 @@ void test_should_insert_edge_with_invalid_vertex_into_dgraph()
     delete graph;
 }
 
+void test_should_delete_edge_from_dgraph()
+{
+    GraphMatrix *graph = new DGraphMatrix(5);
+    graph->insertEdge(0, 1);
+    graph->insertEdge(1, 0);
+
+    graph->deleteEdge(0, 1);
+
+    ASSERT_TRUE(graph->hasAdjacent(1));
+    ASSERT_EQ(1, graph->countEdges());
+
+    delete graph;
+}
+
 void RUN_DGRAPH_MATRIX_TEST_SUITE()
 {
     test_should_created_a_dgraph_with_no_edges();
     test_should_insert_edge_into_dgraph();
     test_should_insert_edge_with_invalid_vertex_into_dgraph();
+    test_should_delete_edge_from_dgraph();
 }
