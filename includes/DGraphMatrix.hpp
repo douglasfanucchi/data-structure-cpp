@@ -3,6 +3,9 @@
 
 #include <GraphMatrix.hpp>
 
-class DGraphMatrix {};
+class DGraphMatrix : public GraphMatrix {
+    public:
+        DGraphMatrix(int);
+};
 
 #endif
