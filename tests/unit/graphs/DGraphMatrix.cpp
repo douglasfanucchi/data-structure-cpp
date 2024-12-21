@@ -22,8 +22,31 @@ void test_should_insert_edge_into_dgraph()
     delete graph;
 }
 
+void test_should_insert_edge_with_invalid_vertex_into_dgraph()
+{
+    GraphMatrix *graph = new DGraphMatrix(5);
+    char const *expected = "invalid vertex";
+
+    try {
+        graph->insertEdge(-1, 0);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph->insertEdge(0, 5);
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    delete graph;
+}
+
 void RUN_DGRAPH_MATRIX_TEST_SUITE()
 {
     test_should_created_a_dgraph_with_no_edges();
     test_should_insert_edge_into_dgraph();
+    test_should_insert_edge_with_invalid_vertex_into_dgraph();
 }
