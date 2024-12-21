@@ -17,3 +17,19 @@ void DGraphMatrix::deleteEdge(int v0, int v1) {
     this->_matrix[v0][v1] = false;
     this->_edges--;
 }
+
+int DGraphMatrix::degree(int v) const {
+    if (!this->isValidVertex(v)) {
+        throw "invalid vertex";
+    }
+    int total = 0;
+    for (int i = 0; i < this->_n; i++) {
+        if (this->_matrix[v][i]) {
+            total++;
+        }
+        if (this->_matrix[i][v]) {
+            total++;
+        }
+    }
+    return total;
+}

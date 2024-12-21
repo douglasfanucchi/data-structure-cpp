@@ -8,6 +8,7 @@ class DGraphMatrix : public GraphMatrix {
         DGraphMatrix(int);
         void insertEdge(int, int);
         void deleteEdge(int, int);
+        int degree(int) const;
 };
 
 #endif
