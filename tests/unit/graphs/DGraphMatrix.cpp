@@ -95,6 +95,28 @@ void test_should_check_for_vertex_degree()
     delete graph;
 }
 
+void test_should_check_gree_of_an_invalid_vertex()
+{
+    GraphMatrix *graph = new DGraphMatrix(5);
+    char const *expected = "invalid vertex";
+
+    try {
+        graph->degree(-5);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph->degree(5);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    delete graph;
+}
+
 void RUN_DGRAPH_MATRIX_TEST_SUITE()
 {
     test_should_created_a_dgraph_with_no_edges();
@@ -103,4 +125,5 @@ void RUN_DGRAPH_MATRIX_TEST_SUITE()
     test_should_delete_edge_from_dgraph();
     test_should_delete_edge_passing_invalid_vertices();
     test_should_check_for_vertex_degree();
+    test_should_check_gree_of_an_invalid_vertex();
 }
