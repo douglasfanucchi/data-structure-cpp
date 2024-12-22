@@ -101,6 +101,46 @@ void test_should_delete_invalid_edge()
     }
 }
 
+void test_should_check_if_an_edge_exists()
+{
+    PonderedGraphMatrix graph(5);
+
+    graph.insertEdge(0, 1, 0.5);
+
+    ASSERT_TRUE(graph.edgeExists(1, 0));
+    ASSERT_FALSE(graph.edgeExists(1, 1));
+}
+
+void test_should_check_if_an_invalid_edge_exists()
+{
+    PonderedGraphMatrix graph(5);
+    char const *expected = "invalid vertex";
+
+    try {
+        ASSERT_FALSE(graph.edgeExists(-1, 0));
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        ASSERT_FALSE(graph.edgeExists(5, 0));
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        ASSERT_FALSE(graph.edgeExists(0, -1));
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        ASSERT_FALSE(graph.edgeExists(0, 5));
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
 void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_a_pondered_graph_matrix();
@@ -109,4 +149,6 @@ void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
     test_should_insert_invalid_edge();
     test_should_delete_an_edge_and_inserts_it_again();
     test_should_delete_invalid_edge();
+    test_should_check_if_an_edge_exists();
+    test_should_check_if_an_invalid_edge_exists();
 }
