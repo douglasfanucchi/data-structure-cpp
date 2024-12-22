@@ -35,3 +35,12 @@ PonderedGraphMatrix::~PonderedGraphMatrix(void) {
     }
     delete this->_matrix;
 }
+
+void PonderedGraphMatrix::deleteEdge(int v0, int v1) {
+    if (!this->isValidVertex(v0) || !this->isValidVertex(v1)) {
+        throw "invalid vertex";
+    }
+    this->_matrix[v0][v1] = DEFAULT_VALUE;
+    this->_matrix[v1][v0] = DEFAULT_VALUE;
+    this->_edges--;
+}

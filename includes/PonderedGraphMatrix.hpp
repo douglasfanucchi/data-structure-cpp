@@ -9,6 +9,7 @@ class PonderedGraphMatrix {
         ~PonderedGraphMatrix(void);
         int countEdges(void) const;
         void insertEdge(int, int, float);
+        void deleteEdge(int, int);
     protected:
         int _n;
         int _edges;
