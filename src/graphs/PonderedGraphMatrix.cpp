@@ -60,3 +60,13 @@ bool PonderedGraphMatrix::hasAdjacent(int v) const {
     }
     return false;
 }
+
+int PonderedGraphMatrix::degree(int v) const {
+    int total = 0;
+    for (int i = 0; i < this->_n; i++) {
+        if (this->edgeExists(v, i)) {
+            total++;
+        }
+    }
+    return total;
+}

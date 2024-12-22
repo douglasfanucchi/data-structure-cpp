@@ -170,6 +170,21 @@ void test_should_chekc_if_an_invalid_vertex_has_adjacent()
     }
 }
 
+void test_should_check_vertex_degree()
+{
+    PonderedGraphMatrix graph(5);
+
+    graph.insertEdge(0, 1, 0.5);
+    graph.insertEdge(1, 0, 0.5);
+    graph.insertEdge(1, 2, 1);
+    graph.insertEdge(1, 3, 0.7);
+
+    ASSERT_EQ(1, graph.degree(0));
+    ASSERT_EQ(3, graph.degree(1));
+    ASSERT_EQ(1, graph.degree(2));
+    ASSERT_EQ(1, graph.degree(3));
+}
+
 void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_a_pondered_graph_matrix();
@@ -182,4 +197,5 @@ void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
     test_should_check_if_an_invalid_edge_exists();
     test_should_check_if_a_vertex_has_adjacent();
     test_should_chekc_if_an_invalid_vertex_has_adjacent();
+    test_should_check_vertex_degree();
 }
