@@ -41,3 +41,12 @@ void ASSERT_EQ(int expected, int result)
         ERROR_MESSAGE(expectedStream.str(), resultStream.str());
     }
 }
+
+void ASSERT_FLOAT_EQ(float expected, float result)
+{
+    if (fabs(expected - result) < 0.0001) {
+        ASSERT_TRUE(true);
+        return;
+    }
+    ERROR_MESSAGE(std::to_string(expected), std::to_string(result));
+}
