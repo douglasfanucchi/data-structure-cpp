@@ -10,6 +10,7 @@ class PonderedGraphMatrix {
         int countEdges(void) const;
         void insertEdge(int, int, float);
         void deleteEdge(int, int);
+        bool edgeExists(int, int) const;
     protected:
         int _n;
         int _edges;
