@@ -13,6 +13,7 @@ void test_should_insert_an_edge_into_pondered_graph_matrix()
     PonderedGraphMatrix graph(5);
 
     graph.insertEdge(0, 1, 0.5);
+    graph.insertEdge(1, 0, 0.5);
 
     ASSERT_EQ(1, graph.countEdges());
 }
