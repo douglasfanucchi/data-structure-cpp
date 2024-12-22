@@ -11,6 +11,7 @@ class PonderedGraphMatrix {
         void insertEdge(int, int, float);
         void deleteEdge(int, int);
         bool edgeExists(int, int) const;
+        bool hasAdjacent(int) const;
     protected:
         int _n;
         int _edges;

@@ -51,3 +51,12 @@ bool PonderedGraphMatrix::edgeExists(int v0, int v1) const {
     }
     return DEFAULT_VALUE - this->_matrix[v0][v1] > 0.0001;
 }
+
+bool PonderedGraphMatrix::hasAdjacent(int v) const {
+    for (int i = 0; i < this->_n; i++) {
+        if (this->edgeExists(v, i)) {
+            return true;
+        }
+    }
+    return false;
+}
