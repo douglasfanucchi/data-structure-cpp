@@ -141,6 +141,35 @@ void test_should_check_if_an_invalid_edge_exists()
     }
 }
 
+void test_should_check_if_a_vertex_has_adjacent()
+{
+    PonderedGraphMatrix graph(5);
+    graph.insertEdge(0, 1, 0.5);
+
+    ASSERT_TRUE(graph.hasAdjacent(0));
+    ASSERT_TRUE(graph.hasAdjacent(1));
+    ASSERT_FALSE(graph.hasAdjacent(2));
+}
+
+void test_should_chekc_if_an_invalid_vertex_has_adjacent()
+{
+    PonderedGraphMatrix graph(5);
+    char const *expected = "invalid vertex";
+
+    try {
+        graph.hasAdjacent(-1);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+    try {
+        graph.hasAdjacent(5);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
 void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_a_pondered_graph_matrix();
@@ -151,4 +180,6 @@ void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
     test_should_delete_invalid_edge();
     test_should_check_if_an_edge_exists();
     test_should_check_if_an_invalid_edge_exists();
+    test_should_check_if_a_vertex_has_adjacent();
+    test_should_chekc_if_an_invalid_vertex_has_adjacent();
 }
