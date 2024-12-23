@@ -147,6 +147,16 @@ void test_should_travel_graph_deepth_first()
     ASSERT_EQ(3, visited[4]);
 }
 
+void test_should_travel_disconnected_graph()
+{
+    GraphMatrix graph(2);
+
+    Deque<int> visited = graph.deepthFirst(0);
+
+    ASSERT_EQ(0, visited[0]);
+    ASSERT_EQ(1, visited[1]);
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -160,4 +170,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_check_if_vertex_has_adjacents_vertices();
     test_should_check_by_vertex_degree();
     test_should_travel_graph_deepth_first();
+    test_should_travel_disconnected_graph();
 }

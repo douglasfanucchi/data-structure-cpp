@@ -85,7 +85,11 @@ Deque<int> GraphMatrix::deepthFirst(int v) const {
     int *visited = new int[this->_n];
     Deque<int> deque;
 
-    this->deepthFirstRecursive(0, deque, visited);
+    for (int i = 0; i < this->_n; i++) {
+        if (!visited[i]) {
+            this->deepthFirstRecursive(i, deque, visited);
+        }
+    }
 
     delete[] visited;
     return deque;
