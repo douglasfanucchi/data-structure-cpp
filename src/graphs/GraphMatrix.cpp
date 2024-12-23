@@ -81,7 +81,7 @@ int GraphMatrix::degree(int v) const {
     return count;
 }
 
-Deque<int> GraphMatrix::deepthFirst(int v) const {
+Deque<int> GraphMatrix::deepthFirst() const {
     int *visited = new int[this->_n];
     Deque<int> deque;
 

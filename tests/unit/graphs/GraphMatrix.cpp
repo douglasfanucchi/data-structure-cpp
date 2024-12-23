@@ -138,7 +138,7 @@ void test_should_travel_graph_deepth_first()
     graph.insertEdge(2, 4);
     graph.insertEdge(4, 3);
 
-    Deque<int> visited = graph.deepthFirst(0);
+    Deque<int> visited = graph.deepthFirst();
 
     ASSERT_EQ(0, visited[0]);
     ASSERT_EQ(1, visited[1]);
@@ -151,7 +151,7 @@ void test_should_travel_disconnected_graph()
 {
     GraphMatrix graph(2);
 
-    Deque<int> visited = graph.deepthFirst(0);
+    Deque<int> visited = graph.deepthFirst();
 
     ASSERT_EQ(0, visited[0]);
     ASSERT_EQ(1, visited[1]);

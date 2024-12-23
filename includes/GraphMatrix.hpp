@@ -21,7 +21,7 @@ class GraphMatrix {
         bool edgeExists(int, int) const;
         bool hasAdjacent(int) const;
         virtual int degree(int) const;
-        Deque<int> deepthFirst(int) const;
+        Deque<int> deepthFirst() const;
         ~GraphMatrix(void);
 };
 
