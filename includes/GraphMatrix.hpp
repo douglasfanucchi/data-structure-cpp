@@ -1,12 +1,15 @@
 #ifndef GRAPH_MATRIX_H
 # define GRAPH_MATRIX_H
 
+#include <Deque.hpp>
+
 class GraphMatrix {
     protected:
         int _edges;
         int _n;
         bool **_matrix;
         bool isValidVertex(int) const;
+        void deepthFirstRecursive(int, Deque<int>&, int*) const;
 
     public:
         GraphMatrix(int);
@@ -18,6 +21,7 @@ class GraphMatrix {
         bool edgeExists(int, int) const;
         bool hasAdjacent(int) const;
         virtual int degree(int) const;
+        Deque<int> deepthFirst(int) const;
         ~GraphMatrix(void);
 };
 

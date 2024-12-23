@@ -81,6 +81,29 @@ int GraphMatrix::degree(int v) const {
     return count;
 }
 
+Deque<int> GraphMatrix::deepthFirst(int v) const {
+    int *visited = new int[this->_n];
+    Deque<int> deque;
+
+    this->deepthFirstRecursive(0, deque, visited);
+
+    delete[] visited;
+    return deque;
+}
+
+void GraphMatrix::deepthFirstRecursive(int v, Deque<int> &deque, int *visited) const {
+    if (visited[v]) {
+        return;
+    }
+    visited[v] = true;
+    deque.pushBack(v);
+    for (int i = 0; i < this->_n; i++) {
+        if (this->edgeExists(v, i)) {
+            this->deepthFirstRecursive(i, deque, visited);
+        }
+    }
+}
+
 GraphMatrix::~GraphMatrix(void) {
     for (int i = 0; i < this->_edges; i++) {
         delete this->_matrix[i];

@@ -1,5 +1,6 @@
 #include <asserts.hpp>
 #include <GraphMatrix.hpp>
+#include <Deque.hpp>
 
 void test_should_create_an_graph_matrix_with_no_edges()
 {
@@ -128,6 +129,24 @@ void test_should_check_by_vertex_degree()
     ASSERT_EQ(1, graph.degree(2));
 }
 
+void test_should_travel_graph_deepth_first()
+{
+    GraphMatrix graph(5);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(0, 2);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(2, 4);
+    graph.insertEdge(4, 3);
+
+    Deque<int> visited = graph.deepthFirst(0);
+
+    ASSERT_EQ(0, visited[0]);
+    ASSERT_EQ(1, visited[1]);
+    ASSERT_EQ(2, visited[2]);
+    ASSERT_EQ(4, visited[3]);
+    ASSERT_EQ(3, visited[4]);
+}
+
 void RUN_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_an_graph_matrix_with_no_edges();
@@ -140,4 +159,5 @@ void RUN_GRAPH_MATRIX_TEST_SUITE()
     test_should_check_if_edge_exists();
     test_should_check_if_vertex_has_adjacents_vertices();
     test_should_check_by_vertex_degree();
+    test_should_travel_graph_deepth_first();
 }
