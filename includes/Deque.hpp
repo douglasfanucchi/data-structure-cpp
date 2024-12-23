@@ -1,6 +1,8 @@
 #ifndef DEQUE_H
 # define DEQUE_H
 
+#include <cstddef>
+
 template<typename T>
 class Deque {
     protected:
@@ -9,7 +11,7 @@ class Deque {
         T **blocks;
         T **blockHead;
         T **blockTail;
-        int blockSize = 4;
+        int blockSize;
         void increseBlocksSize(T**, int);
     public:
         Deque(void);
@@ -23,7 +25,7 @@ class Deque {
 };
 
 template<typename T>
-Deque<T>::Deque(void) : head(0), tail(0) {
+Deque<T>::Deque(void) : head(0), tail(0), blockSize(4) {
     this->blocks = new T*[this->blockSize];
     for(int i = 0; i < this->blockSize; i++)
         this->blocks[i] = NULL;
