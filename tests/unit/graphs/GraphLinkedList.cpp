@@ -66,12 +66,16 @@ static void test_should_delete_edge()
 {
     GraphLinkedList graph(5);
     graph.insertEdge(0, 1);
+    graph.insertEdge(0, 2);
 
     graph.deleteEdge(1, 0);
-    ASSERT_EQ(0, graph.countEdges());
+    ASSERT_EQ(1, graph.countEdges());
 
     graph.insertEdge(0, 1);
-    ASSERT_EQ(1, graph.countEdges());
+    ASSERT_EQ(2, graph.countEdges());
+
+    graph.deleteEdge(1, 2);
+    ASSERT_EQ(2, graph.countEdges());
 }
 
 static void test_should_delete_invalid_edge()
