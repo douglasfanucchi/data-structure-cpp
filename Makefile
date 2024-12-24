@@ -1,6 +1,6 @@
 NAME=executable
 
-GRAPHS_FILES:=GraphMatrix.cpp DGraphMatrix.cpp PonderedGraphMatrix.cpp
+GRAPHS_FILES:=GraphMatrix.cpp DGraphMatrix.cpp PonderedGraphMatrix.cpp GraphLinkedList.cpp
 GRAPHS_FILES:=$(addprefix graphs/, $(GRAPHS_FILES))
 FILES:=recursion.cpp linked-lists/single-linked-list/IntSLLNode.cpp linked-lists/single-linked-list/IntSLList.cpp\
 		$(GRAPHS_FILES)
