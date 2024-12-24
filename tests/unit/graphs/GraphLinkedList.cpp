@@ -62,10 +62,58 @@ static void test_should_check_if_edge_exists()
     ASSERT_FALSE(graph.edgeExists(0, 2));
 }
 
+static void test_should_delete_edge()
+{
+    GraphLinkedList graph(5);
+    graph.insertEdge(0, 1);
+
+    graph.deleteEdge(1, 0);
+    ASSERT_EQ(0, graph.countEdges());
+
+    graph.insertEdge(0, 1);
+    ASSERT_EQ(1, graph.countEdges());
+}
+
+static void test_should_delete_invalid_edge()
+{
+    GraphLinkedList graph(5);
+    char const *expected = "invalid vertex";
+
+    try {
+        graph.deleteEdge(-1, 0);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph.deleteEdge(5, 0);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph.deleteEdge(0, -1);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+
+    try {
+        graph.deleteEdge(0, 5);
+        ASSERT_TRUE(false);
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
 void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_graph();
     test_should_insert_edge_into_graph();
     test_should_insert_invalid_edge();
     test_should_check_if_edge_exists();
+    test_should_delete_edge();
+    test_should_delete_invalid_edge();
 }
