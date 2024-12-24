@@ -52,9 +52,20 @@ static void test_should_insert_invalid_edge()
     }
 }
 
+static void test_should_check_if_edge_exists()
+{
+    GraphLinkedList graph(5);
+
+    graph.insertEdge(0, 1);
+
+    ASSERT_TRUE(graph.edgeExists(0, 1));
+    ASSERT_FALSE(graph.edgeExists(0, 2));
+}
+
 void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_graph();
     test_should_insert_edge_into_graph();
     test_should_insert_invalid_edge();
+    test_should_check_if_edge_exists();
 }
