@@ -11,6 +11,7 @@ class GraphLinkedList {
         void insertEdge(int, int);
         bool edgeExists(int, int) const;
         void deleteEdge(int, int);
+        int degree(int) const;
 
     protected:
         int _edges;

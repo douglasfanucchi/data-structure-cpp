@@ -112,6 +112,21 @@ static void test_should_delete_invalid_edge()
     }
 }
 
+static void test_should_check_vertex_degree()
+{
+    GraphLinkedList graph(5);
+
+    ASSERT_EQ(0, graph.degree(0));
+
+    graph.insertEdge(0, 1);
+    graph.insertEdge(0, 2);
+    graph.insertEdge(0, 3);
+    graph.insertEdge(0, 4);
+
+    ASSERT_EQ(4, graph.degree(0));
+    ASSERT_EQ(1, graph.degree(1));
+}
+
 void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_graph();
@@ -120,4 +135,5 @@ void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
     test_should_check_if_edge_exists();
     test_should_delete_edge();
     test_should_delete_invalid_edge();
+    test_should_check_vertex_degree();
 }

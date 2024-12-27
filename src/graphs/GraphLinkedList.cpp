@@ -48,3 +48,7 @@ void GraphLinkedList::deleteEdge(int v0, int v1) {
 bool GraphLinkedList::isValidVertex(int v) const {
     return v > -1 && v < this->_n;
 }
+
+int GraphLinkedList::degree(int v) const {
+    return this->_adjacents[v]->size();
+}
