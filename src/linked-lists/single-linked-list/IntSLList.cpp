@@ -101,3 +101,12 @@ bool IntSLList::isInList(int value) {
 
     return tmp != 0;
 }
+
+int IntSLList::size(void) const {
+    IntSLLNode *tmp;
+    int result;
+
+    for(tmp = this->head, result = 0; tmp; tmp = tmp->next, result++);
+
+    return result;
+}
