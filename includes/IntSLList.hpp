@@ -17,6 +17,7 @@ class IntSLList {
         int deleteFromTail(void);
         void deleteNode(int);
         bool isInList(int);
+        int size(void) const;
 };
 
 #endif

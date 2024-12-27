@@ -162,6 +162,15 @@ void test_should_search_for_a_element_in_to_an_empty_linked_list()
     ASSERT_FALSE(result);
 }
 
+static void test_should_check_list_size()
+{
+    IntSLList list;
+    ASSERT_EQ(0, list.size());
+
+    list.addToHead(123);
+    ASSERT_EQ(1, list.size());
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -179,4 +188,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_search_for_an_existing_element_in_the_linked_list();
     test_should_search_for_a_non_existing_element_in_the_linked_list();
     test_should_search_for_a_element_in_to_an_empty_linked_list();
+    test_should_check_list_size();
 }
