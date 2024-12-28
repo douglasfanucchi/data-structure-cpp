@@ -20,7 +20,7 @@ class GraphLinkedList {
         int _n;
         IntSLList **_adjacents;
         bool isValidVertex(int) const;
-        void deepthFirstRecursive(int, Deque<int>&, bool*) const;
+        void deepthFirstRecursive(int, Deque<int>&, char*, int*, int*, int*, int, int&) const;
 };
 
 #endif

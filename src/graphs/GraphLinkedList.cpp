@@ -53,33 +53,68 @@ int GraphLinkedList::degree(int v) const {
     return this->_adjacents[v]->size();
 }
 
-void GraphLinkedList::deepthFirstRecursive(int v, Deque<int> &deque, bool *visited) const {
-    if (visited[v]) {
-        return;
-    }
-    visited[v] = true;
+void GraphLinkedList::deepthFirstRecursive(
+    int v,
+    Deque<int> &deque,
+    char *colors,
+    int* prevNodes,
+    int *timeStart,
+    int *timeEnd,
+    int prevNode,
+    int &time
+) const {
+    prevNodes[v] = prevNode;
+    colors[v] = 1;
+    time++;
+    timeStart[v] = time;
     deque.pushBack(v);
     IntSLList *list = this->_adjacents[v];
     while (!list->isEmpty()) {
-        int v = list->deleteFromHead();
-        this->deepthFirstRecursive(v, deque, visited);
+        int w = list->deleteFromHead();
+        if (colors[w]) {
+            continue;
+        }
+        this->deepthFirstRecursive(w, deque, colors, prevNodes, timeStart, timeEnd, v, time);
     }
+    colors[v] = 2;
+    time++;
+    timeEnd[v] = time;
 }
 
 Deque<int> GraphLinkedList::deepthFirst(void) const {
     Deque<int> deque;
 
-    bool *visited = new bool[this->_n];
+    char *colors = new char[this->_n];
+    int *prevNodes = new int[this->_n];
+    int *timeStart = new int[this->_n];
+    int *timeEnd = new int[this->_n];
+    int time = 0;
+
     for (int i = 0; i < this->_n; i++) {
-        visited[i] = false;
+        colors[i] = 0;
+        prevNodes[i] = -1;
+        timeStart[i] = -1;
+        timeEnd[i] = -1;
     }
     for (int v = 0; v < this->_n; v++) {
-        if (visited[v]) {
+        if (colors[v]) {
             continue;
         }
-        this->deepthFirstRecursive(v, deque, visited);
+        this->deepthFirstRecursive(
+            v,
+            deque,
+            colors,
+            prevNodes,
+            timeStart,
+            timeEnd,
+            -1,
+            time
+        );
     }
 
-    delete[] visited;
+    delete[] colors;
+    delete[] prevNodes;
+    delete[] timeStart;
+    delete[] timeEnd;
     return deque;
 }
