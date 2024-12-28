@@ -52,3 +52,37 @@ bool GraphLinkedList::isValidVertex(int v) const {
 int GraphLinkedList::degree(int v) const {
     return this->_adjacents[v]->size();
 }
+
+void GraphLinkedList::deepthFirstRecursive(int v, Deque<int> &deque, bool *visited) const {
+    if (visited[v]) {
+        return;
+    }
+    visited[v] = true;
+    deque.pushBack(v);
+    IntSLList *list = this->_adjacents[v];
+    while (!list->isEmpty()) {
+        int v = list->deleteFromHead();
+        this->deepthFirstRecursive(v, deque, visited);
+    }
+}
+
+Deque<int> GraphLinkedList::deepthFirst(void) const {
+    Deque<int> deque;
+
+    if (this->countEdges() == 0) {
+        return deque;
+    }
+    bool *visited = new bool[this->_n];
+    for (int i = 0; i < this->_n; i++) {
+        visited[i] = false;
+    }
+    for (int v = 0; v < this->_n; v++) {
+        if (visited[v]) {
+            continue;
+        }
+        this->deepthFirstRecursive(v, deque, visited);
+    }
+
+    delete[] visited;
+    return deque;
+}
