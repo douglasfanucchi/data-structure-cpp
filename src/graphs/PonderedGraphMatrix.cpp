@@ -31,9 +31,9 @@ bool PonderedGraphMatrix::isValidVertex(int v) const {
 
 PonderedGraphMatrix::~PonderedGraphMatrix(void) {
     for (int i = 0; i < this->_n; i++) {
-        delete this->_matrix[i];
+        delete[] this->_matrix[i];
     }
-    delete this->_matrix;
+    delete[] this->_matrix;
 }
 
 void PonderedGraphMatrix::deleteEdge(int v0, int v1) {
