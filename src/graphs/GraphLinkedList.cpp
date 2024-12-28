@@ -11,7 +11,7 @@ GraphLinkedList::~GraphLinkedList(void) {
     for (int i = 0; i < this->_n; i++) {
         delete this->_adjacents[i];
     }
-    delete this->_adjacents;
+    delete[] this->_adjacents;
 }
 
 int GraphLinkedList::countEdges(void) const {
