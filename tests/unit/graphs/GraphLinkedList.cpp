@@ -127,13 +127,18 @@ static void test_should_check_vertex_degree()
     ASSERT_EQ(1, graph.degree(1));
 }
 
-static void test_should_travel_empty_graph_going_deepth_first()
+static void test_should_travel_fully_disconnected_graph()
 {
     GraphLinkedList graph(5);
 
     Deque<int> result = graph.deepthFirst();
 
-    ASSERT_TRUE(result.isEmpty());
+    ASSERT_FALSE(result.isEmpty());
+    ASSERT_EQ(0, result[0]);
+    ASSERT_EQ(1, result[1]);
+    ASSERT_EQ(2, result[2]);
+    ASSERT_EQ(3, result[3]);
+    ASSERT_EQ(4, result[4]);
 }
 
 static void test_should_travel_non_empty_graph_going_deepth_first()
@@ -180,7 +185,7 @@ void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
     test_should_delete_edge();
     test_should_delete_invalid_edge();
     test_should_check_vertex_degree();
-    test_should_travel_empty_graph_going_deepth_first();
+    test_should_travel_fully_disconnected_graph();
     test_should_travel_non_empty_graph_going_deepth_first();
     test_should_travel_disconnected_graph_going_deepth_first();
 }

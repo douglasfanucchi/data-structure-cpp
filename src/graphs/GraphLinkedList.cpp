@@ -69,9 +69,6 @@ void GraphLinkedList::deepthFirstRecursive(int v, Deque<int> &deque, bool *visit
 Deque<int> GraphLinkedList::deepthFirst(void) const {
     Deque<int> deque;
 
-    if (this->countEdges() == 0) {
-        return deque;
-    }
     bool *visited = new bool[this->_n];
     for (int i = 0; i < this->_n; i++) {
         visited[i] = false;
