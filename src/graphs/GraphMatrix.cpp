@@ -111,7 +111,7 @@ void GraphMatrix::deepthFirstRecursive(int v, Deque<int> &deque, int *visited) c
 }
 
 GraphMatrix::~GraphMatrix(void) {
-    for (int i = 0; i < this->_edges; i++) {
+    for (int i = 0; i < this->_n; i++) {
         delete[] this->_matrix[i];
     }
     delete[] this->_matrix;
