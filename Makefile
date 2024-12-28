@@ -32,12 +32,18 @@ $(NAME): $(FILES_OBJS) src/main.cpp
 	@$(COMPILER) --std=c++98 $(INCLUDES) $(FILES_OBJS) src/main.cpp -o $(NAME)
 
 %.o: %.cpp
-	$(COMPILER) $(INCLUDES) -c $< -o $@
+	$(COMPILER) $(INCLUDES) -g -c $< -o $@
 
 unit: $(TEST_FILES_OBJS) $(FILES_OBJS)
-	@$(COMPILER) $(INCLUDES) $(FILES_OBJS) $(TEST_FILES_OBJS) -o unit
-	@./unit
+	@$(COMPILER) $(INCLUDES) $(FILES_OBJS) $(TEST_FILES_OBJS) -g -o unit
+	@valgrind --leak-check=full -q ./unit
 	@rm -rf unit
+
+build: unit.dockerfile clean
+	docker build . -t dsa-cpp -f unit.dockerfile
+
+run: build
+	docker run --rm dsa-cpp
 
 e2e: $(NAME)
 	@./tests/e2e/Program.sh $(realpath $(NAME))
