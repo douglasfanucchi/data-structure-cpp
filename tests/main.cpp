@@ -20,5 +20,6 @@ int main()
     RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE();
     RUN_GRAPH_LINKED_LIST_TEST_SUITE();
     RUN_MAZE_TEST_SUITE();
+    RUN_DGRAPH_LINKED_LIST_TEST_SUITE();
     std::cout << std::endl;
 }
