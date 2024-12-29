@@ -20,8 +20,18 @@ static void test_should_find_path_of_a_simple_maze()
     ASSERT_EQ(1, path.deleteFromHead());
 }
 
+static void test_should_try_to_solve_an_impossible_maze()
+{
+    Maze maze(2);
+
+    IntSLList path = maze.solve(0, 1);
+
+    ASSERT_TRUE(path.isEmpty());
+}
+
 void RUN_MAZE_TEST_SUITE()
 {
     test_should_create_a_maze();
     test_should_find_path_of_a_simple_maze();
+    test_should_try_to_solve_an_impossible_maze();
 }
