@@ -131,6 +131,33 @@ static void test_should_delete_invalid_edge()
     delete graph;
 }
 
+static void test_should_check_if_graph_with_no_edges_has_cycle()
+{
+    DGraphLinkedList graph(5);
+
+    ASSERT_FALSE(graph.hasCycle());
+}
+
+static void test_should_check_if_a_self_loop_graph_has_cycle()
+{
+    DGraphLinkedList graph(5);
+    graph.insertEdge(0, 0);
+
+    ASSERT_TRUE(graph.hasCycle());
+}
+
+static void test_should_check_if_a_graph_with_multiple_edges_has_cycle()
+{
+    DGraphLinkedList graph(5);
+    graph.insertEdge(1, 0);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(1, 3);
+    graph.insertEdge(3, 4);
+    graph.insertEdge(4, 1);
+
+    ASSERT_TRUE(graph.hasCycle());
+}
+
 void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_a_dgraph_linked_list();
@@ -140,4 +167,7 @@ void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
     test_should_delete_edge_from_dgraph_linked_list();
     test_should_delete_non_existing_edge();
     test_should_delete_invalid_edge();
+    test_should_check_if_graph_with_no_edges_has_cycle();
+    test_should_check_if_a_self_loop_graph_has_cycle();
+    test_should_check_if_a_graph_with_multiple_edges_has_cycle();
 }

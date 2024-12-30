@@ -8,6 +8,9 @@ class DGraphLinkedList : public GraphLinkedList {
         DGraphLinkedList(int);
         void insertEdge(int, int);
         void deleteEdge(int, int);
+        bool hasCycle(void) const;
+    protected:
+        bool hasCycleRecursive(int, char*) const;
 };
 
 # endif

@@ -23,3 +23,37 @@ void DGraphLinkedList::deleteEdge(int v0, int v1) {
     this->_adjacents[v0]->deleteNode(v1);
     this->_edges--;
 }
+
+bool DGraphLinkedList::hasCycle(void) const {
+    if (this->countEdges() == 0) {
+        return false;
+    }
+    char *colors = new char[this->_n];
+    for (int i = 0; i < this->_n; i++)
+        colors[i] = 0;
+
+    bool result = false;
+    for (int i = 0; i < this->_n; i++) {
+        if (colors[i] != 0) {
+            continue;
+        }
+        if (this->hasCycleRecursive(i, colors)) {
+            result = true;
+            break;
+        }
+    }
+    delete[] colors;
+    return result;
+}
+
+bool DGraphLinkedList::hasCycleRecursive(int v, char *colors) const {
+    colors[v] = 1;
+    IntSLList *list = this->_adjacents[v];
+    while (!list->isEmpty()) {
+        int w = list->deleteFromHead();
+        if (colors[w] == 1 || this->hasCycleRecursive(w, colors)) {
+            return true;
+        }
+    }
+    return false;
+}
