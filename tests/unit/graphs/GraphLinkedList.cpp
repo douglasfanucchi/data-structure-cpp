@@ -176,14 +176,14 @@ void test_should_travel_disconnected_graph_going_deepth_first()
     ASSERT_EQ(3, result[4]);
 }
 
-static void test_should_check_cycle_intp_graph_with_no_edges()
+static void test_should_check_cycle_into_graph_with_no_edges()
 {
     GraphLinkedList graph(5);
 
     ASSERT_FALSE(graph.hasCycle());
 }
 
-static void test_should_check_cycle_intp_graph_with_one_edge()
+static void test_should_check_cycle_into_graph_with_one_edge()
 {
     GraphLinkedList graph(2);
     graph.insertEdge(0, 1);
@@ -191,7 +191,7 @@ static void test_should_check_cycle_intp_graph_with_one_edge()
     ASSERT_FALSE(graph.hasCycle());
 }
 
-static void test_should_check_cycle_intp_graph_with_simplest_cycle()
+static void test_should_check_cycle_into_graph_with_simplest_cycle()
 {
     GraphLinkedList graph(3);
     graph.insertEdge(0, 1);
@@ -201,7 +201,7 @@ static void test_should_check_cycle_intp_graph_with_simplest_cycle()
     ASSERT_TRUE(graph.hasCycle());
 }
 
-static void test_should_check_cycle_intp_graph_with_cycle()
+static void test_should_check_cycle_into_graph_with_cycle()
 {
     GraphLinkedList graph(5);
     graph.insertEdge(0, 1);
@@ -235,9 +235,9 @@ void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
     test_should_travel_fully_disconnected_graph();
     test_should_travel_non_empty_graph_going_deepth_first();
     test_should_travel_disconnected_graph_going_deepth_first();
-    test_should_check_cycle_intp_graph_with_no_edges();
-    test_should_check_cycle_intp_graph_with_one_edge();
-    test_should_check_cycle_intp_graph_with_simplest_cycle();
-    test_should_check_cycle_intp_graph_with_cycle();
+    test_should_check_cycle_into_graph_with_no_edges();
+    test_should_check_cycle_into_graph_with_one_edge();
+    test_should_check_cycle_into_graph_with_simplest_cycle();
+    test_should_check_cycle_into_graph_with_cycle();
     test_should_check_cycle_into_disconnected_graph();
 }
