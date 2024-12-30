@@ -11,7 +11,7 @@ class GraphLinkedList {
         int countEdges(void) const;
         virtual void insertEdge(int, int);
         bool edgeExists(int, int) const;
-        void deleteEdge(int, int);
+        virtual void deleteEdge(int, int);
         int degree(int) const;
         Deque<int> deepthFirst(void) const;
 
