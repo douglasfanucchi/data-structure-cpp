@@ -52,8 +52,10 @@ bool DGraphLinkedList::hasCycleRecursive(int v, char *colors) const {
     while (!list->isEmpty()) {
         int w = list->deleteFromHead();
         if (colors[w] == 1 || this->hasCycleRecursive(w, colors)) {
+            colors[v] = 2;
             return true;
         }
     }
+    colors[v] = 2;
     return false;
 }
