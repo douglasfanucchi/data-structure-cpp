@@ -14,6 +14,10 @@ class GraphLinkedList {
         virtual void deleteEdge(int, int);
         int degree(int) const;
         Deque<int> deepthFirst(void) const;
+        virtual bool hasCycle(void) const;
+
+    private:
+        bool hasCycleRecursive(int, int, char*) const;
 
     protected:
         int _edges;

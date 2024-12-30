@@ -118,3 +118,29 @@ Deque<int> GraphLinkedList::deepthFirst(void) const {
     delete[] timeEnd;
     return deque;
 }
+
+bool GraphLinkedList::hasCycleRecursive(int prev, int v, char *colors) const {
+    IntSLList *list = this->_adjacents[v];
+    colors[v] = 1;
+    while (!list->isEmpty()) {
+        int w = list->deleteFromHead();
+        if ((colors[w] == 1 && prev != w) || this->hasCycleRecursive(v, w, colors)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool GraphLinkedList::hasCycle(void) const {
+    char *colors = new char[this->_n];
+    bool result = false;
+    for (int i = 0; i < this->_n; i++)
+        colors[i] = 0;
+    for (int i = 0; i < this->_n; i++) {
+        if (colors[i] == 0) {
+            result = this->hasCycleRecursive(-1, i, colors);
+        }
+    }
+    delete[] colors;
+    return result;
+}
