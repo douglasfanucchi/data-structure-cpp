@@ -7,6 +7,7 @@ class DGraphLinkedList : public GraphLinkedList {
     public:
         DGraphLinkedList(int);
         void insertEdge(int, int);
+        void deleteEdge(int, int);
 };
 
 # endif
