@@ -5,12 +5,12 @@
 
 class IntSLList {
     private:
-        IntSLLNode *head, *tail;
+        IntSLLNode *head, *tail, *_current;
 
     public:
         IntSLList(void);
         ~IntSLList(void);
-        bool isEmpty(void);
+        bool isEmpty(void) const;
         void addToHead(int);
         void addToTail(int);
         int deleteFromHead(void);
@@ -18,6 +18,8 @@ class IntSLList {
         void deleteNode(int);
         bool isInList(int);
         int size(void) const;
+        int current(void) const;
+        bool next(void);
 };
 
 #endif

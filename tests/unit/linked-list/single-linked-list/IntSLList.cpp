@@ -171,6 +171,72 @@ static void test_should_check_list_size()
     ASSERT_EQ(1, list.size());
 }
 
+static void test_should_check_for_element_on_the_head_of_an_empty_list()
+{
+    IntSLList list;
+    char const *expected = "empty list";
+
+    try {
+        list.current();
+        ASSERT_TRUE(false);
+    } catch(const char *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
+static void test_should_check_for_element_on_the_head_of_a_list()
+{
+    IntSLList list;
+    list.addToHead(10);
+
+    int el = list.current();
+
+    ASSERT_EQ(10, el);
+}
+
+static void test_should_check_for_the_second_element_on_the_list()
+{
+    IntSLList list;
+    list.addToTail(1);
+    list.addToTail(2);
+
+    bool hasNext = list.next();
+    int el = list.current();
+
+    ASSERT_TRUE(hasNext);
+    ASSERT_EQ(2, el);
+}
+
+static void test_should_check_for_an_non_existing_element()
+{
+    IntSLList list;
+    list.addToHead(1);
+
+    ASSERT_FALSE(list.next());
+    ASSERT_FALSE(list.next());
+
+    IntSLList list2;
+    char const *expected = "empty list";
+
+    try {
+        list.next();
+    } catch(char const *err) {
+        ASSERT_STREQ(expected, err);
+    }
+}
+
+static void test_should_check_head_element_when_it_is_deleted()
+{
+    IntSLList list;
+    list.addToTail(1);
+    list.addToTail(2);
+    list.deleteFromHead();
+
+    int el = list.current();
+
+    ASSERT_EQ(2, el);
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -189,4 +255,9 @@ void RUN_INT_SLLIST_SUITE()
     test_should_search_for_a_non_existing_element_in_the_linked_list();
     test_should_search_for_a_element_in_to_an_empty_linked_list();
     test_should_check_list_size();
+    test_should_check_for_element_on_the_head_of_an_empty_list();
+    test_should_check_for_element_on_the_head_of_a_list();
+    test_should_check_for_the_second_element_on_the_list();
+    test_should_check_for_an_non_existing_element();
+    test_should_check_head_element_when_it_is_deleted();
 }

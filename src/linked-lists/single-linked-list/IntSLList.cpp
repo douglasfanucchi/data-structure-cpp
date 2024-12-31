@@ -10,7 +10,7 @@ IntSLList::~IntSLList(void) {
     }
 }
 
-bool IntSLList::isEmpty(void) {
+bool IntSLList::isEmpty(void) const {
     return this->head == 0;
 }
 
@@ -20,14 +20,14 @@ void IntSLList::addToHead(int value) {
     if (this->isEmpty()) {
         this->tail = node;
     }
-    this->head = node;
+    this->_current = this->head = node;
 }
 
 void IntSLList::addToTail(int value) {
     IntSLLNode *node = new IntSLLNode(value);
 
     if (this->isEmpty()) {
-        this->tail = this->head = node;
+        this->_current = this->tail = this->head = node;
         return;
     }
     this->tail->next = node;
@@ -36,7 +36,7 @@ void IntSLList::addToTail(int value) {
 
 int IntSLList::deleteFromHead(void) {
     IntSLLNode *node = this->head;
-    this->head = this->head->next;
+    this->_current = this->head = this->head->next;
     int value = node->value;
 
     delete node;
@@ -109,4 +109,22 @@ int IntSLList::size(void) const {
     for(tmp = this->head, result = 0; tmp; tmp = tmp->next, result++);
 
     return result;
+}
+
+int IntSLList::current(void) const {
+    if (this->isEmpty()) {
+        throw "empty list";
+    }
+    return this->_current->value;
+}
+
+bool IntSLList::next(void) {
+    if (this->isEmpty()) {
+        throw "empty list";
+    }
+    if (!this->_current) {
+        return false;
+    }
+    this->_current = this->_current->next;
+    return this->_current != nullptr;
 }
