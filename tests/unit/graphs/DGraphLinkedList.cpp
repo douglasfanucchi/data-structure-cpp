@@ -170,6 +170,49 @@ static void test_should_check_if_a_graph_with_multiple_edges_has_cycle()
     ASSERT_FALSE(graph2.hasCycle());
 }
 
+static void test_should_make_a_topological_sort_in_a_graph_with_no_edges()
+{
+    DGraphLinkedList graph(5);
+
+    IntSLList result = graph.topologicalSort();
+
+    ASSERT_TRUE(result.isEmpty());
+}
+
+static void test_should_make_a_topological_sort_in_a_graph_with_one_edge()
+{
+    DGraphLinkedList graph(2);
+    graph.insertEdge(1, 0);
+
+    IntSLList result = graph.topologicalSort();
+
+    ASSERT_EQ(1, result.current());
+    result.next();
+    ASSERT_EQ(0, result.current());
+}
+
+static void test_should_make_a_topological_sort_in_a_graph_with_multiple_edges()
+{
+    DGraphLinkedList graph(5);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(1, 3);
+    graph.insertEdge(2, 4);
+    graph.insertEdge(4, 3);
+
+    IntSLList result = graph.topologicalSort();
+
+    ASSERT_EQ(0, result.current());
+    result.next();
+    ASSERT_EQ(1, result.current());
+    result.next();
+    ASSERT_EQ(2, result.current());
+    result.next();
+    ASSERT_EQ(4, result.current());
+    result.next();
+    ASSERT_EQ(3, result.current());
+}
+
 void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_a_dgraph_linked_list();
@@ -182,4 +225,7 @@ void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
     test_should_check_if_graph_with_no_edges_has_cycle();
     test_should_check_if_a_self_loop_graph_has_cycle();
     test_should_check_if_a_graph_with_multiple_edges_has_cycle();
+    test_should_make_a_topological_sort_in_a_graph_with_no_edges();
+    test_should_make_a_topological_sort_in_a_graph_with_one_edge();
+    test_should_make_a_topological_sort_in_a_graph_with_multiple_edges();
 }

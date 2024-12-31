@@ -59,3 +59,39 @@ bool DGraphLinkedList::hasCycleRecursive(int v, char *colors) const {
     colors[v] = 2;
     return false;
 }
+
+IntSLList DGraphLinkedList::topologicalSort(void) const {
+    IntSLList result;
+    if (this->countEdges() == 0) {
+        return result;
+    }
+    bool *visited = new bool[this->_n];
+    for (int v = 0; v < this->_n; v++) {
+        visited[v] = false;
+    }
+    for (int v = 0; v < this->_n; v++) {
+        if (visited[v]) {
+            continue;
+        }
+        this->topologicalSortRecursive(result, visited, v);
+    }
+    delete[] visited;
+    return result;
+}
+
+void DGraphLinkedList::topologicalSortRecursive(IntSLList &list, bool *visited, int v) const {
+    visited[v] = true;
+    IntSLList *adjacents = this->_adjacents[v];
+    if (adjacents->isEmpty()) {
+        list.addToHead(v);
+        return;
+    }
+    do
+    {
+        int w = adjacents->current();
+        if (!visited[w]) {
+            this->topologicalSortRecursive(list, visited, w);
+        }
+    } while (adjacents->next());
+    list.addToHead(v);
+}

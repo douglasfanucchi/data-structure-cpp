@@ -9,8 +9,10 @@ class DGraphLinkedList : public GraphLinkedList {
         void insertEdge(int, int);
         void deleteEdge(int, int);
         bool hasCycle(void) const;
+        IntSLList topologicalSort(void) const;
     protected:
         bool hasCycleRecursive(int, char*) const;
+        void topologicalSortRecursive(IntSLList&, bool*, int) const;
 };
 
 # endif
