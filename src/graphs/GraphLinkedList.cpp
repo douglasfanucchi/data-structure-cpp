@@ -26,9 +26,10 @@ void GraphLinkedList::insertEdge(int v0, int v1) {
     if (!this->isValidVertex(v0) || !this->isValidVertex(v1)) {
         throw "invalid vertex";
     }
-    if (!this->edgeExists(v0, v1)) {
-        this->_edges++;
+    if (this->edgeExists(v0, v1)) {
+        return;
     }
+    this->_edges++;
     this->_adjacents[v0]->addToTail(v1);
     this->_adjacents[v1]->addToTail(v0);
 }
