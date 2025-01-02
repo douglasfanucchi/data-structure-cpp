@@ -13,6 +13,7 @@ class IntSLList {
         bool isEmpty(void) const;
         void addToHead(int);
         void addToTail(int);
+        void insertSort(int);
         int deleteFromHead(void);
         int deleteFromTail(void);
         void deleteNode(int);

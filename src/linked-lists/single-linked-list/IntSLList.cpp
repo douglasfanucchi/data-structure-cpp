@@ -34,6 +34,30 @@ void IntSLList::addToTail(int value) {
     this->tail = node;
 }
 
+void IntSLList::insertSort(int value) {
+    if (this->isEmpty()) {
+        this->addToHead(value);
+        return;
+    }
+    if (!this->head->next && this->head->value >= value) {
+        this->_current = this->head = new IntSLLNode(value, this->head);
+        return;
+    }
+    IntSLLNode *trav = this->head;
+    while(trav) {
+        IntSLLNode *next = trav->next;
+        if (next && next->value >= value) {
+            break;
+        }
+        trav = next;
+    }
+    if (!trav) {
+        this->addToTail(value);
+        return;
+    }
+    trav->next = new IntSLLNode(value, trav->next);
+}
+
 int IntSLList::deleteFromHead(void) {
     IntSLLNode *node = this->head;
     this->_current = this->head = this->head->next;

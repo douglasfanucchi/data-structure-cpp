@@ -237,6 +237,24 @@ static void test_should_check_head_element_when_it_is_deleted()
     ASSERT_EQ(2, el);
 }
 
+static void test_should_sort_as_insert_items()
+{
+    IntSLList list;
+
+    list.insertSort(6);
+    list.insertSort(0);
+    list.insertSort(7);
+    list.insertSort(1);
+
+    ASSERT_EQ(0, list.current());
+    list.next();
+    ASSERT_EQ(1, list.current());
+    list.next();
+    ASSERT_EQ(6, list.current());
+    list.next();
+    ASSERT_EQ(7, list.current());
+}
+
 void RUN_INT_SLLIST_SUITE()
 {
     test_should_create_an_empty_linked_list();
@@ -260,4 +278,5 @@ void RUN_INT_SLLIST_SUITE()
     test_should_check_for_the_second_element_on_the_list();
     test_should_check_for_an_non_existing_element();
     test_should_check_head_element_when_it_is_deleted();
+    test_should_sort_as_insert_items();
 }
