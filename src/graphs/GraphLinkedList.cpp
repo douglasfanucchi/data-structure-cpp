@@ -144,3 +144,38 @@ bool GraphLinkedList::hasCycle(void) const {
     delete[] colors;
     return result;
 }
+
+IntSLList GraphLinkedList::connectedComponents(void) const {
+    IntSLList result;
+
+    bool *visited = new bool[this->_n];
+    for (int i = 0; i < this->_n; i++) {
+        visited[i] = false;
+    }
+
+    int component = 1;
+    for (int v = 0; v < this->_n; v++) {
+        if (!visited[v]) {
+            this->connectedComponentsRecursive(result, v, visited);
+            result.addToTail(component++);
+        }
+    }
+
+    delete[] visited;
+    return result;
+}
+
+void GraphLinkedList::connectedComponentsRecursive(IntSLList &list, int v, bool *visited) const {
+    IntSLList *adjacents = this->_adjacents[v];
+    visited[v] = true;
+
+    if (adjacents->isEmpty()) {
+        return;
+    }
+    do {
+        int w = adjacents->current();
+        if (!visited[w]) {
+            this->connectedComponentsRecursive(list, w, visited);
+        }
+    } while(adjacents->next());
+}

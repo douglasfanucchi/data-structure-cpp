@@ -223,6 +223,32 @@ static void test_should_check_cycle_into_disconnected_graph()
     ASSERT_TRUE(graph.hasCycle());
 }
 
+static void test_should_get_connected_components_from_a_graph_with_no_edges()
+{
+    GraphLinkedList graph(2);
+
+    IntSLList components = graph.connectedComponents();
+
+    ASSERT_EQ(1, components.current());
+    components.next();
+    ASSERT_EQ(2, components.current());
+}
+
+static void test_should_get_connected_component_from_a_fully_connected_graph()
+{
+    GraphLinkedList graph(5);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(2, 3);
+    graph.insertEdge(3, 4);
+    graph.insertEdge(4, 0);
+
+    IntSLList components = graph.connectedComponents();
+
+    ASSERT_EQ(1, components.size());
+    ASSERT_EQ(1, components.current());
+}
+
 void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_graph();
@@ -240,4 +266,6 @@ void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
     test_should_check_cycle_into_graph_with_simplest_cycle();
     test_should_check_cycle_into_graph_with_cycle();
     test_should_check_cycle_into_disconnected_graph();
+    test_should_get_connected_components_from_a_graph_with_no_edges();
+    test_should_get_connected_component_from_a_fully_connected_graph();
 }
