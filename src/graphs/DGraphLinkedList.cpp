@@ -9,7 +9,7 @@ void DGraphLinkedList::insertEdge(int v0, int v1) {
     if (this->edgeExists(v0, v1)) {
         return;
     }
-    this->_adjacents[v0]->addToHead(v1);
+    this->_adjacents[v0]->insertSort(v1);
     this->_edges++;
 }
 
