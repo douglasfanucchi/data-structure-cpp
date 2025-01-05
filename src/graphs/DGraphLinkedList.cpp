@@ -95,3 +95,28 @@ void DGraphLinkedList::topologicalSortRecursive(IntSLList &list, bool *visited, 
     } while (adjacents->next());
     list.addToHead(v);
 }
+
+void DGraphLinkedList::unsafeInsert(int v, int w) {
+    this->_adjacents[v]->addToHead(w);
+    this->_edges++;
+}
+
+DGraphLinkedList DGraphLinkedList::transpose(void) const {
+    DGraphLinkedList result(this->_n);
+    if (this->countEdges() == 0) {
+        return result;
+    }
+
+    for (int v = this->_n - 1; v >= 0; v--) {
+        IntSLList *adjacents = this->_adjacents[v];
+        if (adjacents->isEmpty()) {
+            continue;
+        }
+        do {
+            int w = adjacents->current();
+            result.unsafeInsert(w, v);
+        } while(adjacents->next());
+    }
+
+    return result;
+}

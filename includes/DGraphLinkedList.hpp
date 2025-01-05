@@ -7,9 +7,11 @@ class DGraphLinkedList : public GraphLinkedList {
     public:
         DGraphLinkedList(int);
         void insertEdge(int, int);
+        void unsafeInsert(int, int);
         void deleteEdge(int, int);
         bool hasCycle(void) const;
         IntSLList topologicalSort(void) const;
+        DGraphLinkedList transpose(void) const;
     protected:
         bool hasCycleRecursive(int, char*) const;
         void topologicalSortRecursive(IntSLList&, bool*, int) const;

@@ -213,6 +213,39 @@ static void test_should_make_a_topological_sort_in_a_graph_with_multiple_edges()
     ASSERT_EQ(3, result.current());
 }
 
+static void test_should_transpose_a_graph_with_no_edges()
+{
+    DGraphLinkedList graph(2);
+
+    DGraphLinkedList result = graph.transpose();
+
+    ASSERT_EQ(0, result.countEdges());
+}
+
+static void test_should_transpose_connected_graph()
+{
+    DGraphLinkedList graph(2);
+    graph.insertEdge(0, 1);
+
+    DGraphLinkedList result = graph.transpose();
+
+    ASSERT_FALSE(result.edgeExists(0, 1));
+    ASSERT_TRUE(result.edgeExists(1, 0));
+}
+
+static void test_should_transpose_a_strongly_connected_graph()
+{
+    DGraphLinkedList graph(2);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 0);
+
+    DGraphLinkedList result = graph.transpose();
+
+    ASSERT_EQ(2, result.countEdges());
+    ASSERT_TRUE(result.edgeExists(0, 1));
+    ASSERT_TRUE(result.edgeExists(1, 0));
+}
+
 void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_a_dgraph_linked_list();
@@ -228,4 +261,7 @@ void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
     test_should_make_a_topological_sort_in_a_graph_with_no_edges();
     test_should_make_a_topological_sort_in_a_graph_with_one_edge();
     test_should_make_a_topological_sort_in_a_graph_with_multiple_edges();
+    test_should_transpose_a_graph_with_no_edges();
+    test_should_transpose_connected_graph();
+    test_should_transpose_a_strongly_connected_graph();
 }
