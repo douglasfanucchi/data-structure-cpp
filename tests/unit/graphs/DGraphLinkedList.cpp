@@ -246,6 +246,35 @@ static void test_should_transpose_a_strongly_connected_graph()
     ASSERT_TRUE(result.edgeExists(1, 0));
 }
 
+static void test_should_compute_simple_strongly_connected_component()
+{
+    DGraphLinkedList graph(3);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(2, 0);
+
+    IntSLList result = graph.computeSCC();
+
+    ASSERT_EQ(1, result.size());
+    ASSERT_EQ(1, result.current());
+}
+
+static void test_should_compute_more_than_one_strongly_connected_component()
+{
+    DGraphLinkedList graph(4);
+    graph.insertEdge(1, 0);
+    graph.insertEdge(1, 2);
+    graph.insertEdge(2, 3);
+    graph.insertEdge(3, 1);
+
+    IntSLList result = graph.computeSCC();
+
+    ASSERT_EQ(2, result.size());
+    ASSERT_EQ(1, result.current());
+    result.next();
+    ASSERT_EQ(2, result.current());
+}
+
 void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_a_dgraph_linked_list();
@@ -264,4 +293,6 @@ void RUN_DGRAPH_LINKED_LIST_TEST_SUITE()
     test_should_transpose_a_graph_with_no_edges();
     test_should_transpose_connected_graph();
     test_should_transpose_a_strongly_connected_graph();
+    test_should_compute_simple_strongly_connected_component();
+    test_should_compute_more_than_one_strongly_connected_component();
 }

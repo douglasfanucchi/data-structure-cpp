@@ -116,7 +116,49 @@ DGraphLinkedList DGraphLinkedList::transpose(void) const {
             int w = adjacents->current();
             result.unsafeInsert(w, v);
         } while(adjacents->next());
+        adjacents->rewind();
     }
 
+    return result;
+}
+
+IntSLList *DGraphLinkedList::getAdjacents(int v) const {
+    if (!this->isValidVertex(v)) {
+        throw "invalid vertex";
+    }
+    return this->_adjacents[v];
+}
+
+void DGraphLinkedList::computeSCCRecursive(IntSLList &result, DGraphLinkedList *transposed, bool *visited, int v) const {
+    visited[v] = true;
+    IntSLList *adjacents = transposed->getAdjacents(v);
+    if (adjacents->isEmpty()) {
+        return;
+    }
+    do {
+        int w = adjacents->current();
+        if (!visited[w])
+            this->computeSCCRecursive(result, transposed, visited, w);
+    } while(adjacents->next());
+}
+
+IntSLList DGraphLinkedList::computeSCC(void) const {
+    IntSLList result;
+    DGraphLinkedList transposed = this->transpose();
+    bool *visited = new bool[this->_n];
+    int component = 1;
+    for (int v = 0; v < this->_n; v++)
+        visited[v] = false;
+    IntSLList topologicalOrdered = this->topologicalSort();
+    do
+    {
+        int v = topologicalOrdered.current();
+        if (!visited[v]) {
+            this->computeSCCRecursive(result, &transposed, visited, v);
+            result.addToTail(component++);
+        }
+    } while (topologicalOrdered.next());
+
+    delete[] visited;
     return result;
 }
