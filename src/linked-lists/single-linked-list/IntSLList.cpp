@@ -14,6 +14,10 @@ bool IntSLList::isEmpty(void) const {
     return this->head == 0;
 }
 
+void IntSLList::rewind(void) {
+    this->_current = this->head;
+}
+
 void IntSLList::addToHead(int value) {
     IntSLLNode *node = new IntSLLNode(value, this->head);
 

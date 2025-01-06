@@ -21,6 +21,7 @@ class IntSLList {
         int size(void) const;
         int current(void) const;
         bool next(void);
+        void rewind(void);
 };
 
 #endif
