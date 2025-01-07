@@ -249,6 +249,32 @@ static void test_should_get_connected_component_from_a_fully_connected_graph()
     ASSERT_EQ(1, components.current());
 }
 
+static void test_should_travel_breadth_first()
+{
+    GraphLinkedList graph(4);
+    graph.insertEdge(0, 1);
+    graph.insertEdge(1, 3);
+    graph.insertEdge(0, 2);
+    graph.insertEdge(2, 3);
+
+    Deque<int> result = graph.breadthFirst();
+
+    ASSERT_EQ(0, result[0]);
+    ASSERT_EQ(1, result[1]);
+    ASSERT_EQ(2, result[2]);
+    ASSERT_EQ(3, result[3]);
+}
+
+static void test_should_travel_disconnected_graph_in_breadth_first()
+{
+    GraphLinkedList graph(2);
+
+    Deque<int> result = graph.breadthFirst();
+
+    ASSERT_EQ(0, result[0]);
+    ASSERT_EQ(1, result[1]);
+}
+
 void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
 {
     test_should_create_graph();
@@ -268,4 +294,6 @@ void RUN_GRAPH_LINKED_LIST_TEST_SUITE()
     test_should_check_cycle_into_disconnected_graph();
     test_should_get_connected_components_from_a_graph_with_no_edges();
     test_should_get_connected_component_from_a_fully_connected_graph();
+    test_should_travel_breadth_first();
+    test_should_travel_disconnected_graph_in_breadth_first();
 }

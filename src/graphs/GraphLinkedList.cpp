@@ -1,4 +1,5 @@
 #include <GraphLinkedList.hpp>
+#include <Queue.hpp>
 
 GraphLinkedList::GraphLinkedList(int n) : _n(n), _edges(0) {
     this->_adjacents = new IntSLList*[n];
@@ -179,4 +180,37 @@ void GraphLinkedList::connectedComponentsRecursive(IntSLList &list, int v, bool 
             this->connectedComponentsRecursive(list, w, visited);
         }
     } while(adjacents->next());
+}
+
+Deque<int> GraphLinkedList::breadthFirst(void) const {
+    Deque<int> result;
+    Queue <int> queue;
+    bool *visited = new bool[this->_n];
+    for (int u = 0; u < this->_n; u++) {
+        visited[u] = false;
+    }
+    for (int u = 0; u < this->_n; u++) {
+        if (visited[u]) {
+            continue;
+        }
+        queue.enqueue(u);
+        visited[u] = true;
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
+            result.pushBack(v);
+            IntSLList *adjacents = this->_adjacents[v];
+            if (adjacents->isEmpty()) {
+                continue;
+            }
+            do {
+                int v = adjacents->current();
+                if (!visited[v]) {
+                    queue.enqueue(v);
+                    visited[v] = true;
+                }
+            } while(adjacents->next());
+        }
+    }
+    delete[] visited;
+    return result;
 }

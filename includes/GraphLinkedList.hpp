@@ -16,6 +16,7 @@ class GraphLinkedList {
         Deque<int> deepthFirst(void) const;
         virtual bool hasCycle(void) const;
         IntSLList connectedComponents(void) const;
+        Deque<int> breadthFirst(void) const;
 
     private:
         bool hasCycleRecursive(int, int, char*) const;
