@@ -22,5 +22,6 @@ int main()
     RUN_MAZE_TEST_SUITE();
     RUN_DGRAPH_LINKED_LIST_TEST_SUITE();
     RUN_MIN_HEAP_TEST_SUITE();
+    RUN_TEST_PRIORITY_QUEUE_MIN();
     std::cout << std::endl;
 }
