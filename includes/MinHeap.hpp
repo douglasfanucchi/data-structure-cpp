@@ -57,25 +57,19 @@ template<typename T>
 void MinHeap<T>::maintenance(int index) {
     int left = 2*index + 1;
     int right = 2*index + 2;
-    int middleIndex = this->_size/2 - 1;
 
-    if (index > middleIndex) {
+    if (index > this->_size/2 - 1
+        || (this->_arr[index] <= this->_arr[left] 
+            && (right > this->_size - 1 || this->_arr[index] <= this->_arr[right]))
+    ) {
         return;
     }
-    int key = index;
-    if (right > this->_size - 1) {
-        if (this->_arr[index] > this->_arr[left]) {
-            key = left;
-        }
-    } else if (this->_arr[index] > this->_arr[left] || this->_arr[index] > this->_arr[right]) {
-        key = left;
-        if (this->_arr[left] > this->_arr[right]) {
-            key = right;
-        }
+
+    int key = left;
+    if (right < this->_size && this->_arr[right] < this->_arr[left]) {
+        key = right;
     }
-    if (key == index) {
-        return;
-    }
+
     T tmp = this->_arr[index];
     this->_arr[index] = this->_arr[key];
     this->_arr[key] = tmp;
