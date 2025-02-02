@@ -16,6 +16,7 @@ static void test_should_enqueue_element()
     queue.enqueue(item);
 
     ASSERT_FALSE(queue.isEmpty());
+    ASSERT_EQ(0, item.index);
 }
 
 static void test_should_dequeue_an_element()
@@ -28,6 +29,7 @@ static void test_should_dequeue_an_element()
 
     ASSERT_EQ(1, result);
     ASSERT_TRUE(queue.isEmpty());
+    ASSERT_EQ(-1, item.index);
 }
 
 static void test_should_try_to_dequeue_from_an_empty_queue()
@@ -53,6 +55,8 @@ static void test_should_dequeue_an_element_with_lower_priority_first()
     int result = queue.dequeue();
 
     ASSERT_EQ(100, result);
+    ASSERT_EQ(-1, item_2.index);
+    ASSERT_EQ(1, item_1.index);
 }
 
 void RUN_TEST_PRIORITY_QUEUE_MIN()
