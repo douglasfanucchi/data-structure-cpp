@@ -9,6 +9,7 @@ class MinHeap {
         T **_arr;
         int _size;
         void maintenance(int);
+        virtual void swap(int, int);
 
     public:
         MinHeap(int);
@@ -70,10 +71,15 @@ void MinHeap<T>::maintenance(int index) {
         key = right;
     }
 
-    T *tmp = this->_arr[index];
-    this->_arr[index] = this->_arr[key];
-    this->_arr[key] = tmp;
+    this->swap(index, key);
     this->maintenance(key);
+}
+
+template<typename T>
+void MinHeap<T>::swap(int i, int j) {
+    T *tmp = this->_arr[i];
+    this->_arr[i] = this->_arr[j];
+    this->_arr[j] = tmp;
 }
 
 #endif
