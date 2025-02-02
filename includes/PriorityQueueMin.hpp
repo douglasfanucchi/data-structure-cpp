@@ -10,8 +10,10 @@ class PriorityQueueMin : public MinHeap<PriorityQueueItem<T>> {
         PriorityQueueMin(int);
         void enqueue(PriorityQueueItem<T>&);
         T dequeue(void);
+        void dequeue(PriorityQueueItem<T>&);
     protected:
         void swapWithParentIfNeeded(int);
+        void swap(int, int);
 };
 
 template<typename T>
@@ -34,11 +36,7 @@ void PriorityQueueMin<T>::swapWithParentIfNeeded(int index) {
     if (*this->_arr[parent] <= *this->_arr[index]) {
         return;
     }
-    PriorityQueueItem<T> *tmp = this->_arr[parent];
-    this->_arr[parent] = this->_arr[index];
-    this->_arr[index] = tmp;
-    this->_arr[parent]->index = parent;
-    this->_arr[index]->index = index;
+    this->swap(index, parent);
     this->swapWithParentIfNeeded(parent);
 }
 
@@ -54,6 +52,29 @@ T PriorityQueueMin<T>::dequeue(void) {
     this->maintenance(0);
 
     return queueItem->item;
+}
+
+template<typename T>
+void PriorityQueueMin<T>::dequeue(PriorityQueueItem<T> &el) {
+    if (this->isEmpty()) {
+        throw "empty queue";
+    }
+    int index = el.index;
+    if (index == -1 || this->_arr[index]->item != el.item) {
+        throw "element not present";
+    }
+    this->_arr[this->_size - 1]->index = index;
+    this->_arr[index] = this->_arr[this->_size - 1];
+    el.index = -1;
+    this->_size--;
+    this->maintenance(index);
+}
+
+template<typename T>
+void PriorityQueueMin<T>::swap(int i, int j) {
+    this->_arr[i]->index = j;
+    this->_arr[j]->index = i;
+    this->MinHeap<PriorityQueueItem<T>>::swap(i, j);
 }
 
 #endif
