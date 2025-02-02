@@ -8,7 +8,7 @@ template<typename T>
 class PriorityQueueMin : public MinHeap<PriorityQueueItem<T>> {
     public:
         PriorityQueueMin(int);
-        void enqueue(int, const T&);
+        void enqueue(const PriorityQueueItem<T>&);
         T dequeue(void);
     protected:
         void swapWithParentIfNeeded(int);
@@ -18,9 +18,8 @@ template<typename T>
 PriorityQueueMin<T>::PriorityQueueMin(int n) : MinHeap<PriorityQueueItem<T>>(n) {}
 
 template<typename T>
-void PriorityQueueMin<T>::enqueue(int priority, const T& item) {
-    PriorityQueueItem<T> queueItem(priority, item);
-    this->insert(queueItem);
+void PriorityQueueMin<T>::enqueue(const PriorityQueueItem<T> &el) {
+    this->insert(el);
     this->swapWithParentIfNeeded(this->_size - 1);
 }
 

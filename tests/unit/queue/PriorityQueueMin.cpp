@@ -11,8 +11,9 @@ static void test_should_create_an_empty_priority_queue()
 static void test_should_enqueue_element()
 {
     PriorityQueueMin<int> queue(1);
+    PriorityQueueItem<int> item(0, 1);
 
-    queue.enqueue(0, 1);
+    queue.enqueue(item);
 
     ASSERT_FALSE(queue.isEmpty());
 }
@@ -20,7 +21,8 @@ static void test_should_enqueue_element()
 static void test_should_dequeue_an_element()
 {
     PriorityQueueMin<int> queue(1);
-    queue.enqueue(0, 1);
+    PriorityQueueItem<int> item(0, 1);
+    queue.enqueue(item);
 
     int result = queue.dequeue();
 
@@ -42,8 +44,11 @@ static void test_should_try_to_dequeue_from_an_empty_queue()
 static void test_should_dequeue_an_element_with_lower_priority_first()
 {
     PriorityQueueMin<int> queue(2);
-    queue.enqueue(1, 50);
-    queue.enqueue(0, 100);
+    PriorityQueueItem<int> item_1(1, 50);
+    PriorityQueueItem<int> item_2(0, 100);
+
+    queue.enqueue(item_1);
+    queue.enqueue(item_2);
 
     int result = queue.dequeue();
 
