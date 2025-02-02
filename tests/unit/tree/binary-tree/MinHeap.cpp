@@ -11,10 +11,11 @@ static void test_should_create_an_empty_heap()
 static void test_should_create_and_insert_elements_into_heap()
 {
     MinHeap<int> heap(4);
-    heap.insert(2);
-    heap.insert(5);
-    heap.insert(9);
-    heap.insert(1);
+    int values[4] = {2, 5, 9, 1};
+    heap.insert(values);
+    heap.insert(values + 1);
+    heap.insert(values + 2);
+    heap.insert(values + 3);
 
     heap.build();
 

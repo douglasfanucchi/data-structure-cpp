@@ -6,14 +6,14 @@
 template<typename T>
 class MinHeap {
     protected:
-        T *_arr;
+        T **_arr;
         int _size;
         void maintenance(int);
 
     public:
         MinHeap(int);
         ~MinHeap(void);
-        void insert(const T&);
+        void insert(T*);
         T& operator[](int);
         bool isEmpty(void) const;
         void build(void);
@@ -21,7 +21,7 @@ class MinHeap {
 
 template<typename T>
 MinHeap<T>::MinHeap(int n) : _size(0) {
-    this->_arr = new T[n];
+    this->_arr = new T*[n];
     
 }
 
@@ -31,7 +31,7 @@ MinHeap<T>::~MinHeap(void) {
 }
 
 template<typename T>
-void MinHeap<T>::insert(const T& el) {
+void MinHeap<T>::insert(T *el) {
     this->_arr[this->_size] = el;
     this->_size++;
 }
@@ -50,7 +50,7 @@ bool MinHeap<T>::isEmpty(void) const {
 
 template<typename T>
 T& MinHeap<T>::operator[](int index) {
-    return this->_arr[index];
+    return *this->_arr[index];
 }
 
 template<typename T>
@@ -59,18 +59,18 @@ void MinHeap<T>::maintenance(int index) {
     int right = 2*index + 2;
 
     if (index > this->_size/2 - 1
-        || (this->_arr[index] <= this->_arr[left] 
-            && (right > this->_size - 1 || this->_arr[index] <= this->_arr[right]))
+        || (*this->_arr[index] <= *this->_arr[left] 
+            && (right > this->_size - 1 || *this->_arr[index] <= *this->_arr[right]))
     ) {
         return;
     }
 
     int key = left;
-    if (right < this->_size && this->_arr[right] < this->_arr[left]) {
+    if (right < this->_size && *this->_arr[right] < *this->_arr[left]) {
         key = right;
     }
 
-    T tmp = this->_arr[index];
+    T *tmp = this->_arr[index];
     this->_arr[index] = this->_arr[key];
     this->_arr[key] = tmp;
     this->maintenance(key);
