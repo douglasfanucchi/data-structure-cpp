@@ -48,7 +48,6 @@ static void test_should_dequeue_an_element_with_lower_priority_first()
     PriorityQueueMin<int> queue(2);
     PriorityQueueItem<int> item_1(1, 50);
     PriorityQueueItem<int> item_2(0, 100);
-
     queue.enqueue(item_1);
     queue.enqueue(item_2);
 
@@ -57,7 +56,7 @@ static void test_should_dequeue_an_element_with_lower_priority_first()
     ASSERT_EQ(100, result->item);
     ASSERT_EQ(50, queue[0].item);
     ASSERT_EQ(-1, item_2.index);
-    ASSERT_EQ(1, item_1.index);
+    ASSERT_EQ(0, item_1.index);
 }
 
 static void test_should_dequeue_specifying_node_value()

@@ -48,11 +48,12 @@ PriorityQueueItem<T> *PriorityQueueMin<T>::dequeue(void) {
         throw "empty queue";
     }
     PriorityQueueItem<T> *queueItem = this->_arr[0];
-    queueItem->index = -1;
     this->_arr[0] = this->_arr[this->_size - 1];
+    this->_arr[0]->index = 0;
     this->_size--;
     this->maintenance(0);
 
+    queueItem->index = -1;
     return queueItem;
 }
 
