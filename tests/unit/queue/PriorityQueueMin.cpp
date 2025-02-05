@@ -55,6 +55,7 @@ static void test_should_dequeue_an_element_with_lower_priority_first()
     int result = queue.dequeue();
 
     ASSERT_EQ(100, result);
+    ASSERT_EQ(50, queue[0].item);
     ASSERT_EQ(-1, item_2.index);
     ASSERT_EQ(1, item_1.index);
 }
