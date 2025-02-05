@@ -11,9 +11,11 @@ class PriorityQueueMin : public MinHeap<PriorityQueueItem<T>> {
         void enqueue(PriorityQueueItem<T>&);
         T dequeue(void);
         void dequeue(PriorityQueueItem<T>&);
+        void decreasePriority(PriorityQueueItem<T>&, int);
     protected:
         void swapWithParentIfNeeded(int);
         void swap(int, int);
+        bool isValidIndex(int) const;
 };
 
 template<typename T>
@@ -75,6 +77,23 @@ void PriorityQueueMin<T>::swap(int i, int j) {
     this->_arr[i]->index = j;
     this->_arr[j]->index = i;
     this->MinHeap<PriorityQueueItem<T>>::swap(i, j);
+}
+
+template<typename T>
+bool PriorityQueueMin<T>::isValidIndex(int index) const {
+    return index >= 0 && index < this->_size;
+}
+
+template<typename T>
+void PriorityQueueMin<T>::decreasePriority(PriorityQueueItem<T> &el, int priority) {
+    if (!this->isValidIndex(el.index) || this->_arr[el.index]->item != el.item) {
+        throw "element not present";
+    }
+    if (priority > el.priority) {
+        throw "priority should be lower or equal than the current one";
+    }
+    this->_arr[el.index]->priority = priority;
+    this->swapWithParentIfNeeded(el.index);
 }
 
 #endif

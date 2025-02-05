@@ -129,6 +129,62 @@ static void test_should_dequeue_an_element_that_is_not_in_the_queue()
     }
 }
 
+static void test_should_decrease_item_priority()
+{
+    PriorityQueueMin<int> queue(4);
+    PriorityQueueItem<int> items[4];
+    items[0].priority = 1;
+    items[0].item = 50;
+    items[1].priority = 2;    
+    items[1].item = 100;
+    items[2].priority = 3;
+    items[2].item = 150;
+    items[3].priority = 4;
+    items[3].item = 200;
+    queue.enqueue(items[0]);
+    queue.enqueue(items[1]);
+    queue.enqueue(items[2]);
+    queue.enqueue(items[3]);
+
+    queue.decreasePriority(items[3], 0);
+
+    ASSERT_EQ(0, items[3].index);
+    ASSERT_EQ(0, items[3].priority);
+    ASSERT_EQ(1, items[0].index);
+    ASSERT_EQ(3, items[1].index);
+}
+
+static void test_should_try_to_decrease_priority_of_a_non_existing_item()
+{
+    PriorityQueueMin<int> queue(1);
+    PriorityQueueMin<int> queue_2(2);
+    PriorityQueueItem<int> item(0, 1);
+    PriorityQueueItem<int> item_2(1, 1);
+    queue_2.enqueue(item);
+    queue_2.enqueue(item_2);
+
+    try {
+        queue.decreasePriority(item_2, -1);
+        ASSERT_TRUE(false);
+    } catch(char const *result) {
+        ASSERT_STREQ("element not present", result);
+    }
+}
+
+static void test_should_try_to_decrease_priority_passing_a_higher_priority_value()
+{
+    PriorityQueueMin<int>queue(1);
+    PriorityQueueItem<int> item(0, 1);
+    queue.enqueue(item);
+
+    try {
+        queue.decreasePriority(item, 1);
+        ASSERT_TRUE(false);
+    } catch(char const *result) {
+        ASSERT_STREQ("priority should be lower or equal than the current one", result);
+    }
+}
+
 void RUN_TEST_PRIORITY_QUEUE_MIN()
 {
     test_should_create_an_empty_priority_queue();
@@ -139,4 +195,7 @@ void RUN_TEST_PRIORITY_QUEUE_MIN()
     test_should_dequeue_specifying_node_value();
     test_should_dequeue_an_empty_queue_specifying_node_value();
     test_should_dequeue_an_element_that_is_not_in_the_queue();
+    test_should_decrease_item_priority();
+    test_should_try_to_decrease_priority_of_a_non_existing_item();
+    test_should_try_to_decrease_priority_passing_a_higher_priority_value();
 }
