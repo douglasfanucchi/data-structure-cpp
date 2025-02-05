@@ -9,7 +9,7 @@ class PriorityQueueMin : public MinHeap<PriorityQueueItem<T>> {
     public:
         PriorityQueueMin(int);
         void enqueue(PriorityQueueItem<T>&);
-        T dequeue(void);
+        PriorityQueueItem<T> *dequeue(void);
         void dequeue(PriorityQueueItem<T>&);
         void decreasePriority(PriorityQueueItem<T>&, int);
     protected:
@@ -43,7 +43,7 @@ void PriorityQueueMin<T>::swapWithParentIfNeeded(int index) {
 }
 
 template<typename T>
-T PriorityQueueMin<T>::dequeue(void) {
+PriorityQueueItem<T> *PriorityQueueMin<T>::dequeue(void) {
     if (this->isEmpty()) {
         throw "empty queue";
     }
@@ -53,7 +53,7 @@ T PriorityQueueMin<T>::dequeue(void) {
     this->_size--;
     this->maintenance(0);
 
-    return queueItem->item;
+    return queueItem;
 }
 
 template<typename T>

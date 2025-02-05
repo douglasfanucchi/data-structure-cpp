@@ -25,9 +25,9 @@ static void test_should_dequeue_an_element()
     PriorityQueueItem<int> item(0, 1);
     queue.enqueue(item);
 
-    int result = queue.dequeue();
+    PriorityQueueItem<int> *result = queue.dequeue();
 
-    ASSERT_EQ(1, result);
+    ASSERT_EQ(1, result->item);
     ASSERT_TRUE(queue.isEmpty());
     ASSERT_EQ(-1, item.index);
 }
@@ -52,9 +52,9 @@ static void test_should_dequeue_an_element_with_lower_priority_first()
     queue.enqueue(item_1);
     queue.enqueue(item_2);
 
-    int result = queue.dequeue();
+    PriorityQueueItem<int> *result = queue.dequeue();
 
-    ASSERT_EQ(100, result);
+    ASSERT_EQ(100, result->item);
     ASSERT_EQ(50, queue[0].item);
     ASSERT_EQ(-1, item_2.index);
     ASSERT_EQ(1, item_1.index);
