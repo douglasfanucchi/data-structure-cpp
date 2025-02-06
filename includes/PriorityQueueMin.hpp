@@ -11,7 +11,7 @@ class PriorityQueueMin : public MinHeap<PriorityQueueItem<T>> {
         void enqueue(PriorityQueueItem<T>&);
         PriorityQueueItem<T> *dequeue(void);
         void dequeue(PriorityQueueItem<T>&);
-        void decreasePriority(PriorityQueueItem<T>&, int);
+        void decreasePriority(PriorityQueueItem<T>&, float);
     protected:
         void swapWithParentIfNeeded(int);
         void swap(int, int);
@@ -86,7 +86,7 @@ bool PriorityQueueMin<T>::isValidIndex(int index) const {
 }
 
 template<typename T>
-void PriorityQueueMin<T>::decreasePriority(PriorityQueueItem<T> &el, int priority) {
+void PriorityQueueMin<T>::decreasePriority(PriorityQueueItem<T> &el, float priority) {
     if (!this->isValidIndex(el.index) || this->_arr[el.index]->item != el.item) {
         throw "element not present";
     }
