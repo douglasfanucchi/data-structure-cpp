@@ -1,6 +1,7 @@
 #include <PonderedGraphMatrix.hpp>
+#include <PriorityQueueMin.hpp>
 
-PonderedGraphMatrix::PonderedGraphMatrix(int n) : _n(n), _edges(0) {
+PonderedGraphMatrix::PonderedGraphMatrix(int n) : _n(n), _edges(0), _cost(0) {
     this->_matrix = new float*[n];
     for (int i = 0; i < n; i++) {
         this->_matrix[i] = new float[n];
@@ -59,6 +60,74 @@ bool PonderedGraphMatrix::hasAdjacent(int v) const {
         }
     }
     return false;
+}
+
+float PonderedGraphMatrix::getCost(void) const {
+    return this->_cost;
+}
+
+void PonderedGraphMatrix::setCost(float cost) {
+    this->_cost = cost;
+}
+
+PonderedGraphMatrix PonderedGraphMatrix::mst(void) {
+    PonderedGraphMatrix result(this->_n);
+    PriorityQueueMin<int> queue(this->_n);
+    PriorityQueueItem<int> *items[this->_n];
+    bool *visited = new bool[this->_n];
+    int *prev = new int[this->_n];
+    float cost = 0;
+
+    int v = 0;
+    for (int w = 0; w < this->_n; w++) {
+        items[w] = nullptr;
+        visited[w] = false;
+        prev[w] = -1;
+        if (this->edgeExists(v, w)) {
+            items[w] = new PriorityQueueItem<int>(
+                this->_matrix[v][w],
+                w
+            );
+            prev[w] = 0;
+            queue.enqueue(*items[w]);
+        }
+    }
+    visited[0] = true;
+
+    while(!queue.isEmpty()) {
+        PriorityQueueItem<int> *el = queue.dequeue();
+        int w = el->item;
+        int v = prev[w];
+        result.insertEdge(v, w, this->_matrix[v][w]);
+        cost += this->_matrix[v][w];
+        v = w;
+        for (int w = 0; w < this->_n; w++) {
+            if (!this->edgeExists(v, w) || visited[w]) {
+                continue;
+            }
+            float weight = this->_matrix[v][w];
+            if (!items[w]) {
+                items[w] = new PriorityQueueItem<int>(
+                    weight,
+                    w
+                );
+                queue.enqueue(*items[w]);
+                prev[w] = v;
+                continue;
+            }
+            if (items[w]->priority > weight) {
+                queue.decreasePriority(*items[w], weight);
+                prev[w] = v;
+            }
+        }
+        visited[v] = true;
+        delete el;
+    }
+    result.setCost(cost);
+
+    delete[] visited;
+    delete[] prev;
+    return result;
 }
 
 int PonderedGraphMatrix::degree(int v) const {

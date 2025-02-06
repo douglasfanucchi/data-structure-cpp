@@ -1,5 +1,6 @@
 #include <asserts.hpp>
 #include <PonderedGraphMatrix.hpp>
+#include <iostream>
 
 void test_should_create_a_pondered_graph_matrix()
 {
@@ -185,6 +186,31 @@ void test_should_check_vertex_degree()
     ASSERT_EQ(1, graph.degree(3));
 }
 
+static void test_should_generate_minimum_spanning_tree_using_prim_algorithm()
+{
+    PonderedGraphMatrix graph(6);
+    graph.insertEdge(0, 1, 6.0);
+    graph.insertEdge(0, 2, 1.0);
+    graph.insertEdge(0, 3, 3.5);
+    graph.insertEdge(1, 2, 2.5);
+    graph.insertEdge(1, 4, 5.0);
+    graph.insertEdge(4, 2, 6.0);
+    graph.insertEdge(4, 5, 3.0);
+    graph.insertEdge(5, 2, 4.5);
+    graph.insertEdge(5, 3, 4.0);
+    graph.insertEdge(3, 2, 2.0);
+
+    PonderedGraphMatrix mst = graph.mst();
+    float cost = mst.getCost();
+
+    ASSERT_TRUE(12.5 - cost < 0.001);
+    ASSERT_TRUE(mst.edgeExists(0, 2));
+    ASSERT_TRUE(mst.edgeExists(2, 1));
+    ASSERT_TRUE(mst.edgeExists(2, 3));
+    ASSERT_TRUE(mst.edgeExists(3, 5));
+    ASSERT_TRUE(mst.edgeExists(4, 5));
+}
+
 void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
 {
     test_should_create_a_pondered_graph_matrix();
@@ -198,4 +224,5 @@ void RUN_PONDERED_GRAPH_MATRIX_TEST_SUITE()
     test_should_check_if_a_vertex_has_adjacent();
     test_should_chekc_if_an_invalid_vertex_has_adjacent();
     test_should_check_vertex_degree();
+    test_should_generate_minimum_spanning_tree_using_prim_algorithm();
 }

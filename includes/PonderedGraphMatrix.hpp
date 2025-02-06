@@ -13,10 +13,16 @@ class PonderedGraphMatrix {
         bool edgeExists(int, int) const;
         bool hasAdjacent(int) const;
         int degree(int) const;
+        PonderedGraphMatrix mst(void);
+        float getCost(void) const;
+        void setCost(float);
+
     protected:
         int _n;
         int _edges;
         float **_matrix;
+        float _cost;
+
         bool isValidVertex(int) const;
 };
 
